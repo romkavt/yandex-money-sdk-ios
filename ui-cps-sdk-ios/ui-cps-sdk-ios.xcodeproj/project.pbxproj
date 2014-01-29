@@ -1,0 +1,264 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		603499E418995F320033835D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603499E318995F320033835D /* Foundation.framework */; };
+		60B4F303189961AF00522230 /* libymcpssdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4F302189961AF00522230 /* libymcpssdk-ios.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		603499DE18995F320033835D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		603499E018995F320033835D /* libuiymcpssdk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libuiymcpssdk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		603499E318995F320033835D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		60349A0B189960D60033835D /* uiymcpssdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uiymcpssdk-ios-Prefix.pch"; path = "SupportingFiles/uiymcpssdk-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		60B4F302189961AF00522230 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Debug-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		603499DD18995F320033835D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60B4F303189961AF00522230 /* libymcpssdk-ios.a in Frameworks */,
+				603499E418995F320033835D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		603499D718995F320033835D = {
+			isa = PBXGroup;
+			children = (
+				60349A09189960AC0033835D /* SDK */,
+				603499E618995F320033835D /* Supporting Files */,
+				603499E218995F320033835D /* Frameworks */,
+				603499E118995F320033835D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		603499E118995F320033835D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				603499E018995F320033835D /* libuiymcpssdk-ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		603499E218995F320033835D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60B4F302189961AF00522230 /* libymcpssdk-ios.a */,
+				603499E318995F320033835D /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		603499E618995F320033835D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60349A0B189960D60033835D /* uiymcpssdk-ios-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = "ui-ios-cps-sdk";
+			sourceTree = "<group>";
+		};
+		60349A09189960AC0033835D /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SDK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		603499DF18995F320033835D /* uiymcpssdk-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60349A0318995F320033835D /* Build configuration list for PBXNativeTarget "uiymcpssdk-ios" */;
+			buildPhases = (
+				603499DC18995F320033835D /* Sources */,
+				603499DD18995F320033835D /* Frameworks */,
+				603499DE18995F320033835D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "uiymcpssdk-ios";
+			productName = "ui-ios-cps-sdk";
+			productReference = 603499E018995F320033835D /* libuiymcpssdk-ios.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		603499D818995F320033835D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Yandex.Money;
+			};
+			buildConfigurationList = 603499DB18995F320033835D /* Build configuration list for PBXProject "ui-cps-sdk-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 603499D718995F320033835D;
+			productRefGroup = 603499E118995F320033835D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				603499DF18995F320033835D /* uiymcpssdk-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		603499DC18995F320033835D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		60349A0118995F320033835D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		60349A0218995F320033835D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		60349A0418995F320033835D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = "/tmp/uiymcpssdk-ios.dst";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SupportingFiles/uiymcpssdk-ios-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		60349A0518995F320033835D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = "/tmp/uiymcpssdk-ios.dst";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SupportingFiles/uiymcpssdk-ios-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		603499DB18995F320033835D /* Build configuration list for PBXProject "ui-cps-sdk-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60349A0118995F320033835D /* Debug */,
+				60349A0218995F320033835D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60349A0318995F320033835D /* Build configuration list for PBXNativeTarget "uiymcpssdk-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60349A0418995F320033835D /* Debug */,
+				60349A0518995F320033835D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 603499D818995F320033835D /* Project object */;
+}
