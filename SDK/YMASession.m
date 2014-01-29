@@ -5,6 +5,7 @@
 
 #import "YMASession.h"
 #import "YMAConnection.h"
+#import "YMAConstants.h"
 
 typedef enum {
     YMAStatusCodeOkHTTP = 200,
@@ -80,8 +81,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
         id responseModel = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
 
-        //TODO use domain const
-        NSError *unknownError = [NSError errorWithDomain:NSLocalizedString(@"technicalError", "technicalError") code:0 userInfo:parameters];
+        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:parameters];
 
         if (error || !responseModel) {
             block(nil, (error) ? error : unknownError);
@@ -112,9 +112,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 }
 
 - (void)performRequest:(YMABaseRequest *)request completion:(YMARequestHandler)block {
-
-    //TODO use domain const
-    NSError *unknownError = [NSError errorWithDomain:NSLocalizedString(@"technicalError", "technicalError") code:0 userInfo:@{@"request" : request}];
+    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
 
     if (!request)
         block(request, nil, unknownError);
@@ -131,8 +129,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
         }
 
         NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
-        //TODO use domain const
-        NSError *technicalError = [NSError errorWithDomain:NSLocalizedString(@"technicalError", "technicalError") code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
+        NSError *technicalError = [NSError errorWithDomain:kErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
 
         switch (statusCode) {
             case YMAStatusCodeOkHTTP:
@@ -140,7 +137,6 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
                 break;
             case YMAStatusCodeInsufficientScopeHTTP:
             case YMAStatusCodeInvalidTokenHTTP:
-                //TODO use domain const
                 block(request, nil, [NSError errorWithDomain:[self valueOfHeader:kHeaderWWWAuthenticate forResponse:urlResponse] code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}]);
                 break;
             case YMAStatusCodeInvalidRequestHTTP:

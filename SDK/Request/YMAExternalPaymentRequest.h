@@ -6,11 +6,6 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
 
-extern NSString *const kP2PPaymentParameterTo;
-extern NSString *const kP2PPaymentParameterIdentifierType;
-extern NSString *const kP2PPaymentParameterAmount;
-extern NSString *const kP2PPaymentParameterAmountDue;
-
 @interface YMAExternalPaymentRequest : YMABaseRequest
 
 + (instancetype)externalPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;

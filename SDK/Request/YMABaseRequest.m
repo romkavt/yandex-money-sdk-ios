@@ -7,6 +7,7 @@
 
 #import "YMABaseRequest.h"
 #import "YMABaseResponse.h"
+#import "YMAConstants.h"
 
 @implementation YMABaseRequest
 
@@ -16,7 +17,7 @@
     }];
 
     if (!operation) {
-        handler(self, nil, [NSError errorWithDomain:NSLocalizedString(@"technicalError", "technicalError") code:0 userInfo:nil]);
+        handler(self, nil, [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:nil]);
         return;
     }
 

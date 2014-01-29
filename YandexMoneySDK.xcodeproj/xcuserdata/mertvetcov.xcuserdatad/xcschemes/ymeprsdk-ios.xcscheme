@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43C6B1D818987E78001BA093"
-               BuildableName = "libymeprsdk-ios.a"
+               BuildableName = "libymcpssdk-ios.a"
                BlueprintName = "ymcpssdk-ios"
                ReferencedContainer = "container:YandexMoneySDK.xcodeproj">
             </BuildableReference>

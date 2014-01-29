@@ -6,11 +6,6 @@
 #import "YMAExternalPaymentRequest.h"
 #import "YMAExternalPaymentResponse.h"
 
-NSString *const kP2PPaymentParameterTo = @"to";
-NSString *const kP2PPaymentParameterIdentifierType = @"identifier_type";
-NSString *const kP2PPaymentParameterAmount = @"amount";
-NSString *const kP2PPaymentParameterAmountDue = @"amount_due";
-
 static NSString *const kUrlExternalPayment = @"https://money.yandex.ru/api/request-external-payment";
 static NSString *const kParameterPatternId = @"pattern_id";
 
@@ -23,7 +18,7 @@ static NSString *const kParameterPatternId = @"pattern_id";
 
 @implementation YMAExternalPaymentRequest
 
-- (id)initWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams{
+- (id)initWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
     self = [super init];
 
     if (self) {

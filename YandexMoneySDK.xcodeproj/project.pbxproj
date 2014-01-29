@@ -42,6 +42,8 @@
 		43C6B240189881F5001BA093 /* YMASession.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B220189881F5001BA093 /* YMASession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43C6B241189881F5001BA093 /* YMASession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B221189881F5001BA093 /* YMASession.m */; };
 		43C6B242189881F5001BA093 /* YMASession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B221189881F5001BA093 /* YMASession.m */; };
+		6034997818994C510033835D /* YMAConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6034997618994C510033835D /* YMAConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6034997918994C510033835D /* YMAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034997718994C510033835D /* YMAConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +86,8 @@
 		43C6B21F189881F5001BA093 /* YMAMoneySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAMoneySource.m; path = SDK/YMAMoneySource.m; sourceTree = "<group>"; };
 		43C6B220189881F5001BA093 /* YMASession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMASession.h; path = SDK/YMASession.h; sourceTree = "<group>"; };
 		43C6B221189881F5001BA093 /* YMASession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMASession.m; path = SDK/YMASession.m; sourceTree = "<group>"; };
+		6034997618994C510033835D /* YMAConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAConstants.h; path = SDK/YMAConstants.h; sourceTree = "<group>"; };
+		6034997718994C510033835D /* YMAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAConstants.m; path = SDK/YMAConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,8 @@
 				43C6B21F189881F5001BA093 /* YMAMoneySource.m */,
 				43C6B220189881F5001BA093 /* YMASession.h */,
 				43C6B221189881F5001BA093 /* YMASession.m */,
+				6034997618994C510033835D /* YMAConstants.h */,
+				6034997718994C510033835D /* YMAConstants.m */,
 				43C6B21A189881F5001BA093 /* YMAConnection.h */,
 				43C6B21B189881F5001BA093 /* YMAConnection.m */,
 				43C6B21C189881F5001BA093 /* YMAConnectionOperation.h */,
@@ -211,6 +217,7 @@
 				43C6B228189881F5001BA093 /* YMAProcessExternalPaymentRequest.h in Headers */,
 				43C6B231189881F5001BA093 /* YMAProcessExternalPaymentResponse.h in Headers */,
 				43C6B222189881F5001BA093 /* YMABaseRequest.h in Headers */,
+				6034997818994C510033835D /* YMAConstants.h in Headers */,
 				43C6B22B189881F5001BA093 /* YMABaseResponse.h in Headers */,
 				43C6B23A189881F5001BA093 /* YMAConnectionOperation.h in Headers */,
 				43C6B237189881F5001BA093 /* YMAConnection.h in Headers */,
@@ -300,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C6B232189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */,
+				6034997918994C510033835D /* YMAConstants.m in Sources */,
 				43C6B23B189881F5001BA093 /* YMAConnectionOperation.m in Sources */,
 				43C6B238189881F5001BA093 /* YMAConnection.m in Sources */,
 				43C6B223189881F5001BA093 /* YMABaseRequest.m in Sources */,
