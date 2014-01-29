@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43C6B1D818987E78001BA093"
-               BuildableName = "libymeprsdk-ios.a"
-               BlueprintName = "ymeprsdk-ios"
-               ReferencedContainer = "container:YandexMoneySDK.xcodeproj">
+               BlueprintIdentifier = "603499DF18995F320033835D"
+               BuildableName = "libuiymcpssdk-ios.a"
+               BlueprintName = "uiymcpssdk-ios"
+               ReferencedContainer = "container:ui-cps-sdk-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "603499EF18995F320033835D"
+               BuildableName = "ui-ios-cps-sdkTests.xctest"
+               BlueprintName = "ui-ios-cps-sdkTests"
+               ReferencedContainer = "container:ui-cps-sdk-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -35,7 +45,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
