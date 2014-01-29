@@ -7,42 +7,83 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43C6B1AB18987C4D001BA093 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C6B1AA18987C4D001BA093 /* Cocoa.framework */; };
-		43C6B1B518987C4D001BA093 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43C6B1B318987C4D001BA093 /* InfoPlist.strings */; };
-		43C6B1B918987C4D001BA093 /* YandexMoneyEPR_SDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B1B818987C4D001BA093 /* YandexMoneyEPR_SDK.m */; };
-		43C6B1C018987C4D001BA093 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C6B1BF18987C4D001BA093 /* XCTest.framework */; };
-		43C6B1C118987C4D001BA093 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C6B1AA18987C4D001BA093 /* Cocoa.framework */; };
-		43C6B1C418987C4D001BA093 /* YandexMoneyEPR-SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C6B1A718987C4D001BA093 /* YandexMoneyEPR-SDK.framework */; };
-		43C6B1CA18987C4D001BA093 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43C6B1C818987C4D001BA093 /* InfoPlist.strings */; };
-		43C6B1CC18987C4D001BA093 /* YandexMoneyEPR_SDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B1CB18987C4D001BA093 /* YandexMoneyEPR_SDKTests.m */; };
+		43C6B20718988093001BA093 /* ymeprsdk-os-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43C6B20518988093001BA093 /* ymeprsdk-os-Info.plist */; };
+		43C6B20818988093001BA093 /* ymeprsdk-os-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20618988093001BA093 /* ymeprsdk-os-Prefix.pch */; settings = {ATTRIBUTES = (Private, ); }; };
+		43C6B222189881F5001BA093 /* YMABaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20B189881F5001BA093 /* YMABaseRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B223189881F5001BA093 /* YMABaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B20C189881F5001BA093 /* YMABaseRequest.m */; };
+		43C6B224189881F5001BA093 /* YMABaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B20C189881F5001BA093 /* YMABaseRequest.m */; };
+		43C6B225189881F5001BA093 /* YMAExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20D189881F5001BA093 /* YMAExternalPaymentRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B226189881F5001BA093 /* YMAExternalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B20E189881F5001BA093 /* YMAExternalPaymentRequest.m */; };
+		43C6B227189881F5001BA093 /* YMAExternalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B20E189881F5001BA093 /* YMAExternalPaymentRequest.m */; };
+		43C6B228189881F5001BA093 /* YMAProcessExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20F189881F5001BA093 /* YMAProcessExternalPaymentRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B229189881F5001BA093 /* YMAProcessExternalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B210189881F5001BA093 /* YMAProcessExternalPaymentRequest.m */; };
+		43C6B22A189881F5001BA093 /* YMAProcessExternalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B210189881F5001BA093 /* YMAProcessExternalPaymentRequest.m */; };
+		43C6B22B189881F5001BA093 /* YMABaseResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B212189881F5001BA093 /* YMABaseResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B22C189881F5001BA093 /* YMABaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B213189881F5001BA093 /* YMABaseResponse.m */; };
+		43C6B22D189881F5001BA093 /* YMABaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B213189881F5001BA093 /* YMABaseResponse.m */; };
+		43C6B22E189881F5001BA093 /* YMAExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B214189881F5001BA093 /* YMAExternalPaymentResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B22F189881F5001BA093 /* YMAExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B215189881F5001BA093 /* YMAExternalPaymentResponse.m */; };
+		43C6B230189881F5001BA093 /* YMAExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B215189881F5001BA093 /* YMAExternalPaymentResponse.m */; };
+		43C6B231189881F5001BA093 /* YMAProcessExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B216189881F5001BA093 /* YMAProcessExternalPaymentResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B232189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B217189881F5001BA093 /* YMAProcessExternalPaymentResponse.m */; };
+		43C6B233189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B217189881F5001BA093 /* YMAProcessExternalPaymentResponse.m */; };
+		43C6B234189881F5001BA093 /* YMAAsc.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B218189881F5001BA093 /* YMAAsc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B235189881F5001BA093 /* YMAAsc.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B219189881F5001BA093 /* YMAAsc.m */; };
+		43C6B236189881F5001BA093 /* YMAAsc.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B219189881F5001BA093 /* YMAAsc.m */; };
+		43C6B237189881F5001BA093 /* YMAConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B21A189881F5001BA093 /* YMAConnection.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		43C6B238189881F5001BA093 /* YMAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21B189881F5001BA093 /* YMAConnection.m */; };
+		43C6B239189881F5001BA093 /* YMAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21B189881F5001BA093 /* YMAConnection.m */; };
+		43C6B23A189881F5001BA093 /* YMAConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B21C189881F5001BA093 /* YMAConnectionOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		43C6B23B189881F5001BA093 /* YMAConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */; };
+		43C6B23C189881F5001BA093 /* YMAConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */; };
+		43C6B23D189881F5001BA093 /* YMAMoneySource.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B21E189881F5001BA093 /* YMAMoneySource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B23E189881F5001BA093 /* YMAMoneySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21F189881F5001BA093 /* YMAMoneySource.m */; };
+		43C6B23F189881F5001BA093 /* YMAMoneySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21F189881F5001BA093 /* YMAMoneySource.m */; };
+		43C6B240189881F5001BA093 /* YMASession.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B220189881F5001BA093 /* YMASession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43C6B241189881F5001BA093 /* YMASession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B221189881F5001BA093 /* YMASession.m */; };
+		43C6B242189881F5001BA093 /* YMASession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B221189881F5001BA093 /* YMASession.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		43C6B1C218987C4D001BA093 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43C6B19E18987C4D001BA093 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 43C6B1A618987C4D001BA093;
-			remoteInfo = "YandexMoneyEPR-SDK";
+/* Begin PBXCopyFilesBuildPhase section */
+		43C6B1D718987E78001BA093 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXContainerItemProxy section */
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		43C6B1A718987C4D001BA093 /* YandexMoneyEPR-SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "YandexMoneyEPR-SDK.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43C6B1AA18987C4D001BA093 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		43C6B1AD18987C4D001BA093 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		43C6B1AE18987C4D001BA093 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		43C6B1AF18987C4D001BA093 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		43C6B1B218987C4D001BA093 /* YandexMoneyEPR-SDK-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YandexMoneyEPR-SDK-Info.plist"; sourceTree = "<group>"; };
-		43C6B1B418987C4D001BA093 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		43C6B1B618987C4D001BA093 /* YandexMoneyEPR-SDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YandexMoneyEPR-SDK-Prefix.pch"; sourceTree = "<group>"; };
-		43C6B1B718987C4D001BA093 /* YandexMoneyEPR_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YandexMoneyEPR_SDK.h; sourceTree = "<group>"; };
-		43C6B1B818987C4D001BA093 /* YandexMoneyEPR_SDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YandexMoneyEPR_SDK.m; sourceTree = "<group>"; };
-		43C6B1BE18987C4D001BA093 /* YandexMoneyEPR-SDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "YandexMoneyEPR-SDKTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43C6B1BF18987C4D001BA093 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		43C6B1C718987C4D001BA093 /* YandexMoneyEPR-SDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YandexMoneyEPR-SDKTests-Info.plist"; sourceTree = "<group>"; };
-		43C6B1C918987C4D001BA093 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		43C6B1CB18987C4D001BA093 /* YandexMoneyEPR_SDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YandexMoneyEPR_SDKTests.m; sourceTree = "<group>"; };
+		43C6B1A718987C4D001BA093 /* ymeprsdk-os.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "ymeprsdk-os.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C6B1D918987E78001BA093 /* libymeprsdk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libymeprsdk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C6B20518988093001BA093 /* ymeprsdk-os-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ymeprsdk-os-Info.plist"; path = "SupportingFiles/ymeprsdk-os-Info.plist"; sourceTree = SOURCE_ROOT; };
+		43C6B20618988093001BA093 /* ymeprsdk-os-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ymeprsdk-os-Prefix.pch"; path = "SupportingFiles/ymeprsdk-os-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		43C6B209189880A0001BA093 /* ymeprsdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ymeprsdk-ios-Prefix.pch"; path = "SupportingFiles/ymeprsdk-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		43C6B20B189881F5001BA093 /* YMABaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseRequest.h; sourceTree = "<group>"; };
+		43C6B20C189881F5001BA093 /* YMABaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseRequest.m; sourceTree = "<group>"; };
+		43C6B20D189881F5001BA093 /* YMAExternalPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAExternalPaymentRequest.h; sourceTree = "<group>"; };
+		43C6B20E189881F5001BA093 /* YMAExternalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAExternalPaymentRequest.m; sourceTree = "<group>"; };
+		43C6B20F189881F5001BA093 /* YMAProcessExternalPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAProcessExternalPaymentRequest.h; sourceTree = "<group>"; };
+		43C6B210189881F5001BA093 /* YMAProcessExternalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAProcessExternalPaymentRequest.m; sourceTree = "<group>"; };
+		43C6B212189881F5001BA093 /* YMABaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseResponse.h; sourceTree = "<group>"; };
+		43C6B213189881F5001BA093 /* YMABaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseResponse.m; sourceTree = "<group>"; };
+		43C6B214189881F5001BA093 /* YMAExternalPaymentResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAExternalPaymentResponse.h; sourceTree = "<group>"; };
+		43C6B215189881F5001BA093 /* YMAExternalPaymentResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAExternalPaymentResponse.m; sourceTree = "<group>"; };
+		43C6B216189881F5001BA093 /* YMAProcessExternalPaymentResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAProcessExternalPaymentResponse.h; sourceTree = "<group>"; };
+		43C6B217189881F5001BA093 /* YMAProcessExternalPaymentResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAProcessExternalPaymentResponse.m; sourceTree = "<group>"; };
+		43C6B218189881F5001BA093 /* YMAAsc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAAsc.h; path = SDK/YMAAsc.h; sourceTree = "<group>"; };
+		43C6B219189881F5001BA093 /* YMAAsc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAAsc.m; path = SDK/YMAAsc.m; sourceTree = "<group>"; };
+		43C6B21A189881F5001BA093 /* YMAConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAConnection.h; path = SDK/YMAConnection.h; sourceTree = "<group>"; };
+		43C6B21B189881F5001BA093 /* YMAConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAConnection.m; path = SDK/YMAConnection.m; sourceTree = "<group>"; };
+		43C6B21C189881F5001BA093 /* YMAConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAConnectionOperation.h; path = SDK/YMAConnectionOperation.h; sourceTree = "<group>"; };
+		43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAConnectionOperation.m; path = SDK/YMAConnectionOperation.m; sourceTree = "<group>"; };
+		43C6B21E189881F5001BA093 /* YMAMoneySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAMoneySource.h; path = SDK/YMAMoneySource.h; sourceTree = "<group>"; };
+		43C6B21F189881F5001BA093 /* YMAMoneySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAMoneySource.m; path = SDK/YMAMoneySource.m; sourceTree = "<group>"; };
+		43C6B220189881F5001BA093 /* YMASession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMASession.h; path = SDK/YMASession.h; sourceTree = "<group>"; };
+		43C6B221189881F5001BA093 /* YMASession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMASession.m; path = SDK/YMASession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,17 +91,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43C6B1AB18987C4D001BA093 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43C6B1BB18987C4D001BA093 /* Frameworks */ = {
+		43C6B1D618987E78001BA093 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43C6B1C118987C4D001BA093 /* Cocoa.framework in Frameworks */,
-				43C6B1C018987C4D001BA093 /* XCTest.framework in Frameworks */,
-				43C6B1C418987C4D001BA093 /* YandexMoneyEPR-SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,8 +107,8 @@
 		43C6B19D18987C4D001BA093 = {
 			isa = PBXGroup;
 			children = (
-				43C6B1B018987C4D001BA093 /* YandexMoneyEPR-SDK */,
-				43C6B1C518987C4D001BA093 /* YandexMoneyEPR-SDKTests */,
+				43C6B1FE18987F67001BA093 /* SDK */,
+				43C6B1B118987C4D001BA093 /* Supporting Files */,
 				43C6B1A918987C4D001BA093 /* Frameworks */,
 				43C6B1A818987C4D001BA093 /* Products */,
 			);
@@ -80,8 +117,8 @@
 		43C6B1A818987C4D001BA093 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B1A718987C4D001BA093 /* YandexMoneyEPR-SDK.framework */,
-				43C6B1BE18987C4D001BA093 /* YandexMoneyEPR-SDKTests.xctest */,
+				43C6B1A718987C4D001BA093 /* ymeprsdk-os.framework */,
+				43C6B1D918987E78001BA093 /* libymeprsdk-ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,8 +126,6 @@
 		43C6B1A918987C4D001BA093 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B1AA18987C4D001BA093 /* Cocoa.framework */,
-				43C6B1BF18987C4D001BA093 /* XCTest.framework */,
 				43C6B1AC18987C4D001BA093 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -99,49 +134,66 @@
 		43C6B1AC18987C4D001BA093 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B1AD18987C4D001BA093 /* Foundation.framework */,
-				43C6B1AE18987C4D001BA093 /* CoreData.framework */,
-				43C6B1AF18987C4D001BA093 /* AppKit.framework */,
 			);
 			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		43C6B1B018987C4D001BA093 /* YandexMoneyEPR-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				43C6B1B718987C4D001BA093 /* YandexMoneyEPR_SDK.h */,
-				43C6B1B818987C4D001BA093 /* YandexMoneyEPR_SDK.m */,
-				43C6B1B118987C4D001BA093 /* Supporting Files */,
-			);
-			path = "YandexMoneyEPR-SDK";
 			sourceTree = "<group>";
 		};
 		43C6B1B118987C4D001BA093 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B1B218987C4D001BA093 /* YandexMoneyEPR-SDK-Info.plist */,
-				43C6B1B318987C4D001BA093 /* InfoPlist.strings */,
-				43C6B1B618987C4D001BA093 /* YandexMoneyEPR-SDK-Prefix.pch */,
+				43C6B209189880A0001BA093 /* ymeprsdk-ios-Prefix.pch */,
+				43C6B20518988093001BA093 /* ymeprsdk-os-Info.plist */,
+				43C6B20618988093001BA093 /* ymeprsdk-os-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = "YandexMoneyEPR-SDK";
 			sourceTree = "<group>";
 		};
-		43C6B1C518987C4D001BA093 /* YandexMoneyEPR-SDKTests */ = {
+		43C6B1FE18987F67001BA093 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B1CB18987C4D001BA093 /* YandexMoneyEPR_SDKTests.m */,
-				43C6B1C618987C4D001BA093 /* Supporting Files */,
+				43C6B20A189881F5001BA093 /* Request */,
+				43C6B211189881F5001BA093 /* Response */,
+				43C6B218189881F5001BA093 /* YMAAsc.h */,
+				43C6B219189881F5001BA093 /* YMAAsc.m */,
+				43C6B21E189881F5001BA093 /* YMAMoneySource.h */,
+				43C6B21F189881F5001BA093 /* YMAMoneySource.m */,
+				43C6B220189881F5001BA093 /* YMASession.h */,
+				43C6B221189881F5001BA093 /* YMASession.m */,
+				43C6B21A189881F5001BA093 /* YMAConnection.h */,
+				43C6B21B189881F5001BA093 /* YMAConnection.m */,
+				43C6B21C189881F5001BA093 /* YMAConnectionOperation.h */,
+				43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */,
 			);
-			path = "YandexMoneyEPR-SDKTests";
+			name = SDK;
 			sourceTree = "<group>";
 		};
-		43C6B1C618987C4D001BA093 /* Supporting Files */ = {
+		43C6B20A189881F5001BA093 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B1C718987C4D001BA093 /* YandexMoneyEPR-SDKTests-Info.plist */,
-				43C6B1C818987C4D001BA093 /* InfoPlist.strings */,
+				43C6B20B189881F5001BA093 /* YMABaseRequest.h */,
+				43C6B20C189881F5001BA093 /* YMABaseRequest.m */,
+				43C6B20D189881F5001BA093 /* YMAExternalPaymentRequest.h */,
+				43C6B20E189881F5001BA093 /* YMAExternalPaymentRequest.m */,
+				43C6B20F189881F5001BA093 /* YMAProcessExternalPaymentRequest.h */,
+				43C6B210189881F5001BA093 /* YMAProcessExternalPaymentRequest.m */,
 			);
-			name = "Supporting Files";
+			name = Request;
+			path = SDK/Request;
+			sourceTree = "<group>";
+		};
+		43C6B211189881F5001BA093 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				43C6B212189881F5001BA093 /* YMABaseResponse.h */,
+				43C6B213189881F5001BA093 /* YMABaseResponse.m */,
+				43C6B214189881F5001BA093 /* YMAExternalPaymentResponse.h */,
+				43C6B215189881F5001BA093 /* YMAExternalPaymentResponse.m */,
+				43C6B216189881F5001BA093 /* YMAProcessExternalPaymentResponse.h */,
+				43C6B217189881F5001BA093 /* YMAProcessExternalPaymentResponse.m */,
+			);
+			name = Response;
+			path = SDK/Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,15 +203,27 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43C6B240189881F5001BA093 /* YMASession.h in Headers */,
+				43C6B234189881F5001BA093 /* YMAAsc.h in Headers */,
+				43C6B23D189881F5001BA093 /* YMAMoneySource.h in Headers */,
+				43C6B225189881F5001BA093 /* YMAExternalPaymentRequest.h in Headers */,
+				43C6B22E189881F5001BA093 /* YMAExternalPaymentResponse.h in Headers */,
+				43C6B228189881F5001BA093 /* YMAProcessExternalPaymentRequest.h in Headers */,
+				43C6B231189881F5001BA093 /* YMAProcessExternalPaymentResponse.h in Headers */,
+				43C6B222189881F5001BA093 /* YMABaseRequest.h in Headers */,
+				43C6B22B189881F5001BA093 /* YMABaseResponse.h in Headers */,
+				43C6B23A189881F5001BA093 /* YMAConnectionOperation.h in Headers */,
+				43C6B237189881F5001BA093 /* YMAConnection.h in Headers */,
+				43C6B20818988093001BA093 /* ymeprsdk-os-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		43C6B1A618987C4D001BA093 /* YandexMoneyEPR-SDK */ = {
+		43C6B1A618987C4D001BA093 /* ymeprsdk-os */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "YandexMoneyEPR-SDK" */;
+			buildConfigurationList = 43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-os" */;
 			buildPhases = (
 				43C6B1A218987C4D001BA093 /* Sources */,
 				43C6B1A318987C4D001BA093 /* Frameworks */,
@@ -170,28 +234,27 @@
 			);
 			dependencies = (
 			);
-			name = "YandexMoneyEPR-SDK";
+			name = "ymeprsdk-os";
 			productName = "YandexMoneyEPR-SDK";
-			productReference = 43C6B1A718987C4D001BA093 /* YandexMoneyEPR-SDK.framework */;
+			productReference = 43C6B1A718987C4D001BA093 /* ymeprsdk-os.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		43C6B1BD18987C4D001BA093 /* YandexMoneyEPR-SDKTests */ = {
+		43C6B1D818987E78001BA093 /* ymeprsdk-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43C6B1D218987C4D001BA093 /* Build configuration list for PBXNativeTarget "YandexMoneyEPR-SDKTests" */;
+			buildConfigurationList = 43C6B1F818987E78001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-ios" */;
 			buildPhases = (
-				43C6B1BA18987C4D001BA093 /* Sources */,
-				43C6B1BB18987C4D001BA093 /* Frameworks */,
-				43C6B1BC18987C4D001BA093 /* Resources */,
+				43C6B1D518987E78001BA093 /* Sources */,
+				43C6B1D618987E78001BA093 /* Frameworks */,
+				43C6B1D718987E78001BA093 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				43C6B1C318987C4D001BA093 /* PBXTargetDependency */,
 			);
-			name = "YandexMoneyEPR-SDKTests";
-			productName = "YandexMoneyEPR-SDKTests";
-			productReference = 43C6B1BE18987C4D001BA093 /* YandexMoneyEPR-SDKTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = "ymeprsdk-ios";
+			productName = "ym-epr-sdk-ios";
+			productReference = 43C6B1D918987E78001BA093 /* libymeprsdk-ios.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -201,13 +264,8 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Yandex.Money;
-				TargetAttributes = {
-					43C6B1BD18987C4D001BA093 = {
-						TestTargetID = 43C6B1A618987C4D001BA093;
-					};
-				};
 			};
-			buildConfigurationList = 43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "YandexMoneyEPR-SDK" */;
+			buildConfigurationList = 43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "YandexMoneySDK" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -219,8 +277,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43C6B1A618987C4D001BA093 /* YandexMoneyEPR-SDK */,
-				43C6B1BD18987C4D001BA093 /* YandexMoneyEPR-SDKTests */,
+				43C6B1A618987C4D001BA093 /* ymeprsdk-os */,
+				43C6B1D818987E78001BA093 /* ymeprsdk-ios */,
 			);
 		};
 /* End PBXProject section */
@@ -230,15 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43C6B1B518987C4D001BA093 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		43C6B1BC18987C4D001BA093 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				43C6B1CA18987C4D001BA093 /* InfoPlist.strings in Resources */,
+				43C6B20718988093001BA093 /* ymeprsdk-os-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,46 +299,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43C6B1B918987C4D001BA093 /* YandexMoneyEPR_SDK.m in Sources */,
+				43C6B232189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */,
+				43C6B23B189881F5001BA093 /* YMAConnectionOperation.m in Sources */,
+				43C6B238189881F5001BA093 /* YMAConnection.m in Sources */,
+				43C6B223189881F5001BA093 /* YMABaseRequest.m in Sources */,
+				43C6B22F189881F5001BA093 /* YMAExternalPaymentResponse.m in Sources */,
+				43C6B235189881F5001BA093 /* YMAAsc.m in Sources */,
+				43C6B22C189881F5001BA093 /* YMABaseResponse.m in Sources */,
+				43C6B241189881F5001BA093 /* YMASession.m in Sources */,
+				43C6B23E189881F5001BA093 /* YMAMoneySource.m in Sources */,
+				43C6B226189881F5001BA093 /* YMAExternalPaymentRequest.m in Sources */,
+				43C6B229189881F5001BA093 /* YMAProcessExternalPaymentRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43C6B1BA18987C4D001BA093 /* Sources */ = {
+		43C6B1D518987E78001BA093 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43C6B1CC18987C4D001BA093 /* YandexMoneyEPR_SDKTests.m in Sources */,
+				43C6B233189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */,
+				43C6B23C189881F5001BA093 /* YMAConnectionOperation.m in Sources */,
+				43C6B239189881F5001BA093 /* YMAConnection.m in Sources */,
+				43C6B224189881F5001BA093 /* YMABaseRequest.m in Sources */,
+				43C6B230189881F5001BA093 /* YMAExternalPaymentResponse.m in Sources */,
+				43C6B236189881F5001BA093 /* YMAAsc.m in Sources */,
+				43C6B22D189881F5001BA093 /* YMABaseResponse.m in Sources */,
+				43C6B242189881F5001BA093 /* YMASession.m in Sources */,
+				43C6B23F189881F5001BA093 /* YMAMoneySource.m in Sources */,
+				43C6B227189881F5001BA093 /* YMAExternalPaymentRequest.m in Sources */,
+				43C6B22A189881F5001BA093 /* YMAProcessExternalPaymentRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		43C6B1C318987C4D001BA093 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 43C6B1A618987C4D001BA093 /* YandexMoneyEPR-SDK */;
-			targetProxy = 43C6B1C218987C4D001BA093 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		43C6B1B318987C4D001BA093 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				43C6B1B418987C4D001BA093 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		43C6B1C818987C4D001BA093 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				43C6B1C918987C4D001BA093 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		43C6B1CD18987C4D001BA093 /* Debug */ = {
@@ -324,7 +367,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = "No SDK";
 			};
 			name = Debug;
 		};
@@ -355,7 +398,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				SDKROOT = macosx;
+				SDKROOT = "No SDK";
 			};
 			name = Release;
 		};
@@ -367,9 +410,13 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YandexMoneyEPR-SDK/YandexMoneyEPR-SDK-Prefix.pch";
-				INFOPLIST_FILE = "YandexMoneyEPR-SDK/YandexMoneyEPR-SDK-Info.plist";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-os-Prefix.pch";
+				INFOPLIST_FILE = "SupportingFiles/ymeprsdk-os-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -382,57 +429,66 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YandexMoneyEPR-SDK/YandexMoneyEPR-SDK-Prefix.pch";
-				INFOPLIST_FILE = "YandexMoneyEPR-SDK/YandexMoneyEPR-SDK-Info.plist";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-os-Prefix.pch";
+				INFOPLIST_FILE = "SupportingFiles/ymeprsdk-os-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
 		};
-		43C6B1D318987C4D001BA093 /* Debug */ = {
+		43C6B1F918987E78001BA093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YandexMoneyEPR-SDK.framework/Versions/A/YandexMoneyEPR-SDK";
-				COMBINE_HIDPI_IMAGES = YES;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
+				DSTROOT = /tmp/ymeprsdk_ios.dst;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YandexMoneyEPR-SDK/YandexMoneyEPR-SDK-Prefix.pch";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-ios-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "YandexMoneyEPR-SDKTests/YandexMoneyEPR-SDKTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		43C6B1D418987C4D001BA093 /* Release */ = {
+		43C6B1FA18987E78001BA093 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YandexMoneyEPR-SDK.framework/Versions/A/YandexMoneyEPR-SDK";
-				COMBINE_HIDPI_IMAGES = YES;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
+				DSTROOT = /tmp/ymeprsdk_ios.dst;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YandexMoneyEPR-SDK/YandexMoneyEPR-SDK-Prefix.pch";
-				INFOPLIST_FILE = "YandexMoneyEPR-SDKTests/YandexMoneyEPR-SDKTests-Info.plist";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-ios-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "YandexMoneyEPR-SDK" */ = {
+		43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "YandexMoneySDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43C6B1CD18987C4D001BA093 /* Debug */,
@@ -441,7 +497,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "YandexMoneyEPR-SDK" */ = {
+		43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-os" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43C6B1D018987C4D001BA093 /* Debug */,
@@ -449,11 +505,11 @@
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		43C6B1D218987C4D001BA093 /* Build configuration list for PBXNativeTarget "YandexMoneyEPR-SDKTests" */ = {
+		43C6B1F818987E78001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43C6B1D318987C4D001BA093 /* Debug */,
-				43C6B1D418987C4D001BA093 /* Release */,
+				43C6B1F918987E78001BA093 /* Debug */,
+				43C6B1FA18987E78001BA093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

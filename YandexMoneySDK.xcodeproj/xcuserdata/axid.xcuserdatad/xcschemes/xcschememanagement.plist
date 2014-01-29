@@ -4,7 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>YandexMoneyEPR-SDK.xcscheme</key>
+		<key>ymeprsdk-ios-release.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>ymeprsdk-ios.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>ymeprsdk-os-release.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>ymeprsdk-os.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -18,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>43C6B1BD18987C4D001BA093</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>43C6B1D818987E78001BA093</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>43C6B1E618987E78001BA093</key>
 		<dict>
 			<key>primary</key>
 			<true/>
