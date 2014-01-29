@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43C6B20718988093001BA093 /* ymeprsdk-os-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43C6B20518988093001BA093 /* ymeprsdk-os-Info.plist */; };
-		43C6B20818988093001BA093 /* ymeprsdk-os-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20618988093001BA093 /* ymeprsdk-os-Prefix.pch */; settings = {ATTRIBUTES = (Private, ); }; };
+		43C6B20718988093001BA093 /* ymcpssdk-os-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43C6B20518988093001BA093 /* ymcpssdk-os-Info.plist */; };
+		43C6B20818988093001BA093 /* ymcpssdk-os-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20618988093001BA093 /* ymcpssdk-os-Prefix.pch */; settings = {ATTRIBUTES = (Private, ); }; };
 		43C6B222189881F5001BA093 /* YMABaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20B189881F5001BA093 /* YMABaseRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43C6B223189881F5001BA093 /* YMABaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B20C189881F5001BA093 /* YMABaseRequest.m */; };
 		43C6B224189881F5001BA093 /* YMABaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B20C189881F5001BA093 /* YMABaseRequest.m */; };
@@ -57,11 +57,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		43C6B1A718987C4D001BA093 /* ymeprsdk-os.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "ymeprsdk-os.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43C6B1D918987E78001BA093 /* libymeprsdk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libymeprsdk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43C6B20518988093001BA093 /* ymeprsdk-os-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ymeprsdk-os-Info.plist"; path = "SupportingFiles/ymeprsdk-os-Info.plist"; sourceTree = SOURCE_ROOT; };
-		43C6B20618988093001BA093 /* ymeprsdk-os-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ymeprsdk-os-Prefix.pch"; path = "SupportingFiles/ymeprsdk-os-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		43C6B209189880A0001BA093 /* ymeprsdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ymeprsdk-ios-Prefix.pch"; path = "SupportingFiles/ymeprsdk-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		43C6B1A718987C4D001BA093 /* ymcpssdk-os.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "ymcpssdk-os.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C6B1D918987E78001BA093 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libymcpssdk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C6B20518988093001BA093 /* ymcpssdk-os-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ymcpssdk-os-Info.plist"; path = "SupportingFiles/ymcpssdk-os-Info.plist"; sourceTree = SOURCE_ROOT; };
+		43C6B20618988093001BA093 /* ymcpssdk-os-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ymcpssdk-os-Prefix.pch"; path = "SupportingFiles/ymcpssdk-os-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		43C6B209189880A0001BA093 /* ymcpssdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ymcpssdk-ios-Prefix.pch"; path = "SupportingFiles/ymcpssdk-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		43C6B20B189881F5001BA093 /* YMABaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseRequest.h; sourceTree = "<group>"; };
 		43C6B20C189881F5001BA093 /* YMABaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseRequest.m; sourceTree = "<group>"; };
 		43C6B20D189881F5001BA093 /* YMAExternalPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAExternalPaymentRequest.h; sourceTree = "<group>"; };
@@ -117,8 +117,8 @@
 		43C6B1A818987C4D001BA093 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B1A718987C4D001BA093 /* ymeprsdk-os.framework */,
-				43C6B1D918987E78001BA093 /* libymeprsdk-ios.a */,
+				43C6B1A718987C4D001BA093 /* ymcpssdk-os.framework */,
+				43C6B1D918987E78001BA093 /* libymcpssdk-ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,9 +141,9 @@
 		43C6B1B118987C4D001BA093 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				43C6B209189880A0001BA093 /* ymeprsdk-ios-Prefix.pch */,
-				43C6B20518988093001BA093 /* ymeprsdk-os-Info.plist */,
-				43C6B20618988093001BA093 /* ymeprsdk-os-Prefix.pch */,
+				43C6B209189880A0001BA093 /* ymcpssdk-ios-Prefix.pch */,
+				43C6B20518988093001BA093 /* ymcpssdk-os-Info.plist */,
+				43C6B20618988093001BA093 /* ymcpssdk-os-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = "YandexMoneyEPR-SDK";
@@ -214,16 +214,16 @@
 				43C6B22B189881F5001BA093 /* YMABaseResponse.h in Headers */,
 				43C6B23A189881F5001BA093 /* YMAConnectionOperation.h in Headers */,
 				43C6B237189881F5001BA093 /* YMAConnection.h in Headers */,
-				43C6B20818988093001BA093 /* ymeprsdk-os-Prefix.pch in Headers */,
+				43C6B20818988093001BA093 /* ymcpssdk-os-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		43C6B1A618987C4D001BA093 /* ymeprsdk-os */ = {
+		43C6B1A618987C4D001BA093 /* ymcpssdk-os */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-os" */;
+			buildConfigurationList = 43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "ymcpssdk-os" */;
 			buildPhases = (
 				43C6B1A218987C4D001BA093 /* Sources */,
 				43C6B1A318987C4D001BA093 /* Frameworks */,
@@ -234,14 +234,14 @@
 			);
 			dependencies = (
 			);
-			name = "ymeprsdk-os";
+			name = "ymcpssdk-os";
 			productName = "YandexMoneyEPR-SDK";
-			productReference = 43C6B1A718987C4D001BA093 /* ymeprsdk-os.framework */;
+			productReference = 43C6B1A718987C4D001BA093 /* ymcpssdk-os.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		43C6B1D818987E78001BA093 /* ymeprsdk-ios */ = {
+		43C6B1D818987E78001BA093 /* ymcpssdk-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43C6B1F818987E78001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-ios" */;
+			buildConfigurationList = 43C6B1F818987E78001BA093 /* Build configuration list for PBXNativeTarget "ymcpssdk-ios" */;
 			buildPhases = (
 				43C6B1D518987E78001BA093 /* Sources */,
 				43C6B1D618987E78001BA093 /* Frameworks */,
@@ -251,9 +251,9 @@
 			);
 			dependencies = (
 			);
-			name = "ymeprsdk-ios";
+			name = "ymcpssdk-ios";
 			productName = "ym-epr-sdk-ios";
-			productReference = 43C6B1D918987E78001BA093 /* libymeprsdk-ios.a */;
+			productReference = 43C6B1D918987E78001BA093 /* libymcpssdk-ios.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -277,8 +277,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43C6B1A618987C4D001BA093 /* ymeprsdk-os */,
-				43C6B1D818987E78001BA093 /* ymeprsdk-ios */,
+				43C6B1A618987C4D001BA093 /* ymcpssdk-os */,
+				43C6B1D818987E78001BA093 /* ymcpssdk-ios */,
 			);
 		};
 /* End PBXProject section */
@@ -288,7 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43C6B20718988093001BA093 /* ymeprsdk-os-Info.plist in Resources */,
+				43C6B20718988093001BA093 /* ymcpssdk-os-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,8 +410,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-os-Prefix.pch";
-				INFOPLIST_FILE = "SupportingFiles/ymeprsdk-os-Info.plist";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymcpssdk-os-Prefix.pch";
+				INFOPLIST_FILE = "SupportingFiles/ymcpssdk-os-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,8 +429,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-os-Prefix.pch";
-				INFOPLIST_FILE = "SupportingFiles/ymeprsdk-os-Info.plist";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymcpssdk-os-Prefix.pch";
+				INFOPLIST_FILE = "SupportingFiles/ymcpssdk-os-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -445,13 +445,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
-				DSTROOT = /tmp/ymeprsdk_ios.dst;
+				DSTROOT = /tmp/ymcpssdk_ios.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-ios-Prefix.pch";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymcpssdk-ios-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -469,13 +469,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
-				DSTROOT = /tmp/ymeprsdk_ios.dst;
+				DSTROOT = /tmp/ymcpssdk_ios.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SupportingFiles/ymeprsdk-ios-Prefix.pch";
+				GCC_PREFIX_HEADER = "SupportingFiles/ymcpssdk-ios-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -497,21 +497,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-os" */ = {
+		43C6B1CF18987C4D001BA093 /* Build configuration list for PBXNativeTarget "ymcpssdk-os" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43C6B1D018987C4D001BA093 /* Debug */,
 				43C6B1D118987C4D001BA093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		43C6B1F818987E78001BA093 /* Build configuration list for PBXNativeTarget "ymeprsdk-ios" */ = {
+		43C6B1F818987E78001BA093 /* Build configuration list for PBXNativeTarget "ymcpssdk-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43C6B1F918987E78001BA093 /* Debug */,
 				43C6B1FA18987E78001BA093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
