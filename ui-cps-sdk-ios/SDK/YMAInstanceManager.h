@@ -11,17 +11,16 @@
 
 typedef void (^YMAPaymentSuccessHandler)(NSString *requestId, NSError *error);
 
-typedef void (^YMAMoneySourceHandler)(YMAMoneySource *requestId, NSError *error);
+typedef void (^YMAMoneySourceHandler)(YMAMoneySource *moneySource, NSError *error);
 
 @interface YMAInstanceManager : NSObject
+
+@property(nonatomic, strong, readonly) NSArray *moneySources;
+@property(nonatomic, strong, readonly) YMASession *session;
 
 - (id)initWithClientId:(NSString *)clientId;
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block;
-
-- (void)processPaymentWithParams:(NSDictionary *)paymentParams completion:(YMAPaymentSuccessHandler)block;
-
-- (void)processPaymentWithParams:(NSDictionary *)paymentParams moneySourceToken:(NSString *)moneySourceToken csc:(NSString *)csc completion:(YMAHandler)block;
 
 - (void)saveMoneySourceWithRequestId:(NSString *)requestId complition:(YMAMoneySourceHandler)block;
 

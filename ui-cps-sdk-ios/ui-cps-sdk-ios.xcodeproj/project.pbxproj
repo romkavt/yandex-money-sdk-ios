@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DE79F7DF4C5B007A789E30D /* YMASecureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79015271E43102900F59A /* YMASecureStorage.m */; };
 		603499E418995F320033835D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603499E318995F320033835D /* Foundation.framework */; };
 		60B4F306189A868900522230 /* YMAInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B4F305189A868900522230 /* YMAInstanceManager.m */; };
 		60B4F317189A920600522230 /* libymcpssdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4F316189A920600522230 /* libymcpssdk-ios.a */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2DE79015271E43102900F59A /* YMASecureStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMASecureStorage.m; sourceTree = "<group>"; };
+		2DE79C87D220203214E8E651 /* YMASecureStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMASecureStorage.h; sourceTree = "<group>"; };
 		603499E018995F320033835D /* libuiymcpssdk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libuiymcpssdk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		603499E318995F320033835D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		60349A0B189960D60033835D /* uiymcpssdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uiymcpssdk-ios-Prefix.pch"; path = "SupportingFiles/uiymcpssdk-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -92,6 +95,8 @@
 				60B4F305189A868900522230 /* YMAInstanceManager.m */,
 				60B4F318189A9CFB00522230 /* YMAKeychainItemWrapper.h */,
 				60B4F319189A9CFB00522230 /* YMAKeychainItemWrapper.m */,
+				2DE79015271E43102900F59A /* YMASecureStorage.m */,
+				2DE79C87D220203214E8E651 /* YMASecureStorage.h */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			files = (
 				60B4F31A189A9CFB00522230 /* YMAKeychainItemWrapper.m in Sources */,
 				60B4F306189A868900522230 /* YMAInstanceManager.m in Sources */,
+				2DE79F7DF4C5B007A789E30D /* YMASecureStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
