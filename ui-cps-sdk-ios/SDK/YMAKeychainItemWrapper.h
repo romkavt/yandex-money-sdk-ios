@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kKeychainItemValueEmpty;
-
 @interface YMAKeychainItemWrapper : NSObject
 
 @property (nonatomic, readwrite) id itemValue;

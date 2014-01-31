@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import <ymcpssdk-ios/ymcpssdk.h>
 
+extern NSString *const kKeychainItemValueEmpty;
+
 @interface YMASecureStorage : NSObject
 
 @property(nonatomic, copy) NSString *instanceId;

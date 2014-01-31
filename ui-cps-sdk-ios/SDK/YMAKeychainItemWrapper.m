@@ -8,8 +8,6 @@
 
 #import "YMAKeychainItemWrapper.h"
 
-NSString *const kKeychainItemValueEmpty = @"";
-
 @interface YMAKeychainItemWrapper ()
 
 @property (nonatomic, strong) NSMutableDictionary *keychainItemData;

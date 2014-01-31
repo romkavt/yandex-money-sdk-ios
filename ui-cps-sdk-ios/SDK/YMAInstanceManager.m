@@ -7,17 +7,15 @@
 //
 
 #import "YMAInstanceManager.h"
-#import "YMAKeychainItemWrapper.h"
+#import "YMASecureStorage.h"
 
-static NSString *const kInstanceKeychainId = @"instanceKeychainId";
 static NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
 static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
-
 
 @interface YMAInstanceManager ()
 
 @property(nonatomic, copy) NSString *clientId;
-@property(nonatomic, strong) YMAKeychainItemWrapper *instanceId;
+@property(nonatomic, strong) YMASecureStorage *secureStorage;
 
 @end
 
@@ -28,7 +26,7 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
     if (self) {
         _clientId = [clientId copy];
-        _instanceId = [[YMAKeychainItemWrapper alloc] initWithIdentifier:kInstanceKeychainId];
+        _secureStorage = [[YMASecureStorage alloc] init];
         _session = [[YMASession alloc] init];
     }
 
@@ -36,12 +34,14 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 }
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block {
-    if ([self.instanceId.itemValue isEqual:kKeychainItemValueEmpty]) {
-        [self.session authorizeWithClientId:self.clientId completion:^(NSString *instanceId, NSError *error) {
+    NSString *instanceId = self.secureStorage.instanceId;
+
+    if (!instanceId || [instanceId isEqual:kKeychainItemValueEmpty]) {
+        [self.session authorizeWithClientId:self.clientId completion:^(NSString *newInstanceId, NSError *error) {
             if (error)
                 block(error);
             else {
-                self.instanceId.itemValue = instanceId;
+                self.secureStorage.instanceId = newInstanceId;
                 block(nil);
             }
         }];
@@ -49,7 +49,7 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
         return;
     }
 
-    self.session.instanceId = self.instanceId.itemValue;
+    self.session.instanceId = instanceId;
     block(nil);
 }
 
@@ -77,6 +77,5 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
             block(nil, unknownError);
     }];
 }
-
 
 @end
