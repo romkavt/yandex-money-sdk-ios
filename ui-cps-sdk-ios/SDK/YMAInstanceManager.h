@@ -24,4 +24,6 @@ typedef void (^YMAMoneySourceHandler)(YMAMoneySource *moneySource, NSError *erro
 
 - (void)saveMoneySourceWithRequestId:(NSString *)requestId complition:(YMAMoneySourceHandler)block;
 
+- (void)removeMoneySource:(YMAMoneySource *)moneySource;
+
 @end

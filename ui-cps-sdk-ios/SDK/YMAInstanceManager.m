@@ -58,6 +58,10 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
     [self processExternalPaymentRequest:request complition:block];
 }
 
+- (void)removeMoneySource:(YMAMoneySource *)moneySource {
+    [self.secureStorage removeMoneySource:moneySource];
+}
+
 - (void)processExternalPaymentRequest:(YMABaseRequest *)paymentRequest complition:(YMAMoneySourceHandler)block {
     [self.session performRequest:paymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
         NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
@@ -65,7 +69,10 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
         if (response.status == YMAResponseStatusSuccess) {
             YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
             YMAMoneySource *moneySource = processExternalPaymentResponse.moneySource;
-            //TODO save money source
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.secureStorage saveMoneySource:moneySource];
+            });
 
             block(moneySource, moneySource ? nil : unknownError);
         } else if (response.status == YMAResponseStatusInProgress) {
@@ -76,6 +83,10 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
         } else
             block(nil, unknownError);
     }];
+}
+
+- (NSArray *)moneySources {
+    return self.secureStorage.moneySources;
 }
 
 @end

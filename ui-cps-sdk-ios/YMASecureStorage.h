@@ -12,14 +12,10 @@ extern NSString *const kKeychainItemValueEmpty;
 
 @property(nonatomic, copy) NSString *instanceId;
 
-@property(nonatomic, assign) NSUInteger moneySourcesCount;
+@property(nonatomic, copy, readonly) NSArray *moneySources;
 
-- (void)saveMoneySource:(YMAMoneySource *)moneySource withIdentifier:(NSString *)identifier;
+- (void)saveMoneySource:(YMAMoneySource *)moneySource;
 
-- (YMAMoneySource *)moneySourceByIdentifier:(NSString *)identifier;
-
-- (void)removeMoneySourceByIdentifier:(NSString *)identifier;
-
-- (void)removeAllMoneySource;
+- (void)removeMoneySource:(YMAMoneySource *)moneySource;
 
 @end
