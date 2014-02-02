@@ -11,7 +11,6 @@
 		603499E418995F320033835D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603499E318995F320033835D /* Foundation.framework */; };
 		60B4F306189A868900522230 /* YMAInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B4F305189A868900522230 /* YMAInstanceManager.m */; };
 		60B4F317189A920600522230 /* libymcpssdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4F316189A920600522230 /* libymcpssdk-ios.a */; };
-		60B4F31A189A9CFB00522230 /* YMAKeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B4F319189A9CFB00522230 /* YMAKeychainItemWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,8 +34,6 @@
 		60B4F304189A868900522230 /* YMAInstanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAInstanceManager.h; path = SDK/YMAInstanceManager.h; sourceTree = "<group>"; };
 		60B4F305189A868900522230 /* YMAInstanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAInstanceManager.m; path = SDK/YMAInstanceManager.m; sourceTree = "<group>"; };
 		60B4F316189A920600522230 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Release-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
-		60B4F318189A9CFB00522230 /* YMAKeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAKeychainItemWrapper.h; path = SDK/YMAKeychainItemWrapper.h; sourceTree = "<group>"; };
-		60B4F319189A9CFB00522230 /* YMAKeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAKeychainItemWrapper.m; path = SDK/YMAKeychainItemWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +92,6 @@
 				43608923189DFF0A002C8C63 /* YMASecureStorage.m */,
 				60B4F304189A868900522230 /* YMAInstanceManager.h */,
 				60B4F305189A868900522230 /* YMAInstanceManager.m */,
-				60B4F318189A9CFB00522230 /* YMAKeychainItemWrapper.h */,
-				60B4F319189A9CFB00522230 /* YMAKeychainItemWrapper.m */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -152,7 +147,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60B4F31A189A9CFB00522230 /* YMAKeychainItemWrapper.m in Sources */,
 				43608924189DFF0A002C8C63 /* YMASecureStorage.m in Sources */,
 				60B4F306189A868900522230 /* YMAInstanceManager.m in Sources */,
 			);

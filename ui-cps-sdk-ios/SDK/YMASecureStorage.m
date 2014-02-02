@@ -26,33 +26,38 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 #pragma mark -
 
 - (void)saveMoneySource:(YMAMoneySource *)moneySource {
-
     if ([self hasMoneySource:moneySource])
         return;
 
     NSMutableDictionary *newSource = [NSMutableDictionary dictionary];
 
-    [newSource setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrGeneric];
+    [newSource setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
     [newSource setObject:[NSString stringWithFormat:@"%i", moneySource.type] forKey:(__bridge id) kSecAttrLabel];
     [newSource setObject:[NSString stringWithFormat:@"%i", moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
     [newSource setObject:moneySource.moneySourceToken forKey:(__bridge id) kSecValueData];
-    [newSource setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrAccount];
+    [newSource setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrAccount];
 
     NSMutableDictionary *secItem = [self dictionaryToSecItemFormat:newSource];
     SecItemAdd((__bridge CFDictionaryRef) secItem, NULL);
 }
 
 - (void)removeMoneySource:(YMAMoneySource *)moneySource {
-
     NSMutableDictionary *sourceToRemove = [NSMutableDictionary dictionary];
 
-    [sourceToRemove setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrGeneric];
+    [sourceToRemove setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrAccount];
     [sourceToRemove setObject:[NSString stringWithFormat:@"%i", moneySource.type] forKey:(__bridge id) kSecAttrLabel];
     [sourceToRemove setObject:[NSString stringWithFormat:@"%i", moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
-    [sourceToRemove setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrAccount];
+    [sourceToRemove setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
     [sourceToRemove setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
 
     SecItemDelete((__bridge CFDictionaryRef) sourceToRemove);
+}
+
+- (void)clearSecureStorage {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
+    OSStatus result = SecItemDelete((__bridge CFDictionaryRef) dict);
+    NSAssert(result == noErr || result == errSecItemNotFound, @"Error deleting keychain data (%ld)", result);
 }
 
 #pragma mark -
@@ -124,8 +129,9 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
     if (!_moneySourceQuery) {
         _moneySourceQuery = [NSMutableDictionary dictionary];
         [_moneySourceQuery setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-        [_moneySourceQuery setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrAccount];
-        [_moneySourceQuery setObject:(__bridge id) kSecMatchLimitAll forKey:(__bridge id) kSecMatchLimit];
+        [_moneySourceQuery setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
+        [_moneySourceQuery setObject:(__bridge id) kSecMatchLimitAll
+                              forKey:(__bridge id) kSecMatchLimit];
         [_moneySourceQuery setObject:(__bridge id) kCFBooleanTrue forKey:(__bridge id) kSecReturnAttributes];
     }
 
@@ -133,22 +139,19 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 }
 
 - (NSArray *)moneySources {
-
     NSMutableArray *sources = [NSMutableArray array];
-
     CFArrayRef outArrayRef = [self performQuery:self.moneySourceQuery];
 
     if (outArrayRef == NULL)
         return sources;
 
     for (int i = 0; i < CFArrayGetCount(outArrayRef); i++) {
-
         SecIdentityRef item = (SecIdentityRef) CFArrayGetValueAtIndex(outArrayRef, i);
 
         NSMutableDictionary *outDictionary = (__bridge_transfer NSMutableDictionary *) item;
         NSDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
 
-        NSString *panFragment = [queryResult objectForKey:(__bridge id) kSecAttrGeneric];
+        NSString *panFragment = [queryResult objectForKey:(__bridge id) kSecAttrAccount];
         NSString *sourceTypeString = [queryResult objectForKey:(__bridge id) kSecAttrLabel];
         NSString *cardTypeString = [queryResult objectForKey:(__bridge id) kSecAttrDescription];
         NSString *moneySourceToken = [queryResult objectForKey:(__bridge id) kSecValueData];

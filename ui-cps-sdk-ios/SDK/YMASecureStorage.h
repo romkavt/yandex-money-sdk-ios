@@ -18,4 +18,6 @@ extern NSString *const kKeychainItemValueEmpty;
 
 - (void)removeMoneySource:(YMAMoneySource *)moneySource;
 
+- (void)clearSecureStorage;
+
 @end
