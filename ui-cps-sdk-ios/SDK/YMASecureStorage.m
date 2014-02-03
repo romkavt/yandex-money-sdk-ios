@@ -26,7 +26,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 #pragma mark -
 
 - (void)saveMoneySource:(YMAMoneySource *)moneySource {
-    if ([self hasMoneySource:moneySource])
+    if (!moneySource || [self hasMoneySource:moneySource])
         return;
 
     NSMutableDictionary *newSource = [NSMutableDictionary dictionary];
@@ -56,8 +56,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 - (void)clearSecureStorage {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-    OSStatus result = SecItemDelete((__bridge CFDictionaryRef) dict);
-    NSAssert(result == noErr || result == errSecItemNotFound, @"Error deleting keychain data (%ld)", result);
+    SecItemDelete((__bridge CFDictionaryRef) dict);
 }
 
 #pragma mark -
