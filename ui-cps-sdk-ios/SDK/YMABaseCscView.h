@@ -16,7 +16,7 @@
 
 @interface YMABaseCscView : UIView
 
-@property(nonatomic, weak) id<YMABaseCscViewDelegate> delegate;
+@property(nonatomic, weak) id <YMABaseCscViewDelegate> delegate;
 
 - (void)stopPaymentWithError:(NSError *)error;
 

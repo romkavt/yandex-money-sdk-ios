@@ -12,12 +12,7 @@
 #import "YMABaseCscView.h"
 #import "YMABaseResultView.h"
 
-@interface YMABaseCpsViewController : UIViewController<UIWebViewDelegate> {
-    @protected
-    YMABaseMoneySourcesView *_moneySourcesView;
-    YMABaseCscView *_cscView;
-    YMABaseResultView *_resultView;
-}
+@interface YMABaseCpsViewController : UIViewController <UIWebViewDelegate>
 
 @property(nonatomic, strong, readonly) YMACpsManager *cpsManager;
 
@@ -26,6 +21,8 @@
 - (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
 
 - (void)setupNavigationBar;
+
+- (void)showError:(NSError *)error;
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources;
 

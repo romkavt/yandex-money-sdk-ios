@@ -25,10 +25,12 @@ typedef enum {
 
 @interface YMABaseResultView : UIView
 
-@property(nonatomic, weak) id<YMABaseResultViewDelegate> delegate;
+@property(nonatomic, weak) id <YMABaseResultViewDelegate> delegate;
 
 - (id)initWithState:(YMAPaymentResultState)state;
 
 - (void)successSaveMoneySource:(YMAMoneySource *)moneySource;
+
+- (void)stopSavingMoneySourceWithError:(NSError *)error;
 
 @end

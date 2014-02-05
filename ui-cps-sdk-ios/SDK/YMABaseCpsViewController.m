@@ -8,7 +8,7 @@
 
 #import "YMABaseCpsViewController.h"
 
-@interface YMABaseCpsViewController ()<YMABaseResultViewDelegate> {
+@interface YMABaseCpsViewController () <YMABaseResultViewDelegate, YMABaseMoneySourcesViewDelegate, YMABaseCscViewDelegate> {
     YMACpsManager *_cpsManager;
     UIWebView *_webView;
 }
@@ -17,7 +17,11 @@
 @property(nonatomic, strong) NSDictionary *paymentParams;
 @property(nonatomic, copy) NSString *patternId;
 @property(nonatomic, copy) NSString *requestId;
+@property(nonatomic, strong) YMAMoneySource *selectedMoneySource;
+@property(nonatomic, copy) NSString *currentCsc;
 @property(nonatomic, strong) YMABaseResultView *resultView;
+@property(nonatomic, strong) YMABaseMoneySourcesView *moneySourcesView;
+@property(nonatomic, strong) YMABaseCscView *cardCscView;
 
 @end
 
@@ -35,13 +39,13 @@
 
 - (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
     self = [super init];
-    
+
     if (self) {
         _clientId = [clientId copy];
         _paymentParams = paymentParams;
         _patternId = [patternId copy];
     }
-    
+
     return self;
 }
 
@@ -52,16 +56,20 @@
 - (void)viewDidLoad {
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self showError:error];
+            [self processError:error];
         });
     }];
-    
+
     [self startPayment];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [self setupNavigationBar];
 }
+
+#pragma mark -
+#pragma mark *** Abstract methods ***
+#pragma mark -
 
 - (void)setupNavigationBar {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
@@ -88,68 +96,91 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
+#pragma mark -
+#pragma mark *** Private methods ***
+#pragma mark -
+
+- (void)processError:(NSError *)error {
+    if (self.cardCscView && self.cardCscView.superview) {
+        [self.cardCscView stopPaymentWithError:error];
+        return;
+    }
+
+    [self showError:error];
+}
+
 - (void)startPayment {
     [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(NSString *requestId, NSError *error) {
-        
+
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showError:error];
+                [self processError:error];
             });
         } else {
             self.requestId = requestId;
-            if (!self.cpsManager.moneySources.count)
-                [self processPaymentWithNewCard];
-            else {
+
+            if (self.cpsManager.moneySources.count) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self processPaymentWithExistCard];
+                    self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
+                    [self.view addSubview:self.moneySourcesView];
                 });
-            }
+            } else
+                [self finishPaymentFromNewCard];
         }
     }];
 }
 
-- (void)processPaymentWithNewCard {
+- (void)processPaymentRequestWithAsc:(YMAAsc *)asc andError:(NSError *)error {
+    if (error)
+        [self processError:error];
+    else if (asc)
+        [self loadInWebViewFormAsc:asc];
+    else
+        [self showSuccessView];
+}
+
+- (void)finishPaymentFromNewCard {
     [self.cpsManager finishPaymentWithRequestId:self.requestId completion:^(YMAAsc *asc, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error)
-                [self showError:error];
-            else if (asc)
-                [self loadInWebViewFormAsc:asc];
-            else
-                [self showSuccessView];
+            [self processPaymentRequestWithAsc:asc andError:error];
         });
     }];
 }
 
-- (void)processPaymentWithExistCard {
-    
+- (void)finishPaymentFromExistCard {
+    [self.cpsManager finishPaymentWithRequestId:self.requestId moneySourceToken:self.selectedMoneySource.moneySourceToken andCsc:self.currentCsc completion:^(YMAAsc *asc, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self processPaymentRequestWithAsc:asc andError:error];
+        });
+    }];
 }
 
 - (void)loadInWebViewFormAsc:(YMAAsc *)asc {
-    
     NSMutableString *post = [NSMutableString string];
-    
+
     for (NSString *key in asc.params.allKeys) {
         NSString *paramValue = [[asc.params objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *paramKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
-    
+
     [post deleteCharactersInRange:NSMakeRange(post.length - 1, 1)];
-    
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:asc.url];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     [request setHTTPMethod:@"POST"];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long) postData.length] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
-    
+
     if (!self.webView.superview)
         [self.view addSubview:self.webView];
     [self.webView loadRequest:request];
 }
 
 - (void)showSuccessView {
-    
+    YMAPaymentResultState state = (self.selectedMoneySource) ? YMAPaymentResultStateSuccessWithExistCard : YMAPaymentResultStateSuccessWithNewCard;
+    self.resultView = [self resultViewWithState:state];
+    [self.view addSubview:self.resultView];
 }
 
 - (void)showFailView {
@@ -158,31 +189,81 @@
 }
 
 #pragma mark -
-#pragma mark *** UIWebViewDelegate method ***
+#pragma mark *** YMABaseResultViewDelegate ***
 #pragma mark -
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    //
+- (void)saveMoneySource {
+    [self.cpsManager saveMoneySourceWithRequestId:self.requestId completion:^(YMAMoneySource *moneySource, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error)
+                [self.resultView stopSavingMoneySourceWithError:error];
+            else
+                [self.resultView successSaveMoneySource:moneySource];
+        });
+    }];
 }
+
+- (void)repeatPayment {
+    [self.resultView removeFromSuperview];
+    [self startPayment];
+}
+
+#pragma mark -
+#pragma mark *** YMABaseMoneySourcesViewDelegate ***
+#pragma mark -
+
+- (void)didSelectedMoneySource:(YMAMoneySource *)moneySource {
+    self.selectedMoneySource = moneySource;
+    self.cardCscView = [self cscView];
+    [self.view addSubview:self.cardCscView];
+}
+
+- (void)paymentFromNewCard {
+    self.selectedMoneySource = nil;
+    [self.moneySourcesView removeFromSuperview];
+    [self finishPaymentFromNewCard];
+}
+
+#pragma mark -
+#pragma mark *** YMABaseCscViewDelegate ***
+#pragma mark -
+
+- (void)startPaymentWithCsc:(NSString *)csc {
+    self.currentCsc = csc;
+    [self finishPaymentFromExistCard];
+}
+
+#pragma mark -
+#pragma mark *** UIWebViewDelegate ***
+#pragma mark -
+
+//- (void)webViewDidFinishLoad:(UIWebView *)webView {
+//    //
+//}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (![request URL])
         return NO;
-    
+
     NSString *urlString = [[request URL] absoluteString];
-    
+
     if ([urlString isEqual:kSuccessUrl]) {
-        [self processPaymentWithNewCard];
+
+        if (self.selectedMoneySource)
+            [self finishPaymentFromExistCard];
+        else
+            [self finishPaymentFromNewCard];
+
         [webView removeFromSuperview];
         return NO;
     }
-    
+
     if ([urlString isEqual:kFailUrl]) {
         [self showFailView];
         [webView removeFromSuperview];
         return NO;
     }
-    
+
     return YES;
 }
 
@@ -195,16 +276,36 @@
         _resultView.delegate = nil;
         [_resultView removeFromSuperview];
     }
-    
+
     _resultView = resultView;
     _resultView.delegate = self;
+}
+
+- (void)setMoneySourcesView:(YMABaseMoneySourcesView *)moneySourcesView {
+    if (_moneySourcesView) {
+        _moneySourcesView.delegate = nil;
+        [_moneySourcesView removeFromSuperview];
+    }
+
+    _moneySourcesView = moneySourcesView;
+    _moneySourcesView.delegate = self;
+}
+
+- (void)setCardCscView:(YMABaseCscView *)cardCscView {
+    if (_cardCscView) {
+        _cardCscView.delegate = nil;
+        [_cardCscView removeFromSuperview];
+    }
+
+    _cardCscView = cardCscView;
+    _cardCscView.delegate = self;
 }
 
 - (YMACpsManager *)cpsManager {
     if (!_cpsManager) {
         _cpsManager = [[YMACpsManager alloc] initWithClientId:self.clientId];
     }
-    
+
     return _cpsManager;
 }
 
@@ -212,12 +313,12 @@
     if (!_webView) {
         CGRect webViewFrame = self.view.frame;
         webViewFrame.size.height = webViewFrame.size.height - self.navigationController.navigationBar.frame.size.height;
-        _webView = [[UIWebView alloc]initWithFrame:webViewFrame];
+        _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
         _webView.scalesPageToFit = YES;
         _webView.delegate = self;
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
-    
+
     return _webView;
 }
 

@@ -19,7 +19,7 @@
 
 @interface YMABaseMoneySourcesView : UIView
 
-@property(nonatomic, weak) id<YMABaseMoneySourcesViewDelegate> delegate;
+@property(nonatomic, weak) id <YMABaseMoneySourcesViewDelegate> delegate;
 
 - (id)initWithMoneySources:(NSArray *)moneySources;
 
