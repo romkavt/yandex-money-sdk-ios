@@ -11,6 +11,10 @@
 		603499E418995F320033835D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603499E318995F320033835D /* Foundation.framework */; };
 		60B4F306189A868900522230 /* YMACpsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B4F305189A868900522230 /* YMACpsManager.m */; };
 		60B4F317189A920600522230 /* libymcpssdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4F316189A920600522230 /* libymcpssdk-ios.a */; };
+		60EC1A2F18A10B7600E800DD /* YMABaseCpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC1A2E18A10B7600E800DD /* YMABaseCpsViewController.m */; };
+		60EC1A3218A2781800E800DD /* YMABaseMoneySourcesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC1A3118A2781800E800DD /* YMABaseMoneySourcesView.m */; };
+		60EC1A3518A281DB00E800DD /* YMABaseCscView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC1A3418A281DB00E800DD /* YMABaseCscView.m */; };
+		60EC1A3B18A2853900E800DD /* YMABaseResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC1A3A18A2853900E800DD /* YMABaseResultView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +38,14 @@
 		60B4F304189A868900522230 /* YMACpsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMACpsManager.h; path = SDK/YMACpsManager.h; sourceTree = "<group>"; };
 		60B4F305189A868900522230 /* YMACpsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMACpsManager.m; path = SDK/YMACpsManager.m; sourceTree = "<group>"; };
 		60B4F316189A920600522230 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Release-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
+		60EC1A2D18A10B7600E800DD /* YMABaseCpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMABaseCpsViewController.h; path = SDK/YMABaseCpsViewController.h; sourceTree = "<group>"; };
+		60EC1A2E18A10B7600E800DD /* YMABaseCpsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMABaseCpsViewController.m; path = SDK/YMABaseCpsViewController.m; sourceTree = "<group>"; };
+		60EC1A3018A2781800E800DD /* YMABaseMoneySourcesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMABaseMoneySourcesView.h; path = SDK/YMABaseMoneySourcesView.h; sourceTree = "<group>"; };
+		60EC1A3118A2781800E800DD /* YMABaseMoneySourcesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMABaseMoneySourcesView.m; path = SDK/YMABaseMoneySourcesView.m; sourceTree = "<group>"; };
+		60EC1A3318A281DB00E800DD /* YMABaseCscView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMABaseCscView.h; path = SDK/YMABaseCscView.h; sourceTree = "<group>"; };
+		60EC1A3418A281DB00E800DD /* YMABaseCscView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMABaseCscView.m; path = SDK/YMABaseCscView.m; sourceTree = "<group>"; };
+		60EC1A3918A2853900E800DD /* YMABaseResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMABaseResultView.h; path = SDK/YMABaseResultView.h; sourceTree = "<group>"; };
+		60EC1A3A18A2853900E800DD /* YMABaseResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMABaseResultView.m; path = SDK/YMABaseResultView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,12 +100,28 @@
 		60349A09189960AC0033835D /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				60EC1A3C18A287DD00E800DD /* Base */,
 				43608922189DFF0A002C8C63 /* YMASecureStorage.h */,
 				43608923189DFF0A002C8C63 /* YMASecureStorage.m */,
 				60B4F304189A868900522230 /* YMACpsManager.h */,
 				60B4F305189A868900522230 /* YMACpsManager.m */,
 			);
 			name = SDK;
+			sourceTree = "<group>";
+		};
+		60EC1A3C18A287DD00E800DD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				60EC1A2D18A10B7600E800DD /* YMABaseCpsViewController.h */,
+				60EC1A2E18A10B7600E800DD /* YMABaseCpsViewController.m */,
+				60EC1A3018A2781800E800DD /* YMABaseMoneySourcesView.h */,
+				60EC1A3118A2781800E800DD /* YMABaseMoneySourcesView.m */,
+				60EC1A3318A281DB00E800DD /* YMABaseCscView.h */,
+				60EC1A3418A281DB00E800DD /* YMABaseCscView.m */,
+				60EC1A3918A2853900E800DD /* YMABaseResultView.h */,
+				60EC1A3A18A2853900E800DD /* YMABaseResultView.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +176,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				43608924189DFF0A002C8C63 /* YMASecureStorage.m in Sources */,
+				60EC1A3218A2781800E800DD /* YMABaseMoneySourcesView.m in Sources */,
+				60EC1A2F18A10B7600E800DD /* YMABaseCpsViewController.m in Sources */,
+				60EC1A3B18A2853900E800DD /* YMABaseResultView.m in Sources */,
 				60B4F306189A868900522230 /* YMACpsManager.m in Sources */,
+				60EC1A3518A281DB00E800DD /* YMABaseCscView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

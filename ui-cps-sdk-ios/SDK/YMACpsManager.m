@@ -9,8 +9,8 @@
 #import "YMACpsManager.h"
 #import "YMASecureStorage.h"
 
-static NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
-static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
+NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
+NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 @interface YMACpsManager ()
 
