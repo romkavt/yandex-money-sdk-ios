@@ -27,7 +27,7 @@ typedef enum {
 
 @property(nonatomic, weak) id <YMABaseResultViewDelegate> delegate;
 
-- (id)initWithState:(YMAPaymentResultState)state;
+- (id)initWithState:(YMAPaymentResultState)state andViewController:(UIViewController *)controller;
 
 - (void)successSaveMoneySource:(YMAMoneySource *)moneySource;
 

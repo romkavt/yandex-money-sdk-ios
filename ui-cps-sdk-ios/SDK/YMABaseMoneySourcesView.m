@@ -10,7 +10,7 @@
 
 @implementation YMABaseMoneySourcesView
 
-- (id)initWithMoneySources:(NSArray *)moneySources {
+- (id)initWithMoneySources:(NSArray *)moneySources andViewController:(UIViewController *)controller {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }

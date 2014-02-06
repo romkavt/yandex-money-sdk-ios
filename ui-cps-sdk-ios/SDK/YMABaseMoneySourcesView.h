@@ -13,6 +13,8 @@
 
 - (void)didSelectedMoneySource:(YMAMoneySource *)moneySource;
 
+- (void)removeMoneySource:(YMAMoneySource *)moneySource;
+
 - (void)paymentFromNewCard;
 
 @end
@@ -21,6 +23,6 @@
 
 @property(nonatomic, weak) id <YMABaseMoneySourcesViewDelegate> delegate;
 
-- (id)initWithMoneySources:(NSArray *)moneySources;
+- (id)initWithMoneySources:(NSArray *)moneySources andViewController:(UIViewController *)controller;
 
 @end

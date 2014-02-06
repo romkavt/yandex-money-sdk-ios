@@ -42,6 +42,7 @@
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
+    
     return nil;
 }
 

@@ -7,12 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #define YMALocalizedString(key, comment) \
         [YMALocalization stringByKey:(key)]
 
+#define YMALocalizedImage(key, comment) \
+        [YMALocalization imageByKey:(key)]
+
 @interface YMALocalization : NSObject
 
 + (NSString *)stringByKey:(NSString *)key;
+
++ (UIImage *)imageByKey:(NSString *)key;
 
 @end

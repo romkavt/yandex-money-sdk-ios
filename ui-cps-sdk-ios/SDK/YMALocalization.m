@@ -8,11 +8,15 @@
 
 #import "YMALocalization.h"
 
+
+static NSBundle* stringBundle = nil;
+static NSBundle* imageBundle = nil;
+
 @implementation YMALocalization
 
 + (NSString *)stringByKey:(NSString *)key {
-    static NSBundle* bundle = nil;
-    if (!bundle)
+    
+    if (!stringBundle)
     {
         NSString *libraryBundlePath = [[NSBundle mainBundle] pathForResource:@"uiymcpssdkios"
                                                                       ofType:@"bundle"];
@@ -20,11 +24,25 @@
         NSBundle *libraryBundle = [NSBundle bundleWithPath:libraryBundlePath];
         NSString *langID        = [[NSLocale preferredLanguages] objectAtIndex:0];
         NSString *path          = [libraryBundle pathForResource:langID ofType:@"lproj"];
-        bundle                  = [NSBundle bundleWithPath:path];
+        stringBundle                  = [NSBundle bundleWithPath:path];
         
     }
     
-    return [bundle localizedStringForKey:key value:@"" table:nil];
+    return [stringBundle localizedStringForKey:key value:@"" table:nil];
+}
+
++ (UIImage *)imageByKey:(NSString *)key {
+    
+    if (!imageBundle)
+    {
+        NSString *libraryBundlePath = [[NSBundle mainBundle] pathForResource:@"uiymcpssdkios"
+                                                                      ofType:@"bundle"];
+        
+        imageBundle = [NSBundle bundleWithPath:libraryBundlePath];
+    }
+    
+    NSString *imagePath = [imageBundle pathForResource:key ofType:@"png"];
+    return [UIImage imageWithContentsOfFile:imagePath];
 }
 
 @end

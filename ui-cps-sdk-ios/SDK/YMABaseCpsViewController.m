@@ -27,15 +27,15 @@
 
 @implementation YMABaseCpsViewController
 
-- (id)init {
-    NSString *reason = [NSString stringWithFormat:@"please use initWithClintId:andPaymentParams: instead %@", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    NSString *reason = [NSString stringWithFormat:@"please use initWithClintId:andPaymentParams: instead %@", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
-}
+//- (id)init {
+//    NSString *reason = [NSString stringWithFormat:@"please use initWithClintId:andPaymentParams: instead %@", NSStringFromSelector(_cmd)];
+//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+//}
+//
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+//    NSString *reason = [NSString stringWithFormat:@"please use initWithClintId:andPaymentParams: instead %@", NSStringFromSelector(_cmd)];
+//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+//}
 
 - (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
     self = [super init];
@@ -218,6 +218,10 @@
     [self.view addSubview:self.cardCscView];
 }
 
+- (void)removeMoneySource:(YMAMoneySource *)moneySource {
+    [self.cpsManager removeMoneySource:moneySource];
+}
+
 - (void)paymentFromNewCard {
     self.selectedMoneySource = nil;
     [self.moneySourcesView removeFromSuperview];
@@ -231,6 +235,12 @@
 - (void)startPaymentWithCsc:(NSString *)csc {
     self.currentCsc = csc;
     [self finishPaymentFromExistCard];
+}
+
+- (void)showAllMoneySource {
+    self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
+    [self.view addSubview:self.moneySourcesView];
+    [self.cardCscView removeFromSuperview];
 }
 
 #pragma mark -
