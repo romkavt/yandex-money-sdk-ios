@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		43608924189DFF0A002C8C63 /* YMASecureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43608923189DFF0A002C8C63 /* YMASecureStorage.m */; };
+		43A9C06618A30F8400BF07BA /* YMACpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A9C06518A30F8400BF07BA /* YMACpsViewController.m */; };
+		43A9C06A18A3153F00BF07BA /* YMALocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A9C06918A3153F00BF07BA /* YMALocalization.m */; };
+		43A9C06C18A31BC100BF07BA /* uiymcpssdkios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 43A9C06718A30F9D00BF07BA /* uiymcpssdkios.bundle */; };
 		603499E418995F320033835D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603499E318995F320033835D /* Foundation.framework */; };
 		60B4F306189A868900522230 /* YMACpsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B4F305189A868900522230 /* YMACpsManager.m */; };
 		60B4F317189A920600522230 /* libymcpssdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4F316189A920600522230 /* libymcpssdk-ios.a */; };
@@ -32,6 +35,11 @@
 /* Begin PBXFileReference section */
 		43608922189DFF0A002C8C63 /* YMASecureStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMASecureStorage.h; path = SDK/YMASecureStorage.h; sourceTree = "<group>"; };
 		43608923189DFF0A002C8C63 /* YMASecureStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMASecureStorage.m; path = SDK/YMASecureStorage.m; sourceTree = "<group>"; };
+		43A9C06418A30F8400BF07BA /* YMACpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMACpsViewController.h; path = SDK/YMACpsViewController.h; sourceTree = "<group>"; };
+		43A9C06518A30F8400BF07BA /* YMACpsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMACpsViewController.m; path = SDK/YMACpsViewController.m; sourceTree = "<group>"; };
+		43A9C06718A30F9D00BF07BA /* uiymcpssdkios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = uiymcpssdkios.bundle; sourceTree = "<group>"; };
+		43A9C06818A3153F00BF07BA /* YMALocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMALocalization.h; path = SDK/YMALocalization.h; sourceTree = "<group>"; };
+		43A9C06918A3153F00BF07BA /* YMALocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMALocalization.m; path = SDK/YMALocalization.m; sourceTree = "<group>"; };
 		603499E018995F320033835D /* libuiymcpssdk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libuiymcpssdk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		603499E318995F320033835D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		60349A0B189960D60033835D /* uiymcpssdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uiymcpssdk-ios-Prefix.pch"; path = "SupportingFiles/uiymcpssdk-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -61,9 +69,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DE79DD540ADD2E49B81712B /* DefaultUI */ = {
+			isa = PBXGroup;
+			children = (
+				43A9C06418A30F8400BF07BA /* YMACpsViewController.h */,
+				43A9C06518A30F8400BF07BA /* YMACpsViewController.m */,
+				43A9C06818A3153F00BF07BA /* YMALocalization.h */,
+				43A9C06918A3153F00BF07BA /* YMALocalization.m */,
+			);
+			name = DefaultUI;
+			sourceTree = "<group>";
+		};
+		43A9C00C18A2F28E00BF07BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				43A9C06718A30F9D00BF07BA /* uiymcpssdkios.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		603499D718995F320033835D = {
 			isa = PBXGroup;
 			children = (
+				43A9C00C18A2F28E00BF07BA /* Resources */,
 				60349A09189960AC0033835D /* SDK */,
 				603499E618995F320033835D /* Supporting Files */,
 				603499E218995F320033835D /* Frameworks */,
@@ -105,6 +133,7 @@
 				43608923189DFF0A002C8C63 /* YMASecureStorage.m */,
 				60B4F304189A868900522230 /* YMACpsManager.h */,
 				60B4F305189A868900522230 /* YMACpsManager.m */,
+				2DE79DD540ADD2E49B81712B /* DefaultUI */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -134,6 +163,7 @@
 				603499DC18995F320033835D /* Sources */,
 				603499DD18995F320033835D /* Frameworks */,
 				603499DE18995F320033835D /* CopyFiles */,
+				43A9C06B18A31BBC00BF07BA /* Resources */,
 			);
 			buildRules = (
 			);
@@ -170,6 +200,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		43A9C06B18A31BBC00BF07BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43A9C06C18A31BC100BF07BA /* uiymcpssdkios.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		603499DC18995F320033835D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -179,8 +220,10 @@
 				60EC1A3218A2781800E800DD /* YMABaseMoneySourcesView.m in Sources */,
 				60EC1A2F18A10B7600E800DD /* YMABaseCpsViewController.m in Sources */,
 				60EC1A3B18A2853900E800DD /* YMABaseResultView.m in Sources */,
+				43A9C06A18A3153F00BF07BA /* YMALocalization.m in Sources */,
 				60B4F306189A868900522230 /* YMACpsManager.m in Sources */,
 				60EC1A3518A281DB00E800DD /* YMABaseCscView.m in Sources */,
+				43A9C06618A30F8400BF07BA /* YMACpsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
