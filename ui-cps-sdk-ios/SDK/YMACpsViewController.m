@@ -4,7 +4,10 @@
 //
 
 #import "YMACpsViewController.h"
-#import "YMALocalization.h"
+#import "YMAUIConstants.h"
+#import "YMAResultView.h"
+#import "YMACscView.h"
+#import "YMAMoneySourcesView.h"
 
 @implementation YMACpsViewController
 
@@ -30,9 +33,10 @@
         self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     }
 
-    self.navigationController.title = YMALocalizedString(@"NBTMainTitle", nil);
+    self.navigationItem.title = YMALocalizedString(@"NBTMainTitle", nil);
     
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissController)];
+    barButton.tintColor = [YMAUIConstants accentTextColor];
     
     self.navigationItem.leftBarButtonItems = @[barButton];
 }
@@ -42,16 +46,15 @@
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
-    
-    return nil;
+    return [[YMAMoneySourcesView alloc] initWithMoneySources:sources andViewController:self];
 }
 
 - (YMABaseCscView *)cscView {
-    return nil;
+    return [[YMACscView alloc] initWithViewController:self];
 }
 
 - (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state {
-    return nil;
+    return [[YMAResultView alloc] initWithState:state andViewController:self];;
 }
 
 #pragma mark -

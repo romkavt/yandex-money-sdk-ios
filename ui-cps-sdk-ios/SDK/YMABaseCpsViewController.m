@@ -55,12 +55,14 @@
 
 - (void)viewDidLoad {
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self processError:error];
-        });
-    }];
-
-    [self startPayment];
+        if (error)
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self processError:error];
+                
+            });
+        else
+            [self startPayment];
+    }];   
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -254,10 +256,14 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (![request URL])
         return NO;
+    
+    NSString *scheme = [[request URL] scheme];
+    NSString *path = [[request URL] path];
+    NSString *host = [[request URL] host];
+    
+    NSString *strippedURL = [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
 
-    NSString *urlString = [[request URL] absoluteString];
-
-    if ([urlString isEqual:kSuccessUrl]) {
+    if ([strippedURL isEqual:kSuccessUrl]) {
 
         if (self.selectedMoneySource)
             [self finishPaymentFromExistCard];
@@ -268,7 +274,7 @@
         return NO;
     }
 
-    if ([urlString isEqual:kFailUrl]) {
+    if ([strippedURL isEqual:kFailUrl]) {
         [self showFailView];
         [webView removeFromSuperview];
         return NO;
