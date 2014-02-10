@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ymcpssdk-ios/ymcpssdk.h>
+#import "YMASecureStorage.h"
 
 extern NSString *const kSuccessUrl;
 extern NSString *const kFailUrl;

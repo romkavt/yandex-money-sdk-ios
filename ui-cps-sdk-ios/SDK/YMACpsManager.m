@@ -7,7 +7,6 @@
 //
 
 #import "YMACpsManager.h"
-#import "YMASecureStorage.h"
 
 NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
 NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
@@ -67,7 +66,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
             return;
         }
 
-        NSError *unknownError = [NSError errorWithDomain:@"technicalError" code:0 userInfo:@{@"request" : request, @"response" : response}];
+        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
 
         if (response.status == YMAResponseStatusSuccess) {
             YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
@@ -124,7 +123,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
             return;
         }
 
-        NSError *unknownError = [NSError errorWithDomain:@"technicalError" code:0 userInfo:@{@"request" : request, @"response" : response}];
+        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
 
         if (response.status == YMAResponseStatusSuccess)
             block(nil, nil);
