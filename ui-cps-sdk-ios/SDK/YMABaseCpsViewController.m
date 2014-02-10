@@ -327,7 +327,13 @@
 
 - (UIWebView *)webView {
     if (!_webView) {
+        
+        CGFloat y = 0.0;
+        if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
+            y = self.navigationController.navigationBar.frame.size.height;
+        
         CGRect webViewFrame = self.view.frame;
+        webViewFrame.origin.y = y;
         webViewFrame.size.height = webViewFrame.size.height - self.navigationController.navigationBar.frame.size.height;
         _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
         _webView.scalesPageToFit = YES;

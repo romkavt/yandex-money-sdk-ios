@@ -9,6 +9,12 @@
 #import "YMACscView.h"
 #import "YMAMoneySourcesView.h"
 
+@interface YMACpsViewController ()
+
+@property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+
+@end
+
 @implementation YMACpsViewController
 
 #pragma mark -
@@ -17,11 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicatorView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
-    [self.view addSubview:activityIndicatorView];
-    [activityIndicatorView startAnimating];
+    self.view.backgroundColor = [YMAUIConstants defaultBackgroungColor];
+    
+    [self.view addSubview:self.activityIndicatorView];
+    [self.activityIndicatorView startAnimating];
 }
 
 #pragma mark -
@@ -42,7 +47,26 @@
 }
 
 - (void)showError:(NSError *)error {
-
+    for (UIView *subView in self.view.subviews) {
+        CGRect viewRect = subView.frame;
+        viewRect.origin.y += 100;
+        subView.frame = viewRect;
+    }
+    
+    [self.activityIndicatorView stopAnimating];
+    
+    CGFloat y = 0.0;
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
+        y = self.navigationController.navigationBar.frame.size.height;
+    
+    UITextField *errorText = [[UITextField alloc] initWithFrame:CGRectMake(0, y, self.view.frame.size.width, 100)];
+    errorText.textAlignment = NSTextAlignmentCenter;
+    errorText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    errorText.backgroundColor = [UIColor whiteColor];
+    errorText.textColor = [UIColor redColor];
+    errorText.text = error.domain;
+   
+    [self.view addSubview:errorText];
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
@@ -63,6 +87,19 @@
 
 - (void)dismissController {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark -
+#pragma mark *** Getters and setters ***
+#pragma mark -
+
+- (UIActivityIndicatorView *)activityIndicatorView {
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicatorView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    }
+    
+    return _activityIndicatorView;
 }
 
 @end
