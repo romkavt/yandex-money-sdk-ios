@@ -78,7 +78,7 @@
 }
 
 - (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state {
-    return [[YMAResultView alloc] initWithState:state andViewController:self];;
+    return [[YMAResultView alloc] initWithState:state amount:self.paymentRequestInfo.amount andViewController:self];;
 }
 
 #pragma mark -

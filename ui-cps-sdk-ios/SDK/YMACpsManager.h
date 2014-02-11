@@ -12,7 +12,7 @@
 extern NSString *const kSuccessUrl;
 extern NSString *const kFailUrl;
 
-typedef void (^YMAStartPaymentHandler)(NSString *requestId, NSError *error);
+typedef void (^YMAStartPaymentHandler)(YMAPaymentRequestInfo *requestInfo, NSError *error);
 
 typedef void (^YMAFinishPaymentHandler)(YMAAsc *asc, NSError *error);
 

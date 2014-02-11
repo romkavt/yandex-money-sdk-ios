@@ -96,7 +96,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
         }
 
         YMAExternalPaymentResponse *externalPaymentResponse = (YMAExternalPaymentResponse *) response;
-        block(externalPaymentResponse.requestId, nil);
+        block(externalPaymentResponse.paymentRequestInfo, nil);
     }];
 }
 

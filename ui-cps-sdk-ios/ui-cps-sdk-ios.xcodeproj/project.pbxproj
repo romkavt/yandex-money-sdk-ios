@@ -13,7 +13,6 @@
 		43A9C06C18A31BC100BF07BA /* uiymcpssdkios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 43A9C06718A30F9D00BF07BA /* uiymcpssdkios.bundle */; };
 		603499E418995F320033835D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603499E318995F320033835D /* Foundation.framework */; };
 		60B4F306189A868900522230 /* YMACpsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B4F305189A868900522230 /* YMACpsManager.m */; };
-		60B4F317189A920600522230 /* libymcpssdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4F316189A920600522230 /* libymcpssdk-ios.a */; };
 		60B84F3118A3C4410054015F /* YMACscView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B84F3018A3C4410054015F /* YMACscView.m */; };
 		60EC1A2F18A10B7600E800DD /* YMABaseCpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC1A2E18A10B7600E800DD /* YMABaseCpsViewController.m */; };
 		60EC1A3218A2781800E800DD /* YMABaseMoneySourcesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC1A3118A2781800E800DD /* YMABaseMoneySourcesView.m */; };
@@ -35,6 +34,7 @@
 		60EEF8B718A3E53200F72177 /* YMACscView.h in Headers */ = {isa = PBXBuildFile; fileRef = 60B84F2F18A3C4410054015F /* YMACscView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60EEF8B818A3E53200F72177 /* YMAResultView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF26F87ECF6962DD6872F7 /* YMAResultView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60EEF8BA18A3E62E00F72177 /* uiymcpssdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 60EEF8B918A3E62E00F72177 /* uiymcpssdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60EEF92118AA5A7B00F72177 /* libymcpssdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EEF92018AA5A7B00F72177 /* libymcpssdk-ios.a */; };
 		8BFF2F54BCF281A6BAA2D68A /* YMAResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2368D882888A46978A14 /* YMAResultView.m */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +63,6 @@
 		60349A0B189960D60033835D /* uiymcpssdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uiymcpssdk-ios-Prefix.pch"; path = "SupportingFiles/uiymcpssdk-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		60B4F304189A868900522230 /* YMACpsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMACpsManager.h; path = SDK/YMACpsManager.h; sourceTree = "<group>"; };
 		60B4F305189A868900522230 /* YMACpsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMACpsManager.m; path = SDK/YMACpsManager.m; sourceTree = "<group>"; };
-		60B4F316189A920600522230 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Release-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
 		60B84F2F18A3C4410054015F /* YMACscView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMACscView.h; path = SDK/YMACscView.h; sourceTree = "<group>"; };
 		60B84F3018A3C4410054015F /* YMACscView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMACscView.m; path = SDK/YMACscView.m; sourceTree = "<group>"; };
 		60EC1A2D18A10B7600E800DD /* YMABaseCpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMABaseCpsViewController.h; path = SDK/YMABaseCpsViewController.h; sourceTree = "<group>"; };
@@ -80,6 +79,8 @@
 		60EC1A4318A3B29B00E800DD /* YMAUIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAUIConstants.m; path = SDK/YMAUIConstants.m; sourceTree = "<group>"; };
 		60EC1A4518A3B72000E800DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		60EEF8B918A3E62E00F72177 /* uiymcpssdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = uiymcpssdk.h; path = SDK/uiymcpssdk.h; sourceTree = "<group>"; };
+		60EEF91B18AA58E600F72177 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Debug-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
+		60EEF92018AA5A7B00F72177 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Debug-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
 		8BFF2368D882888A46978A14 /* YMAResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAResultView.m; sourceTree = "<group>"; };
 		8BFF26F87ECF6962DD6872F7 /* YMAResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAResultView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,8 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EEF92118AA5A7B00F72177 /* libymcpssdk-ios.a in Frameworks */,
 				60EC1A4618A3B72000E800DD /* UIKit.framework in Frameworks */,
-				60B4F317189A920600522230 /* libymcpssdk-ios.a in Frameworks */,
 				603499E418995F320033835D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,8 +148,9 @@
 		603499E218995F320033835D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60EEF92018AA5A7B00F72177 /* libymcpssdk-ios.a */,
+				60EEF91B18AA58E600F72177 /* libymcpssdk-ios.a */,
 				60EC1A4518A3B72000E800DD /* UIKit.framework */,
-				60B4F316189A920600522230 /* libymcpssdk-ios.a */,
 				603499E318995F320033835D /* Foundation.framework */,
 			);
 			name = Frameworks;

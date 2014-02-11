@@ -18,6 +18,8 @@
 
 @property(nonatomic, strong, readonly) UIWebView *webView;
 
+@property(nonatomic, strong, readonly) YMAPaymentRequestInfo *paymentRequestInfo;
+
 - (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
 
 - (void)setupNavigationBar;

@@ -16,7 +16,6 @@
 @property(nonatomic, copy) NSString *clientId;
 @property(nonatomic, strong) NSDictionary *paymentParams;
 @property(nonatomic, copy) NSString *patternId;
-@property(nonatomic, copy) NSString *requestId;
 @property(nonatomic, strong) YMAMoneySource *selectedMoneySource;
 @property(nonatomic, copy) NSString *currentCsc;
 @property(nonatomic, strong) YMABaseResultView *resultView;
@@ -112,14 +111,14 @@
 }
 
 - (void)startPayment {
-    [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(NSString *requestId, NSError *error) {
+    [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *error) {
 
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self processError:error];
             });
         } else {
-            self.requestId = requestId;
+            _paymentRequestInfo = requestInfo;
 
             if (self.cpsManager.moneySources.count) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -142,7 +141,7 @@
 }
 
 - (void)finishPaymentFromNewCard {
-    [self.cpsManager finishPaymentWithRequestId:self.requestId completion:^(YMAAsc *asc, NSError *error) {
+    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAAsc *asc, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self processPaymentRequestWithAsc:asc andError:error];
         });
@@ -150,7 +149,7 @@
 }
 
 - (void)finishPaymentFromExistCard {
-    [self.cpsManager finishPaymentWithRequestId:self.requestId moneySourceToken:self.selectedMoneySource.moneySourceToken andCsc:self.currentCsc completion:^(YMAAsc *asc, NSError *error) {
+    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId moneySourceToken:self.selectedMoneySource.moneySourceToken andCsc:self.currentCsc completion:^(YMAAsc *asc, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self processPaymentRequestWithAsc:asc andError:error];
         });
@@ -195,7 +194,7 @@
 #pragma mark -
 
 - (void)saveMoneySource {
-    [self.cpsManager saveMoneySourceWithRequestId:self.requestId completion:^(YMAMoneySource *moneySource, NSError *error) {
+    [self.cpsManager saveMoneySourceWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAMoneySource *moneySource, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error)
                 [self.resultView stopSavingMoneySourceWithError:error];
@@ -330,7 +329,7 @@
         
         CGFloat y = 0.0;
         if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
-            y = self.navigationController.navigationBar.frame.size.height;
+            y =  CGRectGetMaxY(self.navigationController.navigationBar.frame);
         
         CGRect webViewFrame = self.view.frame;
         webViewFrame.origin.y = y;
