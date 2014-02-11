@@ -9,6 +9,9 @@
 
 static NSUInteger const kSaveButtonOffset = 100;
 static NSUInteger const kLeftOffset = 40;
+static NSUInteger const kTitleLabelTopOffset = 80;
+static NSUInteger const kTitleLabelHeight = 50;
+static CGFloat const kDefaultSeparatorHeight = 1.0;
 
 @interface YMAResultView ()
 
@@ -35,8 +38,7 @@ static NSUInteger const kLeftOffset = 40;
     return self;
 }
 
-- (void)setupControls {
-    
+- (void)setupControls {    
     self.backgroundColor = [YMAUIConstants defaultBackgroungColor];
     
     self.parentController.navigationItem.title = YMALocalizedString(@"NBTResultSuccess", nil);
@@ -66,7 +68,7 @@ static NSUInteger const kLeftOffset = 40;
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
         y = self.parentController.navigationController.navigationBar.frame.size.height;
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y + 80, self.frame.size.width, 50)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y + kTitleLabelTopOffset, self.frame.size.width, kTitleLabelHeight)];
     titleLabel.text = YMALocalizedString(@"TLThanks", nil);
     titleLabel.font = [YMAUIConstants titleFont];
     titleLabel.textColor = [UIColor blackColor];
@@ -74,7 +76,7 @@ static NSUInteger const kLeftOffset = 40;
     
     [self addSubview:titleLabel];
     
-    UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftOffset, y + 80 + 50, self.frame.size.width - 2*kLeftOffset, 50)];
+    UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftOffset, y + kTitleLabelTopOffset + kTitleLabelHeight, self.frame.size.width - 2*kLeftOffset, kTitleLabelHeight)];
     amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.amount];
     amountLabel.font = [YMAUIConstants commentTitleFont];
     amountLabel.textColor = [YMAUIConstants commentColor];
@@ -118,7 +120,7 @@ static NSUInteger const kLeftOffset = 40;
         _saveCardButton = [[UIButton alloc] initWithFrame:buttonRect];
         _saveCardButton.backgroundColor = [UIColor whiteColor];
         
-        CGFloat separatorHeight = [UIScreen mainScreen].scale == 2 ? 0.5 : 1;
+        CGFloat separatorHeight = [UIScreen mainScreen].scale == 2 ? kDefaultSeparatorHeight/2 : kDefaultSeparatorHeight;
         
         CGRect separatorRect = CGRectMake(0, 0, self.frame.size.width, separatorHeight);
         
