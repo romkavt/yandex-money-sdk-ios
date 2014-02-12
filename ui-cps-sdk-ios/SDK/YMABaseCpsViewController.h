@@ -14,11 +14,15 @@
 
 @interface YMABaseCpsViewController : UIViewController <UIWebViewDelegate>
 
+@property(nonatomic, strong, readonly) UIScrollView *scrollView;
+
 @property(nonatomic, strong, readonly) YMACpsManager *cpsManager;
 
 @property(nonatomic, strong, readonly) UIWebView *webView;
 
 @property(nonatomic, strong, readonly) YMAPaymentRequestInfo *paymentRequestInfo;
+
+@property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 - (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
 

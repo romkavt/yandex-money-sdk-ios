@@ -10,6 +10,7 @@
 
 CGFloat const kCellHeightDefault = 44.0;
 CGFloat const kCellHeightWithTextField = 62.0;
+CGFloat const kErrorHeight = 100;
 
 // image keys
 

@@ -11,6 +11,7 @@
 @interface YMABaseCpsViewController () <YMABaseResultViewDelegate, YMABaseMoneySourcesViewDelegate, YMABaseCscViewDelegate> {
     YMACpsManager *_cpsManager;
     UIWebView *_webView;
+    UIScrollView *_scrollView;
 }
 
 @property(nonatomic, copy) NSString *clientId;
@@ -25,16 +26,6 @@
 @end
 
 @implementation YMABaseCpsViewController
-
-//- (id)init {
-//    NSString *reason = [NSString stringWithFormat:@"please use initWithClintId:andPaymentParams: instead %@", NSStringFromSelector(_cmd)];
-//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
-//}
-//
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-//    NSString *reason = [NSString stringWithFormat:@"please use initWithClintId:andPaymentParams: instead %@", NSStringFromSelector(_cmd)];
-//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
-//}
 
 - (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
     self = [super init];
@@ -53,6 +44,9 @@
 #pragma mark -
 
 - (void)viewDidLoad {
+    [self.view addSubview:self.scrollView];
+    [self startActivity];
+    
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
         if (error)
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -107,6 +101,7 @@
         return;
     }
 
+    [self stopActivity];
     [self showError:error];
 }
 
@@ -122,8 +117,9 @@
 
             if (self.cpsManager.moneySources.count) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [self stopActivity];
                     self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
-                    [self.view addSubview:self.moneySourcesView];
+                    [self.scrollView addSubview:self.moneySourcesView];
                 });
             } else
                 [self finishPaymentFromNewCard];
@@ -165,7 +161,8 @@
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
 
-    [post deleteCharactersInRange:NSMakeRange(post.length - 1, 1)];
+    if (post.length)
+        [post deleteCharactersInRange:NSMakeRange(post.length - 1, 1)];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:asc.url];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
@@ -173,20 +170,33 @@
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long) postData.length] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
 
+    [self stopActivity];
     if (!self.webView.superview)
-        [self.view addSubview:self.webView];
+        [self.scrollView addSubview:self.webView];
     [self.webView loadRequest:request];
 }
 
 - (void)showSuccessView {
+    [self stopActivity];
     YMAPaymentResultState state = (self.selectedMoneySource) ? YMAPaymentResultStateSuccessWithExistCard : YMAPaymentResultStateSuccessWithNewCard;
     self.resultView = [self resultViewWithState:state];
-    [self.view addSubview:self.resultView];
+    [self.scrollView addSubview:self.resultView];
 }
 
 - (void)showFailView {
     self.resultView = [self resultViewWithState:YMAPaymentResultStateFail];
-    [self.view addSubview:self.resultView];
+    [self.scrollView addSubview:self.resultView];
+}
+
+- (void)startActivity {
+    [self.scrollView addSubview:self.activityIndicatorView];
+    if (!self.activityIndicatorView.isAnimating)
+        [self.activityIndicatorView startAnimating];
+}
+
+- (void)stopActivity {
+    if (self.activityIndicatorView.superview)
+        [self.activityIndicatorView removeFromSuperview];
 }
 
 #pragma mark -
@@ -206,6 +216,7 @@
 
 - (void)repeatPayment {
     [self.resultView removeFromSuperview];
+    [self startActivity];
     [self startPayment];
 }
 
@@ -216,7 +227,7 @@
 - (void)didSelectedMoneySource:(YMAMoneySource *)moneySource {
     self.selectedMoneySource = moneySource;
     self.cardCscView = [self cscView];
-    [self.view addSubview:self.cardCscView];
+    [self.scrollView addSubview:self.cardCscView];
 }
 
 - (void)removeMoneySource:(YMAMoneySource *)moneySource {
@@ -226,6 +237,7 @@
 - (void)paymentFromNewCard {
     self.selectedMoneySource = nil;
     [self.moneySourcesView removeFromSuperview];
+    [self startActivity];
     [self finishPaymentFromNewCard];
 }
 
@@ -240,17 +252,13 @@
 
 - (void)showAllMoneySource {
     self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
-    [self.view addSubview:self.moneySourcesView];
+    [self.scrollView addSubview:self.moneySourcesView];
     [self.cardCscView removeFromSuperview];
 }
 
 #pragma mark -
 #pragma mark *** UIWebViewDelegate ***
 #pragma mark -
-
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    //
-//}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (![request URL])
@@ -332,7 +340,6 @@
             y =  CGRectGetMaxY(self.navigationController.navigationBar.frame);
         
         CGRect webViewFrame = self.view.frame;
-        webViewFrame.origin.y = y;
         webViewFrame.size.height = webViewFrame.size.height - self.navigationController.navigationBar.frame.size.height;
         _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
         _webView.scalesPageToFit = YES;
@@ -341,6 +348,29 @@
     }
 
     return _webView;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+        CGFloat y = 0.0;
+        if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
+            y =  CGRectGetMaxY(self.navigationController.navigationBar.frame);
+        CGSize contentSize = self.view.frame.size;
+        contentSize.height -= y;
+        _scrollView.contentSize = contentSize;
+    }
+    
+    return _scrollView;
+}
+
+- (UIActivityIndicatorView *)activityIndicatorView {
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicatorView.center = CGPointMake(self.view.frame.size.width/2, self.scrollView.contentSize.height/2);
+    }
+
+    return _activityIndicatorView;
 }
 
 @end

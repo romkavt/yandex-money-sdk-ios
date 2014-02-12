@@ -11,6 +11,7 @@
 
 extern CGFloat const kCellHeightDefault;
 extern CGFloat const kCellHeightWithTextField;
+extern CGFloat const kErrorHeight;
 
 // image keys
 

@@ -8,6 +8,4 @@
 
 @interface YMACpsViewController : YMABaseCpsViewController
 
-
-
 @end

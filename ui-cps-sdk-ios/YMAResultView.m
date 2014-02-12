@@ -38,7 +38,12 @@ static CGFloat const kDefaultSeparatorHeight = 1.0;
     return self;
 }
 
-- (void)setupControls {    
+- (void)setupControls {
+    
+    CGRect viewRect = self.frame;
+    viewRect.size.height = ((YMABaseCpsViewController *)self.parentController).scrollView.contentSize.height;
+    self.frame = viewRect;
+    
     self.backgroundColor = [YMAUIConstants defaultBackgroungColor];
     
     self.parentController.navigationItem.title = YMALocalizedString(@"NBTResultSuccess", nil);
@@ -64,11 +69,7 @@ static CGFloat const kDefaultSeparatorHeight = 1.0;
     
     [self addSubview:self.saveButtonComment];
     
-    CGFloat y = 0.0;
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
-        y = self.parentController.navigationController.navigationBar.frame.size.height;
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y + kTitleLabelTopOffset, self.frame.size.width, kTitleLabelHeight)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTitleLabelTopOffset, self.frame.size.width, kTitleLabelHeight)];
     titleLabel.text = YMALocalizedString(@"TLThanks", nil);
     titleLabel.font = [YMAUIConstants titleFont];
     titleLabel.textColor = [UIColor blackColor];
@@ -76,7 +77,7 @@ static CGFloat const kDefaultSeparatorHeight = 1.0;
     
     [self addSubview:titleLabel];
     
-    UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftOffset, y + kTitleLabelTopOffset + kTitleLabelHeight, self.frame.size.width - 2*kLeftOffset, kTitleLabelHeight)];
+    UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftOffset, kTitleLabelTopOffset + kTitleLabelHeight, self.frame.size.width - 2*kLeftOffset, kTitleLabelHeight)];
     amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.amount];
     amountLabel.font = [YMAUIConstants commentTitleFont];
     amountLabel.textColor = [YMAUIConstants commentColor];

@@ -79,8 +79,8 @@
 		60EC1A4318A3B29B00E800DD /* YMAUIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAUIConstants.m; path = SDK/YMAUIConstants.m; sourceTree = "<group>"; };
 		60EC1A4518A3B72000E800DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		60EEF8B918A3E62E00F72177 /* uiymcpssdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = uiymcpssdk.h; path = SDK/uiymcpssdk.h; sourceTree = "<group>"; };
-		60EEF91B18AA58E600F72177 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Debug-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
-		60EEF92018AA5A7B00F72177 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Debug-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
+		60EEF91B18AA58E600F72177 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Debug-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
+		60EEF92018AA5A7B00F72177 /* libymcpssdk-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libymcpssdk-ios.a"; path = "../cps-sdk/build/Debug-iphoneos/libymcpssdk-ios.a"; sourceTree = "<group>"; };
 		8BFF2368D882888A46978A14 /* YMAResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAResultView.m; sourceTree = "<group>"; };
 		8BFF26F87ECF6962DD6872F7 /* YMAResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAResultView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,8 +186,8 @@
 				60EC1A2E18A10B7600E800DD /* YMABaseCpsViewController.m */,
 				60EC1A3018A2781800E800DD /* YMABaseMoneySourcesView.h */,
 				60EC1A3118A2781800E800DD /* YMABaseMoneySourcesView.m */,
-				60EC1A3318A281DB00E800DD /* YMABaseCscView.h */,
 				60EC1A3418A281DB00E800DD /* YMABaseCscView.m */,
+				60EC1A3318A281DB00E800DD /* YMABaseCscView.h */,
 				60EC1A3918A2853900E800DD /* YMABaseResultView.h */,
 				60EC1A3A18A2853900E800DD /* YMABaseResultView.m */,
 			);
