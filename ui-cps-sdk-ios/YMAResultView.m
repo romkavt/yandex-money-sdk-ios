@@ -130,7 +130,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 
 - (void)stopSavingMoneySourceWithError:(NSError *)error {
     [self stopSavingMoneySource];
-    [(YMABaseCpsViewController *)self.parentController showError:error];
+    [(YMABaseCpsViewController *)self.parentController showError:error target:nil withAction:NULL];
 }
 
 #pragma mark -

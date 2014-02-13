@@ -8,6 +8,7 @@
 
 #import "YMACscView.h"
 #import "YMAUIConstants.h"
+#import "YMABaseCpsViewController.h"
 
 @interface YMACscView () <UITableViewDelegate, UITableViewDataSource> {
     UITableView *_tableView;
@@ -72,6 +73,7 @@
     self.isEnabled = YES;
     self.cscTextField.enabled = YES;
     [self.tableView reloadData];
+    [(YMABaseCpsViewController *)self.parentController showError:error target:self withAction:@selector(startPayment)];
 }
 
 #pragma mark -

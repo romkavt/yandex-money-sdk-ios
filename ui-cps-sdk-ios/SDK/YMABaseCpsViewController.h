@@ -28,7 +28,7 @@
 
 - (void)setupNavigationBar;
 
-- (void)showError:(NSError *)error;
+- (void)showError:(NSError *)error target:(id)target withAction:(SEL)selector;
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources;
 

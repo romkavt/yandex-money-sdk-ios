@@ -84,7 +84,7 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
-- (void)showError:(NSError *)error {
+- (void)showError:(NSError *)error target:(id)target withAction:(SEL)selector  {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
@@ -115,7 +115,7 @@
     }
 
     [self stopActivity];
-    [self showError:error];
+    [self showError:error target:self withAction:@selector(startPayment)];
 }
 
 - (void)startPayment {
