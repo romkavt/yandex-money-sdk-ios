@@ -126,6 +126,7 @@
         YMAMoneySource *moneySource = [self.moneySources objectAtIndex:indexPath.row];
         [self.delegate removeMoneySource:moneySource];
         [self.moneySources removeObject:moneySource];
+        [self.tableView reloadData];
     }
 }
 
