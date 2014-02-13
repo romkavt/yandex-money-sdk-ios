@@ -17,6 +17,8 @@
 
 - (void)paymentFromNewCard;
 
+- (void)showAllMoneySource;
+
 @end
 
 @interface YMABaseMoneySourcesView : UIView

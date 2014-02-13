@@ -13,6 +13,7 @@
 
 @property(nonatomic, strong) UITextView *errorText;
 @property(nonatomic, strong) UIButton *errorButton;
+@property(nonatomic, assign) CGFloat errorHeight;
 
 @end
 
@@ -25,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.backgroundColor = [YMAUIConstants defaultBackgroungColor];
+    self.errorHeight = 0.0;
 }
 
 #pragma mark -
@@ -45,18 +47,21 @@
 }
 
 - (void)showError:(NSError *)error target:(id)target withAction:(SEL)selector {
+    
     [self.errorText removeFromSuperview];
     [self.errorButton removeFromSuperview];
     
-    CGFloat errorHeight = (selector) ? kErrorHeight + kCellHeightDefault : kErrorHeight;
+    CGFloat newErrorHeight = ((selector) ? kErrorHeight + kCellHeightDefault : kErrorHeight);
+    CGFloat deltaErrorHeight = newErrorHeight - self.errorHeight;
+    self.errorHeight = newErrorHeight;
     
     CGSize contentSize = self.scrollView.contentSize;
-    contentSize.height += errorHeight;
+    contentSize.height += deltaErrorHeight;
     self.scrollView.contentSize = contentSize;
     
     for (UIView *subView in self.scrollView.subviews) {
         CGRect viewRect = subView.frame;
-        viewRect.origin.y += errorHeight;
+        viewRect.origin.y += deltaErrorHeight;
         subView.frame = viewRect;
     }
     
@@ -75,12 +80,21 @@
     
     [self.errorButton setTitle: YMALocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
     [self.errorButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
+    [self.errorButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
     self.errorButton.titleLabel.font = [YMAUIConstants buttonFont];
     
     [self.scrollView addSubview:self.errorButton];
     
     [self.errorButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [self.errorButton addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    
+    self.errorText.textColor = [UIColor blackColor];
+    self.errorButton.enabled = YES;
+}
+
+- (void)disableError {
+    self.errorText.textColor = [YMAUIConstants commentColor];
+    self.errorButton.enabled = NO;
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
@@ -111,11 +125,10 @@
     if (!_errorText) {
         _errorText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kErrorHeight)];
         _errorText.textAlignment = NSTextAlignmentCenter;
-        _errorText.textContainerInset = UIEdgeInsetsMake(10, 15, 5, 15);
+        _errorText.textContainerInset = UIEdgeInsetsMake(15, 15, 5, 15);
         _errorText.backgroundColor = [UIColor whiteColor];
         _errorText.editable = NO;
         _errorText.font = [YMAUIConstants commentFont];
-        _errorText.textColor = [UIColor redColor];
     }
     
     return _errorText;

@@ -89,6 +89,11 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
+- (void)disableError {
+    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+}
+
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
@@ -119,6 +124,7 @@
 }
 
 - (void)startPayment {
+    [self disableError];    
     [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *error) {
 
         if (error) {
@@ -265,6 +271,7 @@
     self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
     [self.scrollView addSubview:self.moneySourcesView];
     [self.cardCscView removeFromSuperview];
+    [self.webView removeFromSuperview];
 }
 
 #pragma mark -

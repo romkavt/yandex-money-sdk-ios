@@ -17,7 +17,9 @@
 @property(nonatomic, strong) UIViewController *parentController;
 @property(nonatomic, strong, readonly) UITableView *tableView;
 @property(nonatomic, strong) UITextField *cscTextField;
+@property(nonatomic, strong) UILabel *cscLabel;
 @property(nonatomic, assign) BOOL isEnabled;
+@property(nonatomic, strong) UIView *footer;
 
 @end
 
@@ -42,16 +44,21 @@
 
     //TODO use image for back button
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToMoneySources)];
-
+    leftBarButton.tintColor = [YMAUIConstants accentTextColor];
+    
     self.parentController.navigationItem.leftBarButtonItems = @[leftBarButton];
 
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
+    rightBarButton.tintColor = [YMAUIConstants accentTextColor];
+    
+    self.parentController.navigationItem.title = @"";
 
     self.parentController.navigationItem.rightBarButtonItems = @[rightBarButton];
     
     UIImageView *ymLogoView = [[UIImageView alloc] initWithImage:YMALocalizedImage(@"ym", nil)];
     CGRect logoRect = ymLogoView.frame;
-    logoRect.origin.y = self.frame.size.height - 50;
+    
+    logoRect.origin.y = self.frame.size.height - 110;
     logoRect.origin.x = (self.frame.size.width - logoRect.size.width)/2;
     ymLogoView.frame = logoRect;
     
@@ -63,6 +70,7 @@
 }
 
 - (void)startPayment {
+    [(YMABaseCpsViewController *)self.parentController disableError];
     [self.delegate startPaymentWithCsc:self.cscTextField.text];
     self.isEnabled = NO;
     self.cscTextField.enabled = NO;
@@ -92,17 +100,24 @@
     return kCellHeightWithTextField;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return (section == 0) ? kCellHeightDefault : 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return (section == 0) ? self.footer : nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *cellID = @"cscCellID";
 
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
 
-    cell.textLabel.text = YMALocalizedString(@"CTCsc", nil);
-
+    [cell.contentView addSubview:self.cscLabel];
     [cell.contentView addSubview:self.cscTextField];
 
     return cell;
@@ -114,7 +129,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.frame];
+        _tableView = [[UITableView alloc] initWithFrame:self.frame style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [YMAUIConstants defaultBackgroungColor];
     }
 
@@ -123,10 +138,39 @@
 
 - (UITextField *)cscTextField {
     if (!_cscTextField) {
-        _cscTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width - 10, 44)];
+        _cscTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, 20, self.frame.size.width - 10, 44)];
+        _cscTextField.placeholder = YMALocalizedString(@"TPRequired", nil);
     }
 
     return _cscTextField;
+}
+
+- (UILabel *)cscLabel {
+    if (!_cscLabel) {
+        _cscLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, self.frame.size.width - 20, 20)];
+        _cscLabel.font = [YMAUIConstants commentFont];
+        _cscLabel.textColor = [YMAUIConstants accentTextColor];
+        _cscLabel.text = YMALocalizedString(@"CTCsc", nil);
+    }
+    
+    return _cscLabel;
+}
+
+- (UIView *)footer {
+    if (!_footer) {
+        _footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kCellHeightDefault)];
+        _footer.backgroundColor = [YMAUIConstants defaultBackgroungColor];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.frame.size.width - 30, kCellHeightDefault)];
+        label.textColor = [YMAUIConstants commentColor];
+        label.numberOfLines = 2;
+        label.font = [YMAUIConstants commentFont];
+        label.text = YMALocalizedString(@"TFCVVCode", nil);
+        
+        [_footer addSubview:label];
+    }
+    
+    return _footer;
 }
 
 @end
