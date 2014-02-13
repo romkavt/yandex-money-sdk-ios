@@ -39,6 +39,14 @@
     self.tableView.dataSource = self;
     
     self.parentController.navigationController.title = YMALocalizedString(@"NBTMoneySourceTitle", nil);
+    
+    UIImageView *ymLogoView = [[UIImageView alloc] initWithImage:YMALocalizedImage(@"ym", nil)];
+    CGRect logoRect = ymLogoView.frame;
+    logoRect.origin.y = self.frame.size.height - 50;
+    logoRect.origin.x = (self.frame.size.width - logoRect.size.width)/2;
+    ymLogoView.frame = logoRect;
+    
+    [self.tableView.backgroundView addSubview:ymLogoView];
 }
 
 #pragma mark -

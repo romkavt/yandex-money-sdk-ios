@@ -18,6 +18,12 @@ extern CGFloat const kErrorHeight;
 extern NSString *const kImageKeyAmericanExpress;
 extern NSString *const kImageKeyMasterCard;
 extern NSString *const kImageKeyVISA;
+extern NSString *const kImageKeyCardAmericanExpress;
+extern NSString *const kImageKeyCardMasterCard;
+extern NSString *const kImageKeyCardVISA;
+extern NSString *const kImageKeyCardDefault;
+extern NSString *const kImageKeyCardNew;
+extern NSString *const kImageKeyCardSuccess;
 
 @interface YMAUIConstants : NSObject 
 
@@ -32,6 +38,10 @@ extern NSString *const kImageKeyVISA;
 + (UIColor *)accentTextColor;
 
 + (UIColor *)commentColor;
+
++ (UIColor *)savedCardColor;
+
++ (UIColor *)checkColor;
 
 #pragma mark -
 #pragma mark *** Fonts ***

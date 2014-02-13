@@ -47,6 +47,14 @@
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
 
     self.parentController.navigationItem.rightBarButtonItems = @[rightBarButton];
+    
+    UIImageView *ymLogoView = [[UIImageView alloc] initWithImage:YMALocalizedImage(@"ym", nil)];
+    CGRect logoRect = ymLogoView.frame;
+    logoRect.origin.y = self.frame.size.height - 50;
+    logoRect.origin.x = (self.frame.size.width - logoRect.size.width)/2;
+    ymLogoView.frame = logoRect;
+    
+    [self addSubview:ymLogoView];
 }
 
 - (void)backToMoneySources {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		43608924189DFF0A002C8C63 /* YMASecureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43608923189DFF0A002C8C63 /* YMASecureStorage.m */; };
+		437BBA6C18AC237900859CC6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437BBA6B18AC237900859CC6 /* Security.framework */; };
+		437BBA6E18AC238000859CC6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437BBA6D18AC238000859CC6 /* QuartzCore.framework */; };
+		437BBA7018AC238900859CC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437BBA6F18AC238900859CC6 /* CoreGraphics.framework */; };
 		43A9C06618A30F8400BF07BA /* YMACpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A9C06518A30F8400BF07BA /* YMACpsViewController.m */; };
 		43A9C06A18A3153F00BF07BA /* YMALocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A9C06918A3153F00BF07BA /* YMALocalization.m */; };
 		43A9C06C18A31BC100BF07BA /* uiymcpssdkios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 43A9C06718A30F9D00BF07BA /* uiymcpssdkios.bundle */; };
@@ -53,6 +56,9 @@
 /* Begin PBXFileReference section */
 		43608922189DFF0A002C8C63 /* YMASecureStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMASecureStorage.h; path = SDK/YMASecureStorage.h; sourceTree = "<group>"; };
 		43608923189DFF0A002C8C63 /* YMASecureStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMASecureStorage.m; path = SDK/YMASecureStorage.m; sourceTree = "<group>"; };
+		437BBA6B18AC237900859CC6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		437BBA6D18AC238000859CC6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		437BBA6F18AC238900859CC6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		43A9C06418A30F8400BF07BA /* YMACpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMACpsViewController.h; path = SDK/YMACpsViewController.h; sourceTree = "<group>"; };
 		43A9C06518A30F8400BF07BA /* YMACpsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMACpsViewController.m; path = SDK/YMACpsViewController.m; sourceTree = "<group>"; };
 		43A9C06718A30F9D00BF07BA /* uiymcpssdkios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = uiymcpssdkios.bundle; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437BBA7018AC238900859CC6 /* CoreGraphics.framework in Frameworks */,
+				437BBA6E18AC238000859CC6 /* QuartzCore.framework in Frameworks */,
+				437BBA6C18AC237900859CC6 /* Security.framework in Frameworks */,
 				60EEF92118AA5A7B00F72177 /* libymcpssdk-ios.a in Frameworks */,
 				60EC1A4618A3B72000E800DD /* UIKit.framework in Frameworks */,
 				603499E418995F320033835D /* Foundation.framework in Frameworks */,
@@ -148,6 +157,9 @@
 		603499E218995F320033835D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				437BBA6F18AC238900859CC6 /* CoreGraphics.framework */,
+				437BBA6D18AC238000859CC6 /* QuartzCore.framework */,
+				437BBA6B18AC237900859CC6 /* Security.framework */,
 				60EEF92018AA5A7B00F72177 /* libymcpssdk-ios.a */,
 				60EEF91B18AA58E600F72177 /* libymcpssdk-ios.a */,
 				60EC1A4518A3B72000E800DD /* UIKit.framework */,

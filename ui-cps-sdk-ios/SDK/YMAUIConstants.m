@@ -17,6 +17,12 @@ CGFloat const kErrorHeight = 100;
 NSString *const kImageKeyAmericanExpress = @"am";
 NSString *const kImageKeyMasterCard = @"mc";
 NSString *const kImageKeyVISA = @"visa";
+NSString *const kImageKeyCardAmericanExpress = @"card_ae";
+NSString *const kImageKeyCardMasterCard = @"card_mc";
+NSString *const kImageKeyCardVISA = @"card_visa";
+NSString *const kImageKeyCardDefault = @"card_default";
+NSString *const kImageKeyCardNew = @"card_new";
+NSString *const kImageKeyCardSuccess = @"card_success";
 
 @implementation YMAUIConstants
 
@@ -39,6 +45,14 @@ NSString *const kImageKeyVISA = @"visa";
 
 + (UIColor *)commentColor {
     return [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+}
+
++ (UIColor *)savedCardColor {
+    return [UIColor colorWithRed:51.0/255.0 green:102.0/255.0 blue:204.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)checkColor {
+    return [UIColor colorWithRed:2.0/255.0 green:196.0/255.0 blue:34.0/255.0 alpha:1.0];
 }
 
 #pragma mark -
