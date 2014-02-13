@@ -11,7 +11,7 @@
 
 @interface YMACpsViewController ()
 
-@property(nonatomic, strong) UILabel *errorText;
+@property(nonatomic, strong) UITextView *errorText;
 @property(nonatomic, strong) UIButton *errorButton;
 
 @end
@@ -62,7 +62,11 @@
     
     [self.activityIndicatorView stopAnimating];
    
-    self.errorText.text = error.domain;
+    NSString *errorText = YMALocalizedString(error.domain, nil);
+    
+    errorText = [errorText isEqualToString:error.domain] ? YMALocalizedString(@"unknownError", nil) : errorText;
+    
+    self.errorText.text = errorText;
    
     [self.scrollView addSubview:self.errorText];
     
@@ -103,11 +107,14 @@
 #pragma mark *** Getters and setters ***
 #pragma mark -
 
-- (UILabel *)errorText {
+- (UITextView *)errorText {
     if (!_errorText) {
-        _errorText = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kErrorHeight)];
+        _errorText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kErrorHeight)];
         _errorText.textAlignment = NSTextAlignmentCenter;
+        _errorText.textContainerInset = UIEdgeInsetsMake(10, 15, 5, 15);
         _errorText.backgroundColor = [UIColor whiteColor];
+        _errorText.editable = NO;
+        _errorText.font = [YMAUIConstants commentFont];
         _errorText.textColor = [UIColor redColor];
     }
     

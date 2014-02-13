@@ -344,12 +344,7 @@
 }
 
 - (UIWebView *)webView {
-    if (!_webView) {
-        
-        CGFloat y = 0.0;
-        if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
-            y =  CGRectGetMaxY(self.navigationController.navigationBar.frame);
-        
+    if (!_webView) {        
         CGRect webViewFrame = self.view.frame;
         webViewFrame.size.height = webViewFrame.size.height - self.navigationController.navigationBar.frame.size.height;
         _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
