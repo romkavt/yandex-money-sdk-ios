@@ -8,6 +8,4 @@
 
 @interface YMAResultView : YMABaseResultView
 
-
-
 @end

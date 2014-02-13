@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "YMALocalization.h"
 
-extern CGFloat const kCellHeightDefault;
-extern CGFloat const kCellHeightWithTextField;
+extern CGFloat const kControlHeightDefault;
+extern CGFloat const kControlHeightWithTextField;
 extern CGFloat const kErrorHeight;
 
 // image keys
@@ -25,13 +25,13 @@ extern NSString *const kImageKeyCardDefault;
 extern NSString *const kImageKeyCardNew;
 extern NSString *const kImageKeyCardSuccess;
 
-@interface YMAUIConstants : NSObject 
+@interface YMAUIConstants : NSObject
 
 #pragma mark -
 #pragma mark *** Colors ***
 #pragma mark -
 
-+ (UIColor *)defaultBackgroungColor;
++ (UIColor *)defaultBackgroundColor;
 
 + (UIColor *)separatorColor;
 

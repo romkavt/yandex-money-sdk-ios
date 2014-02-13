@@ -7,20 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMABaseCpsViewDelegate.h"
 
-@protocol YMABaseCscViewDelegate <NSObject>
+@protocol YMABaseCscViewDelegate <YMABaseCpsViewDelegate>
 
 - (void)startPaymentWithCsc:(NSString *)csc;
-
-- (void)showAllMoneySource;
 
 @end
 
 @interface YMABaseCscView : UIView
 
 @property(nonatomic, weak) id <YMABaseCscViewDelegate> delegate;
-
-- (id)initWithViewController:(UIViewController *)controller;
 
 - (void)stopPaymentWithError:(NSError *)error;
 

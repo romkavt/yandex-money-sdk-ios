@@ -46,29 +46,29 @@
 - (void)viewDidLoad {
     [self.view addSubview:self.scrollView];
     [self startActivity];
-    
-//        YMAAsc *asc = [YMAAsc ascWithUrl:[NSURL URLWithString:@"http://m.money.yandex.ru"] andParams:nil];
-//    
-//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
-//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-//            [self loadInWebViewFormAsc:asc];
-//    
-//            dispatch_time_t popTime2 = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
-//            dispatch_after(popTime2, dispatch_get_main_queue(), ^(void) {
-//                [self showSuccessView];
-//            });
+
+//    YMAAsc *asc = [YMAAsc ascWithUrl:[NSURL URLWithString:@"http://m.money.yandex.ru"] andParams:nil];
+//
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+//        [self loadInWebViewFormAsc:asc];
+//
+//        dispatch_time_t popTime2 = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
+//        dispatch_after(popTime2, dispatch_get_main_queue(), ^(void) {
+//            [self showSuccessView];
 //        });
-//    
-    
+//    });
+
+
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
         if (error)
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self processError:error];
-                
+
             });
         else
             [self startPayment];
-    }];   
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -84,7 +84,7 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
-- (void)showError:(NSError *)error target:(id)target withAction:(SEL)selector  {
+- (void)showError:(NSError *)error target:(id)target withAction:(SEL)selector {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
@@ -124,7 +124,7 @@
 }
 
 - (void)startPayment {
-    [self disableError];    
+    [self disableError];
     [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *error) {
 
         if (error) {
@@ -217,6 +217,27 @@
 }
 
 #pragma mark -
+#pragma mark *** YMABaseCpsViewDelegate ***
+#pragma mark -
+
+- (void)updateNavigationBarTitle:(NSString *)title leftButtons:(NSArray *)leftButtons rightButtons:(NSArray *)rightButtons {
+    self.navigationItem.title = title;
+    self.navigationItem.leftBarButtonItems = leftButtons;
+    self.navigationItem.rightBarButtonItems = rightButtons;
+}
+
+- (void)dismissController {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)showMoneySource {
+    self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
+    [self.scrollView addSubview:self.moneySourcesView];
+    [self.cardCscView removeFromSuperview];
+    [self.webView removeFromSuperview];
+}
+
+#pragma mark -
 #pragma mark *** YMABaseResultViewDelegate ***
 #pragma mark -
 
@@ -267,13 +288,6 @@
     [self finishPaymentFromExistCard];
 }
 
-- (void)showAllMoneySource {
-    self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
-    [self.scrollView addSubview:self.moneySourcesView];
-    [self.cardCscView removeFromSuperview];
-    [self.webView removeFromSuperview];
-}
-
 #pragma mark -
 #pragma mark *** UIWebViewDelegate ***
 #pragma mark -
@@ -281,11 +295,11 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (![request URL])
         return NO;
-    
+
     NSString *scheme = [[request URL] scheme];
     NSString *path = [[request URL] path];
     NSString *host = [[request URL] host];
-    
+
     NSString *strippedURL = [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
 
     if ([strippedURL isEqual:kSuccessUrl]) {
@@ -351,7 +365,7 @@
 }
 
 - (UIWebView *)webView {
-    if (!_webView) {        
+    if (!_webView) {
         CGRect webViewFrame = self.view.frame;
         webViewFrame.size.height = webViewFrame.size.height - self.navigationController.navigationBar.frame.size.height;
         _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
@@ -368,19 +382,19 @@
         _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
         CGFloat y = 0.0;
         if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
-            y =  CGRectGetMaxY(self.navigationController.navigationBar.frame);
+            y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
         CGSize contentSize = self.view.frame.size;
         contentSize.height -= y;
         _scrollView.contentSize = contentSize;
     }
-    
+
     return _scrollView;
 }
 
 - (UIActivityIndicatorView *)activityIndicatorView {
     if (!_activityIndicatorView) {
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        _activityIndicatorView.center = CGPointMake(self.view.frame.size.width/2, self.scrollView.contentSize.height/2);
+        _activityIndicatorView.center = CGPointMake(self.view.frame.size.width / 2, self.scrollView.contentSize.height / 2);
         [_activityIndicatorView startAnimating];
     }
 

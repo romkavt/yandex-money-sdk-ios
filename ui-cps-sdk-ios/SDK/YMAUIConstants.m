@@ -8,8 +8,8 @@
 
 #import "YMAUIConstants.h"
 
-CGFloat const kCellHeightDefault = 44.0;
-CGFloat const kCellHeightWithTextField = 62.0;
+CGFloat const kControlHeightDefault = 44.0;
+CGFloat const kControlHeightWithTextField = 62.0;
 CGFloat const kErrorHeight = 90;
 
 // image keys
@@ -30,17 +30,17 @@ NSString *const kImageKeyCardSuccess = @"card_success";
 #pragma mark *** Colors ***
 #pragma mark -
 
-+ (UIColor *)defaultBackgroungColor {
-    return [UIColor colorWithRed:242.0/255.0 green:239.0/255.0 blue:237.0/255.0 alpha:1.0];
++ (UIColor *)defaultBackgroundColor {
+    return [UIColor colorWithRed:242.0 / 255.0 green:239.0 / 255.0 blue:237.0 / 255.0 alpha:1.0];
 }
 
 + (UIColor *)separatorColor {
-    return [UIColor colorWithRed:0 green:0 blue:0 alpha: 0.1];
+    return [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
 }
 
 
 + (UIColor *)accentTextColor {
-    return [UIColor colorWithRed:253.0/255.0 green:148.0/255.0 blue:38.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:253.0 / 255.0 green:148.0 / 255.0 blue:38.0 / 255.0 alpha:1.0];
 }
 
 + (UIColor *)commentColor {
@@ -48,11 +48,11 @@ NSString *const kImageKeyCardSuccess = @"card_success";
 }
 
 + (UIColor *)savedCardColor {
-    return [UIColor colorWithRed:51.0/255.0 green:102.0/255.0 blue:204.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:51.0 / 255.0 green:102.0 / 255.0 blue:204.0 / 255.0 alpha:1.0];
 }
 
 + (UIColor *)checkColor {
-    return [UIColor colorWithRed:2.0/255.0 green:196.0/255.0 blue:34.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:2.0 / 255.0 green:196.0 / 255.0 blue:34.0 / 255.0 alpha:1.0];
 }
 
 #pragma mark -

@@ -15,51 +15,44 @@
 
 @property(nonatomic, strong) NSMutableArray *moneySources;
 @property(nonatomic, strong, readonly) UITableView *tableView;
-@property(nonatomic, strong) UIViewController *parentController;
 @property(nonatomic, strong) UIView *header;
 
 @end
 
 @implementation YMAMoneySourcesView
 
-- (id)initWithMoneySources:(NSArray *)moneySources andViewController:(UIViewController *)controller {
-    self = (controller) ? [super initWithFrame:controller.view.frame] : [super init];
-    
+- (id)initWithFrame:(CGRect)frame andMoneySources:(NSArray *)moneySources {
+    self = [super initWithFrame:frame];
+
     if (self) {
         _moneySources = [NSMutableArray arrayWithArray:moneySources];
-        _parentController = controller;
         [self setupControls];
     }
-    
+
     return self;
 }
 
 - (void)setupControls {
-    self.backgroundColor = [YMAUIConstants defaultBackgroungColor];
+    self.backgroundColor = [YMAUIConstants defaultBackgroundColor];
     [self addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    self.parentController.navigationItem.title = YMALocalizedString(@"NBTMoneySourceTitle", nil);
-    
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissController)];
-    barButton.tintColor = [YMAUIConstants accentTextColor];
-    
-    self.parentController.navigationItem.leftBarButtonItems = @[barButton];
-    self.parentController.navigationItem.rightBarButtonItems = @[];
-    
+
     UIImageView *ymLogoView = [[UIImageView alloc] initWithImage:YMALocalizedImage(@"ym", nil)];
     CGRect logoRect = ymLogoView.frame;
-    
+
     logoRect.origin.y = self.frame.size.height - 110;
-    logoRect.origin.x = (self.frame.size.width - logoRect.size.width)/2;
+    logoRect.origin.x = (self.frame.size.width - logoRect.size.width) / 2;
     ymLogoView.frame = logoRect;
-    
+
     [self addSubview:ymLogoView];
 }
 
-- (void)dismissController {
-    [self.parentController dismissViewControllerAnimated:YES completion:NULL];
+- (void)layoutSubviews {
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
+    barButton.tintColor = [YMAUIConstants accentTextColor];
+
+    [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTMoneySourceTitle", nil) leftButtons:@[barButton] rightButtons:@[]];
 }
 
 #pragma mark -
@@ -75,11 +68,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kCellHeightDefault;
+    return kControlHeightDefault;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return (section == 0) ? kCellHeightWithTextField : 0;
+    return (section == 0) ? kControlHeightWithTextField : 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -87,16 +80,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *cellID = @"moneySourceCellID";
-    
+
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    
+
     if (indexPath.row < self.moneySources.count) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:indexPath.row];
-        
+        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+
         if (moneySource.cardType == YMAPaymentCardTypeVISA)
             cell.imageView.image = YMALocalizedImage(kImageKeyCardVISA, nil);
         else if (moneySource.cardType == YMAPaymentCardTypeMasterCard)
@@ -105,15 +98,15 @@
             cell.imageView.image = YMALocalizedImage(kImageKeyCardAmericanExpress, nil);
         else
             cell.imageView.image = YMALocalizedImage(kImageKeyCardDefault, nil);
-        
+
         cell.textLabel.text = moneySource.panFragment;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
     } else if (indexPath.row == self.moneySources.count) {
         cell.textLabel.text = YMALocalizedString(@"CTNewCard", nil);
         cell.textLabel.textColor = [YMAUIConstants accentTextColor];
     }
-    
+
     return cell;
 }
 
@@ -123,7 +116,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:indexPath.row];
+        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
         [self.delegate removeMoneySource:moneySource];
         [self.moneySources removeObject:moneySource];
         [self.tableView reloadData];
@@ -135,23 +128,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     if (indexPath.row < self.moneySources.count) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:indexPath.row];
+        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
         [self.delegate didSelectedMoneySource:moneySource];
     } else if (indexPath.row == self.moneySources.count) {
-        
+
         //TODO use image for back button
-        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showAllMoneySource)];
+        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
         leftBarButton.tintColor = [YMAUIConstants accentTextColor];
-        
-        self.parentController.navigationItem.leftBarButtonItems = @[leftBarButton];        
-        self.parentController.navigationItem.title = YMALocalizedString(@"NBTMainTitle", nil);
-        
-        self.parentController.navigationItem.rightBarButtonItems = @[];
-        
+
+        [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTMainTitle", nil) leftButtons:@[leftBarButton] rightButtons:@[]];
         [self.delegate paymentFromNewCard];
     }
 }
@@ -165,23 +154,23 @@
         _tableView = [[UITableView alloc] initWithFrame:self.frame style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
     }
-    
+
     return _tableView;
 }
 
 - (UIView *)header {
     if (!_header) {
-        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kCellHeightWithTextField)];
-        _header.backgroundColor = [YMAUIConstants defaultBackgroungColor];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, kCellHeightWithTextField/2, self.frame.size.width, kCellHeightWithTextField/2)];
+        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kControlHeightWithTextField)];
+        _header.backgroundColor = [YMAUIConstants defaultBackgroundColor];
+
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, kControlHeightWithTextField / 2, self.frame.size.width, kControlHeightWithTextField / 2)];
         label.textColor = [YMAUIConstants commentColor];
         label.font = [YMAUIConstants commentFont];
         label.text = YMALocalizedString(@"THMoneySources", nil);
-        
+
         [_header addSubview:label];
     }
-    
+
     return _header;
 }
 

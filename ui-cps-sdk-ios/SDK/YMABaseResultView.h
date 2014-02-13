@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <ymcpssdk-ios/ymcpssdk.h>
+#import "YMABaseCpsViewDelegate.h"
 
 typedef enum {
     YMAPaymentResultStateSuccessWithNewCard,
@@ -15,7 +16,7 @@ typedef enum {
     YMAPaymentResultStateFail
 } YMAPaymentResultState;
 
-@protocol YMABaseResultViewDelegate <NSObject>
+@protocol YMABaseResultViewDelegate <YMABaseCpsViewDelegate>
 
 - (void)saveMoneySource;
 
@@ -27,7 +28,7 @@ typedef enum {
 
 @property(nonatomic, weak) id <YMABaseResultViewDelegate> delegate;
 
-- (id)initWithState:(YMAPaymentResultState)state amount:(NSString *)amount andViewController:(UIViewController *)controller;
+- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state amount:(NSString *)amount;
 
 - (void)successSaveMoneySource:(YMAMoneySource *)moneySource;
 

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <ymcpssdk-ios/ymcpssdk.h>
+#import "YMABaseCpsViewDelegate.h"
 
-@protocol YMABaseMoneySourcesViewDelegate <NSObject>
+@protocol YMABaseMoneySourcesViewDelegate <YMABaseCpsViewDelegate>
 
 - (void)didSelectedMoneySource:(YMAMoneySource *)moneySource;
 
@@ -17,14 +18,12 @@
 
 - (void)paymentFromNewCard;
 
-- (void)showAllMoneySource;
-
 @end
 
 @interface YMABaseMoneySourcesView : UIView
 
 @property(nonatomic, weak) id <YMABaseMoneySourcesViewDelegate> delegate;
 
-- (id)initWithMoneySources:(NSArray *)moneySources andViewController:(UIViewController *)controller;
+- (id)initWithFrame:(CGRect)frame andMoneySources:(NSArray *)moneySources;
 
 @end

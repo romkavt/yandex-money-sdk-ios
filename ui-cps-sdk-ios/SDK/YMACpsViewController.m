@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.scrollView.backgroundColor = [YMAUIConstants defaultBackgroungColor];
+    self.scrollView.backgroundColor = [YMAUIConstants defaultBackgroundColor];
     self.errorHeight = 0.0;
 }
 
@@ -39,55 +39,55 @@
     }
 
     self.navigationItem.title = YMALocalizedString(@"NBTMainTitle", nil);
-    
+
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissController)];
     barButton.tintColor = [YMAUIConstants accentTextColor];
-    
+
     self.navigationItem.leftBarButtonItems = @[barButton];
 }
 
 - (void)showError:(NSError *)error target:(id)target withAction:(SEL)selector {
-    
+
     [self.errorText removeFromSuperview];
     [self.errorButton removeFromSuperview];
-    
-    CGFloat newErrorHeight = ((selector) ? kErrorHeight + kCellHeightDefault : kErrorHeight);
+
+    CGFloat newErrorHeight = ((selector) ? kErrorHeight + kControlHeightDefault : kErrorHeight);
     CGFloat deltaErrorHeight = newErrorHeight - self.errorHeight;
     self.errorHeight = newErrorHeight;
-    
+
     CGSize contentSize = self.scrollView.contentSize;
     contentSize.height += deltaErrorHeight;
     self.scrollView.contentSize = contentSize;
-    
+
     for (UIView *subView in self.scrollView.subviews) {
         CGRect viewRect = subView.frame;
         viewRect.origin.y += deltaErrorHeight;
         subView.frame = viewRect;
     }
-    
+
     [self.activityIndicatorView stopAnimating];
-   
+
     NSString *errorText = YMALocalizedString(error.domain, nil);
-    
+
     errorText = [errorText isEqualToString:error.domain] ? YMALocalizedString(@"unknownError", nil) : errorText;
-    
+
     self.errorText.text = errorText;
-   
+
     [self.scrollView addSubview:self.errorText];
-    
+
     if (!selector || !target)
         return;
-    
-    [self.errorButton setTitle: YMALocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
+
+    [self.errorButton setTitle:YMALocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
     [self.errorButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
     [self.errorButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
     self.errorButton.titleLabel.font = [YMAUIConstants buttonFont];
-    
+
     [self.scrollView addSubview:self.errorButton];
-    
+
     [self.errorButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [self.errorButton addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-    
+
     self.errorText.textColor = [UIColor blackColor];
     self.errorButton.enabled = YES;
 }
@@ -98,15 +98,18 @@
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
-    return [[YMAMoneySourcesView alloc] initWithMoneySources:sources andViewController:self];
+    return [[YMAMoneySourcesView alloc] initWithFrame:self.view.frame andMoneySources:sources];
 }
 
 - (YMABaseCscView *)cscView {
-    return [[YMACscView alloc] initWithViewController:self];
+    return [[YMACscView alloc] initWithFrame:self.view.frame];
 }
 
 - (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state {
-    return [[YMAResultView alloc] initWithState:state amount:self.paymentRequestInfo.amount andViewController:self];;
+    CGRect viewRect = self.view.frame;
+    viewRect.size.height = self.scrollView.contentSize.height;
+
+    return [[YMAResultView alloc] initWithFrame:viewRect state:state amount:self.paymentRequestInfo.amount];
 }
 
 #pragma mark -
@@ -130,32 +133,32 @@
         _errorText.editable = NO;
         _errorText.font = [YMAUIConstants commentFont];
     }
-    
+
     return _errorText;
 }
 
 - (UIButton *)errorButton {
     if (!_errorButton) {
-        CGRect buttonRect = CGRectMake(0, kErrorHeight, self.view.frame.size.width, kCellHeightDefault);
+        CGRect buttonRect = CGRectMake(0, kErrorHeight, self.view.frame.size.width, kControlHeightDefault);
         _errorButton = [[UIButton alloc] initWithFrame:buttonRect];
         _errorButton.backgroundColor = [UIColor whiteColor];
-        
+
         CGFloat separatorHeight = [UIScreen mainScreen].scale == 2 ? 0.5 : 1;
-        
+
         CGRect separatorRect = CGRectMake(0, 0, self.view.frame.size.width, separatorHeight);
-        
+
         UIView *topSeparatorView = [[UIView alloc] initWithFrame:separatorRect];
         topSeparatorView.backgroundColor = [YMAUIConstants separatorColor];
-        
+
         [_errorButton addSubview:topSeparatorView];
-        
-        separatorRect.origin.y = kCellHeightDefault;
+
+        separatorRect.origin.y = kControlHeightDefault;
         UIView *bottomSeparatorView = [[UIView alloc] initWithFrame:separatorRect];
         bottomSeparatorView.backgroundColor = [YMAUIConstants separatorColor];
-        
+
         [_errorButton addSubview:bottomSeparatorView];
     }
-    
+
     return _errorButton;
 }
 

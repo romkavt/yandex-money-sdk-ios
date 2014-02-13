@@ -10,11 +10,6 @@
 
 @implementation YMABaseCscView
 
-- (id)initWithViewController:(UIViewController *)controller {
-    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
-}
-
 - (void)stopPaymentWithError:(NSError *)error {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
