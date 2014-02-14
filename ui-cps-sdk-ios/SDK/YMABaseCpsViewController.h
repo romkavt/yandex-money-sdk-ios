@@ -30,6 +30,8 @@
 
 - (void)showError:(NSError *)error target:(id)target withAction:(SEL)selector;
 
+- (void)hideError;
+
 - (void)disableError;
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources;

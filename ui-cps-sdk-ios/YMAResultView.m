@@ -40,6 +40,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 @property(nonatomic, strong) UIButton *saveCardButton;
 @property(nonatomic, strong) UILabel *saveButtonComment;
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property(nonatomic, strong) UIBarButtonItem *rightBarButton;
 
 @end
 
@@ -110,14 +111,18 @@ static CGFloat const kAnimationSpeed = 0.7;
 }
 
 - (void)layoutSubviews {
-    [self setupDismissNavigationButton];
+    self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBSuccess", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
+    
+    self.rightBarButton.tintColor = [YMAUIConstants accentTextColor];
+    
+    [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTResultSuccess", nil) leftButtons:@[] rightButtons:@[self.rightBarButton]];
 }
 
 - (void)successSaveMoneySource:(YMAMoneySource *)moneySource {
     [self showSavedCardWithMoneySource:moneySource];
     [self showCheck];
     self.saveButtonComment.text = YMALocalizedString(@"TLSavedCardComment", nil);
-    [self setupDismissNavigationButton];
+    self.rightBarButton.enabled = YES;
 }
 
 - (void)stopSavingMoneySourceWithError:(NSError *)error {
@@ -134,7 +139,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.saveCardButton.enabled = YES;
     self.saveButtonComment.text = YMALocalizedString(@"TLSaveCardComment", nil);
     [self.activityIndicatorView removeFromSuperview];
-    [self setupDismissNavigationButton];
+    self.rightBarButton.enabled = YES;
 }
 
 - (void)saveMoneySource {
@@ -144,31 +149,15 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.saveButtonComment.text = YMALocalizedString(@"TLSavingCardComment", nil);
     self.activityIndicatorView.center = CGPointMake(65, self.saveCardButton.frame.size.height / 2);
     [self.saveCardButton addSubview:self.activityIndicatorView];
-    [self setupCancelNavigationButton];
 
+    self.rightBarButton.enabled = NO;
+    
 //    dispatch_time_t popTime3 = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
 //    dispatch_after(popTime3, dispatch_get_main_queue(), ^(void) {
 //        YMAMoneySource *ms = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:YMAPaymentCardTypeMasterCard panFragment:@"4842  43**  ****  9834" moneySourceToken:@""];
 //
 //        [self successSaveMoneySource:ms];
 //    });
-}
-
-- (void)setupDismissNavigationButton {
-
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBSuccess", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
-
-    rightBarButton.tintColor = [YMAUIConstants accentTextColor];
-
-    [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTResultSuccess", nil) leftButtons:@[] rightButtons:@[rightBarButton]];
-}
-
-- (void)setupCancelNavigationButton {
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(stopSavingMoneySource)];
-
-    rightBarButton.tintColor = [YMAUIConstants accentTextColor];
-
-    [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTResultSuccess", nil) leftButtons:@[] rightButtons:@[rightBarButton]];
 }
 
 - (void)drawCard {

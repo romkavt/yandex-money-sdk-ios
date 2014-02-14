@@ -10,7 +10,7 @@
 
 @implementation YMABaseMoneySourcesView
 
-- (id)initWithFrame:(CGRect)frame andMoneySources:(NSArray *)moneySources {
+- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAPaymentRequestInfo *)paymentInfo andMoneySources:(NSArray *)moneySources {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }

@@ -24,6 +24,6 @@
 
 @property(nonatomic, weak) id <YMABaseMoneySourcesViewDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame andMoneySources:(NSArray *)moneySources;
+- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAPaymentRequestInfo *)paymentInfo andMoneySources:(NSArray *)moneySources;
 
 @end

@@ -66,13 +66,16 @@
     }
 
     [self.activityIndicatorView stopAnimating];
+    
+    CGFloat separatorHeight = [UIScreen mainScreen].scale == 2 ? 0.5 : 1;
+    CGRect separatorRect = CGRectMake(0, kErrorHeight - separatorHeight, self.view.frame.size.width, separatorHeight);
+    UIView *topSeparatorView = [[UIView alloc] initWithFrame:separatorRect];
+    topSeparatorView.backgroundColor = [YMAUIConstants separatorColor];
+    [self.errorText addSubview:topSeparatorView];
 
     NSString *errorText = YMALocalizedString(error.domain, nil);
-
     errorText = [errorText isEqualToString:error.domain] ? YMALocalizedString(@"unknownError", nil) : errorText;
-
     self.errorText.text = errorText;
-
     [self.scrollView addSubview:self.errorText];
 
     if (!selector || !target)
@@ -92,13 +95,30 @@
     self.errorButton.enabled = YES;
 }
 
+- (void)hideError {
+    [self.errorText removeFromSuperview];
+    [self.errorButton removeFromSuperview];
+    
+    CGSize contentSize = self.scrollView.contentSize;
+    contentSize.height -= self.errorHeight;
+    self.scrollView.contentSize = contentSize;
+    
+    for (UIView *subView in self.scrollView.subviews) {
+        CGRect viewRect = subView.frame;
+        viewRect.origin.y -= self.errorHeight;
+        subView.frame = viewRect;
+    }
+    
+    self.errorHeight = 0;
+}
+
 - (void)disableError {
     self.errorText.textColor = [YMAUIConstants commentColor];
     self.errorButton.enabled = NO;
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
-    return [[YMAMoneySourcesView alloc] initWithFrame:self.view.frame andMoneySources:sources];
+    return [[YMAMoneySourcesView alloc] initWithFrame:self.view.frame paymentInfo:self.paymentRequestInfo andMoneySources:sources];
 }
 
 - (YMABaseCscView *)cscView {
@@ -144,15 +164,8 @@
         _errorButton.backgroundColor = [UIColor whiteColor];
 
         CGFloat separatorHeight = [UIScreen mainScreen].scale == 2 ? 0.5 : 1;
+        CGRect separatorRect = CGRectMake(0, kControlHeightDefault, self.view.frame.size.width, separatorHeight);
 
-        CGRect separatorRect = CGRectMake(0, 0, self.view.frame.size.width, separatorHeight);
-
-        UIView *topSeparatorView = [[UIView alloc] initWithFrame:separatorRect];
-        topSeparatorView.backgroundColor = [YMAUIConstants separatorColor];
-
-        [_errorButton addSubview:topSeparatorView];
-
-        separatorRect.origin.y = kControlHeightDefault;
         UIView *bottomSeparatorView = [[UIView alloc] initWithFrame:separatorRect];
         bottomSeparatorView.backgroundColor = [YMAUIConstants separatorColor];
 

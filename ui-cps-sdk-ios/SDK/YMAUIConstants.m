@@ -35,7 +35,7 @@ NSString *const kImageKeyCardSuccess = @"card_success";
 }
 
 + (UIColor *)separatorColor {
-    return [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+    return [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
 }
 
 

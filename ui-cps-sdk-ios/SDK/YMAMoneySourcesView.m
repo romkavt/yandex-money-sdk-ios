@@ -16,16 +16,20 @@
 @property(nonatomic, strong) NSMutableArray *moneySources;
 @property(nonatomic, strong, readonly) UITableView *tableView;
 @property(nonatomic, strong) UIView *header;
+@property(nonatomic, strong) YMAPaymentRequestInfo *paymentInfo;
+@property(nonatomic, strong) UILabel *paymentInfoValue;
+@property(nonatomic, strong) UILabel *paymentInfoTitle;
 
 @end
 
 @implementation YMAMoneySourcesView
 
-- (id)initWithFrame:(CGRect)frame andMoneySources:(NSArray *)moneySources {
+- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAPaymentRequestInfo *)paymentInfo andMoneySources:(NSArray *)moneySources {
     self = [super initWithFrame:frame];
 
     if (self) {
         _moneySources = [NSMutableArray arrayWithArray:moneySources];
+        _paymentInfo = paymentInfo;
         [self setupControls];
     }
 
@@ -60,58 +64,80 @@
 #pragma mark -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.moneySources.count + 1;
+    return (section) ? self.moneySources.count + 1 : 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kControlHeightDefault;
+    return (indexPath.section) ? kControlHeightDefault : kControlHeightWithTextField;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return (section == 0) ? kControlHeightWithTextField : 0;
+    return (section) ? kControlHeightDefault : 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return (section == 0) ? self.header : nil;
+    return (section) ? self.header : nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     static NSString *cellID = @"moneySourceCellID";
 
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-
-    if (indexPath.row < self.moneySources.count) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
-
-        if (moneySource.cardType == YMAPaymentCardTypeVISA)
-            cell.imageView.image = YMALocalizedImage(kImageKeyCardVISA, nil);
-        else if (moneySource.cardType == YMAPaymentCardTypeMasterCard)
-            cell.imageView.image = YMALocalizedImage(kImageKeyCardMasterCard, nil);
-        else if (moneySource.cardType == YMAPaymentCardTypeAmericanExpress)
-            cell.imageView.image = YMALocalizedImage(kImageKeyCardAmericanExpress, nil);
-        else
-            cell.imageView.image = YMALocalizedImage(kImageKeyCardDefault, nil);
-
-        cell.textLabel.text = moneySource.panFragment;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    } else if (indexPath.row == self.moneySources.count) {
-        cell.textLabel.text = YMALocalizedString(@"CTNewCard", nil);
-        cell.textLabel.textColor = [YMAUIConstants accentTextColor];
+    
+    if (indexPath.section) {
+        if (indexPath.row < self.moneySources.count) {
+            YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+            
+            if (moneySource.cardType == YMAPaymentCardTypeVISA)
+                cell.imageView.image = YMALocalizedImage(kImageKeyCardVISA, nil);
+            else if (moneySource.cardType == YMAPaymentCardTypeMasterCard)
+                cell.imageView.image = YMALocalizedImage(kImageKeyCardMasterCard, nil);
+            else if (moneySource.cardType == YMAPaymentCardTypeAmericanExpress)
+                cell.imageView.image = YMALocalizedImage(kImageKeyCardAmericanExpress, nil);
+            else
+                cell.imageView.image = YMALocalizedImage(kImageKeyCardDefault, nil);
+            
+            cell.textLabel.text = moneySource.panFragment;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+        } else if (indexPath.row == self.moneySources.count) {
+            cell.textLabel.text = YMALocalizedString(@"CTNewCard", nil);
+            cell.textLabel.textColor = [YMAUIConstants accentTextColor];
+            cell.imageView.image = YMALocalizedImage(kImageKeyCardNew, nil);
+        }
+    } else {
+        
+        UILabel *paymentInfoTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, self.frame.size.width - 20, 20)];
+        paymentInfoTitle.font = [YMAUIConstants commentFont];
+        paymentInfoTitle.textColor = [YMAUIConstants accentTextColor];
+        
+        UILabel *paymentInfoValue = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, self.frame.size.width - 10, 44)];
+        
+        [cell.contentView addSubview:paymentInfoTitle];
+        [cell.contentView addSubview:paymentInfoValue];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (indexPath.row == 0) {
+            paymentInfoTitle.text = YMALocalizedString(@"CTPaymentName", nil);
+            paymentInfoValue.text = self.paymentInfo.title;
+            
+        } else {
+            paymentInfoTitle.text = YMALocalizedString(@"CTAmount", nil);
+            paymentInfoValue.text = self.paymentInfo.amount;
+        }
     }
 
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return indexPath.section == 1;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -129,6 +155,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    if (indexPath.section == 0)
+        return;
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (indexPath.row < self.moneySources.count) {
@@ -160,10 +189,10 @@
 
 - (UIView *)header {
     if (!_header) {
-        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kControlHeightWithTextField)];
+        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kControlHeightDefault)];
         _header.backgroundColor = [YMAUIConstants defaultBackgroundColor];
 
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, kControlHeightWithTextField / 2, self.frame.size.width, kControlHeightWithTextField / 2)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.frame.size.width, kControlHeightDefault)];
         label.textColor = [YMAUIConstants commentColor];
         label.font = [YMAUIConstants commentFont];
         label.text = YMALocalizedString(@"THMoneySources", nil);
@@ -172,6 +201,24 @@
     }
 
     return _header;
+}
+
+- (UILabel *)paymentInfoValue {
+    if (!_paymentInfoValue) {
+        _paymentInfoValue = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, self.frame.size.width - 10, 44)];
+    }
+    
+    return _paymentInfoValue;
+}
+
+- (UILabel *)paymentInfoTitle {
+    if (!_paymentInfoTitle) {
+        _paymentInfoTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, self.frame.size.width - 20, 20)];
+        _paymentInfoTitle.font = [YMAUIConstants commentFont];
+        _paymentInfoTitle.textColor = [YMAUIConstants accentTextColor];
+    }
+    
+    return _paymentInfoTitle;
 }
 
 @end

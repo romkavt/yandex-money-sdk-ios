@@ -94,6 +94,11 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
+- (void)hideError {
+    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+}
+
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
@@ -125,24 +130,19 @@
 
 - (void)startPayment {
     [self disableError];
-    [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *error) {
-
+    
+    [self updatePaymentRequestInfoWithCompletion:^(NSError *error) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self processError:error];
             });
-        } else {
-            _paymentRequestInfo = requestInfo;
-
-            if (self.cpsManager.moneySources.count) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self stopActivity];
-                    self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
-                    [self.scrollView addSubview:self.moneySourcesView];
-                });
-            } else
-                [self finishPaymentFromNewCard];
-        }
+        } else if (self.cpsManager.moneySources.count) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self stopActivity];
+                [self showMoneySource];
+            });
+        } else
+            [self finishPaymentFromNewCard];
     }];
 }
 
@@ -172,6 +172,8 @@
 }
 
 - (void)loadInWebViewFormAsc:(YMAAsc *)asc {
+    [self hideError];
+
     NSMutableString *post = [NSMutableString string];
 
     for (NSString *key in asc.params.allKeys) {
@@ -231,6 +233,7 @@
 }
 
 - (void)showMoneySource {
+    [self hideError];
     self.moneySourcesView = [self moneySourcesViewWithSources:self.cpsManager.moneySources];
     [self.scrollView addSubview:self.moneySourcesView];
     [self.cardCscView removeFromSuperview];
@@ -276,7 +279,21 @@
     self.selectedMoneySource = nil;
     [self.moneySourcesView removeFromSuperview];
     [self startActivity];
-    [self finishPaymentFromNewCard];
+    [self updatePaymentRequestInfoWithCompletion:^(NSError *error) {
+        if (error)
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self processError:error];
+            });
+        else
+            [self finishPaymentFromNewCard];
+    }];
+}
+
+- (void)updatePaymentRequestInfoWithCompletion:(YMAHandler)block {
+    [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *error) {
+        _paymentRequestInfo = requestInfo;
+        block(error);
+    }];
 }
 
 #pragma mark -
@@ -285,7 +302,14 @@
 
 - (void)startPaymentWithCsc:(NSString *)csc {
     self.currentCsc = csc;
-    [self finishPaymentFromExistCard];
+    [self updatePaymentRequestInfoWithCompletion:^(NSError *error) {
+        if (error)
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self processError:error];
+            });
+        else
+            [self finishPaymentFromExistCard];
+    }];
 }
 
 #pragma mark -

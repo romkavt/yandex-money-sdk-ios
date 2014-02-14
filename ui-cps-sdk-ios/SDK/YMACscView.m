@@ -48,13 +48,17 @@
 }
 
 - (void)layoutSubviews {
+    [self setupDefaultNavigationBar];
+}
+
+- (void)setupDefaultNavigationBar {
     //TODO use image for back button
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
     leftBarButton.tintColor = [YMAUIConstants accentTextColor];
-
+    
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
     rightBarButton.tintColor = [YMAUIConstants accentTextColor];
-
+    
     [self.delegate updateNavigationBarTitle:@"" leftButtons:@[leftBarButton] rightButtons:@[rightBarButton]];
 }
 
@@ -64,13 +68,19 @@
     self.isEnabled = NO;
     self.cscTextField.enabled = NO;
     [self.tableView reloadData];
+    
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activity startAnimating];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
+    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[rightBarButton]];
 }
 
 - (void)stopPaymentWithError:(NSError *)error {
     self.isEnabled = YES;
     self.cscTextField.enabled = YES;
     [self.tableView reloadData];
-    [self.delegate showError:error target:self withAction:@selector(startPayment)];
+    [self.delegate showError:error target:nil withAction:NULL];
+    [self setupDefaultNavigationBar];
 }
 
 #pragma mark -
