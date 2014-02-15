@@ -38,6 +38,6 @@
 
 - (YMABaseCscView *)cscView;
 
-- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state;
+- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description;
 
 @end

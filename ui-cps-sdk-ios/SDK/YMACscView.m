@@ -71,8 +71,9 @@
     
     UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [activity startAnimating];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
-    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[rightBarButton]];
+    UIBarButtonItem *activityButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBWait", nil) style:UIBarButtonItemStylePlain target:nil action:NULL];
+    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[activityButton, rightBarButton]];
 }
 
 - (void)stopPaymentWithError:(NSError *)error {

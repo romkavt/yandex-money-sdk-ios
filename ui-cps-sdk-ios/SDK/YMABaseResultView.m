@@ -10,7 +10,7 @@
 
 @implementation YMABaseResultView
 
-- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state amount:(NSString *)amount {
+- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state description:(NSString *)description {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }

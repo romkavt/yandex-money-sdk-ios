@@ -13,6 +13,7 @@
 typedef enum {
     YMAPaymentResultStateSuccessWithNewCard,
     YMAPaymentResultStateSuccessWithExistCard,
+    YMAPaymentResultStateFatalFail,
     YMAPaymentResultStateFail
 } YMAPaymentResultState;
 
@@ -28,7 +29,7 @@ typedef enum {
 
 @property(nonatomic, weak) id <YMABaseResultViewDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state amount:(NSString *)amount;
+- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state description:(NSString *)description;
 
 - (void)successSaveMoneySource:(YMAMoneySource *)moneySource;
 

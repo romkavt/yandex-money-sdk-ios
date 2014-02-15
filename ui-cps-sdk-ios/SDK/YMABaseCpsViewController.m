@@ -8,6 +8,9 @@
 
 #import "YMABaseCpsViewController.h"
 
+static NSString *const kFatalError = @"illegal_param_client_id";
+static NSString *const kUnknownError = @"unknownError";
+
 @interface YMABaseCpsViewController () <YMABaseResultViewDelegate, YMABaseMoneySourcesViewDelegate, YMABaseCscViewDelegate> {
     YMACpsManager *_cpsManager;
     UIWebView *_webView;
@@ -63,8 +66,7 @@
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
         if (error)
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self processError:error];
-
+                [self showFailViewWithError:error];
             });
         else
             [self startPayment];
@@ -109,7 +111,7 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
-- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state {
+- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
@@ -125,7 +127,7 @@
     }
 
     [self stopActivity];
-    [self showError:error target:self withAction:@selector(startPayment)];
+    [self showFailViewWithError:error];
 }
 
 - (void)startPayment {
@@ -134,7 +136,7 @@
     [self updatePaymentRequestInfoWithCompletion:^(NSError *error) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self processError:error];
+                [self showFailViewWithError:error];
             });
         } else if (self.cpsManager.moneySources.count) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -200,12 +202,13 @@
 - (void)showSuccessView {
     [self stopActivity];
     YMAPaymentResultState state = (self.selectedMoneySource) ? YMAPaymentResultStateSuccessWithExistCard : YMAPaymentResultStateSuccessWithNewCard;
-    self.resultView = [self resultViewWithState:state];
+    self.resultView = [self resultViewWithState:state andDescription:self.paymentRequestInfo.amount];
     [self.scrollView addSubview:self.resultView];
 }
 
-- (void)showFailView {
-    self.resultView = [self resultViewWithState:YMAPaymentResultStateFail];
+- (void)showFailViewWithError:(NSError *)error {
+    YMAPaymentResultState state = [error.domain isEqualToString:kFatalError] ? YMAPaymentResultStateFatalFail : YMAPaymentResultStateFail;
+    self.resultView = [self resultViewWithState:state andDescription:(error) ? error.domain : kUnknownError];
     [self.scrollView addSubview:self.resultView];
 }
 
@@ -338,7 +341,7 @@
     }
 
     if ([strippedURL isEqual:kFailUrl]) {
-        [self showFailView];
+        [self showFailViewWithError:nil];
         [webView removeFromSuperview];
         return NO;
     }
