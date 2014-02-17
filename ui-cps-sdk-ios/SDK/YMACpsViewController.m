@@ -125,11 +125,11 @@
     return [[YMACscView alloc] initWithFrame:self.view.frame];
 }
 
-- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state {
+- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description {
     CGRect viewRect = self.view.frame;
     viewRect.size.height = self.scrollView.contentSize.height;
 
-    return [[YMAResultView alloc] initWithFrame:viewRect state:state amount:self.paymentRequestInfo.amount];
+    return [[YMAResultView alloc] initWithFrame:viewRect state:state description:description];
 }
 
 #pragma mark -

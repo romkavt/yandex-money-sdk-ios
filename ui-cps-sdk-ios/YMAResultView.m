@@ -30,13 +30,13 @@ static CGFloat const kAnimationSpeed = 0.7;
     CAShapeLayer *_buttonLayer;
 
     CAShapeLayer *_leftCheckLayer;
-    CAShapeLayer *_rigthCheckLayer;
+    CAShapeLayer *_rightCheckLayer;
     CAShapeLayer *_transCheckLayer;
     CAShapeLayer *_checkLayer;
 }
 
 @property(nonatomic, assign) YMAPaymentResultState state;
-@property(nonatomic, copy) NSString *amount;
+@property(nonatomic, copy) NSString *description;
 @property(nonatomic, strong) UIButton *saveCardButton;
 @property(nonatomic, strong) UILabel *saveButtonComment;
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
@@ -46,12 +46,12 @@ static CGFloat const kAnimationSpeed = 0.7;
 
 @implementation YMAResultView
 
-- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state amount:(NSString *)amount {
+- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state description:(NSString *)description {
     self = [super initWithFrame:frame];
 
     if (self) {
         _state = state;
-        _amount = [amount copy];
+        _description = [description copy];
         [self setupControls];
     }
 
@@ -62,7 +62,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.backgroundColor = [YMAUIConstants defaultBackgroundColor];
 
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTitleLabelTopOffset, self.frame.size.width, kTitleLabelHeight)];
-    titleLabel.text = YMALocalizedString(@"TLThanks", nil);
+
     titleLabel.font = [YMAUIConstants titleFont];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -70,45 +70,76 @@ static CGFloat const kAnimationSpeed = 0.7;
     [self addSubview:titleLabel];
 
     UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftOffset, kTitleLabelTopOffset + kTitleLabelHeight, self.frame.size.width - 2 * kLeftOffset, kTitleLabelHeight)];
-    amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.amount];
+
     amountLabel.font = [YMAUIConstants commentTitleFont];
     amountLabel.textColor = [YMAUIConstants commentColor];
     amountLabel.numberOfLines = 2;
     amountLabel.textAlignment = NSTextAlignmentCenter;
 
+    if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
+        NSString *errorText = YMALocalizedString(self.description, nil);
+        errorText = [errorText isEqualToString:self.description] ? YMALocalizedString(@"unknownError", nil) : errorText;
+        titleLabel.text = (self.state == YMAPaymentResultStateFatalFail) ?  YMALocalizedString(@"TLFatalErrorTitle", nil) : YMALocalizedString(@"TLErrorTitle", nil);
+        amountLabel.text = YMALocalizedString(errorText, nil);
+    } else {
+        titleLabel.text = YMALocalizedString(@"TLThanks", nil);
+        amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.description];
+    }
+
     [self addSubview:amountLabel];
 
-    if (self.state == YMAPaymentResultStateSuccessWithNewCard) {
-        [self.saveCardButton setTitle:YMALocalizedString(@"BTSaveCard", nil) forState:UIControlStateNormal];
-        [self.saveCardButton setTitle:YMALocalizedString(@"BTSavingCard", nil) forState:UIControlStateDisabled];
-        [self.saveCardButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
-        [self.saveCardButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
-        self.saveCardButton.titleLabel.font = [YMAUIConstants buttonFont];
-
-        [self addSubview:self.saveCardButton];
-
-        self.saveButtonComment.text = YMALocalizedString(@"TLSaveCardComment", nil);
-        self.saveButtonComment.font = [YMAUIConstants commentFont];
-        self.saveButtonComment.textColor = [YMAUIConstants commentColor];
-        self.saveButtonComment.numberOfLines = 2;
-        self.saveButtonComment.textAlignment = NSTextAlignmentCenter;
-
-        [self addSubview:self.saveButtonComment];
-
-        [self drawCard];
-        [self drawCheck];
-
-        [self.saveCardButton addTarget:self action:@selector(saveMoneySource) forControlEvents:UIControlEventTouchUpInside];
-    } else {
-        UIImageView *ymLogoView = [[UIImageView alloc] initWithImage:YMALocalizedImage(@"ym", nil)];
-        CGRect logoRect = ymLogoView.frame;
-        logoRect.origin.y = self.frame.size.height - 50;
-        logoRect.origin.x = (self.frame.size.width - logoRect.size.width) / 2;
-        ymLogoView.frame = logoRect;
-
-        [self addSubview:ymLogoView];
-    }
+    if (self.state == YMAPaymentResultStateSuccessWithNewCard)
+        [self addControlsForSuccessWithNewCardState];
+    else if (self.state == YMAPaymentResultStateFail)
+        [self addControlsForFailState];
+    else
+        [self addLogo];
 }
+
+- (void)addControlsForSuccessWithNewCardState {
+    [self.saveCardButton setTitle:YMALocalizedString(@"BTSaveCard", nil) forState:UIControlStateNormal];
+    [self.saveCardButton setTitle:YMALocalizedString(@"BTSavingCard", nil) forState:UIControlStateDisabled];
+    [self.saveCardButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
+    [self.saveCardButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
+    self.saveCardButton.titleLabel.font = [YMAUIConstants buttonFont];
+
+    [self addSubview:self.saveCardButton];
+
+    self.saveButtonComment.text = YMALocalizedString(@"TLSaveCardComment", nil);
+    self.saveButtonComment.font = [YMAUIConstants commentFont];
+    self.saveButtonComment.textColor = [YMAUIConstants commentColor];
+    self.saveButtonComment.numberOfLines = 2;
+    self.saveButtonComment.textAlignment = NSTextAlignmentCenter;
+
+    [self addSubview:self.saveButtonComment];
+
+    [self drawCard];
+    [self drawCheck];
+
+    [self.saveCardButton addTarget:self action:@selector(saveMoneySource) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addControlsForFailState {
+    [self.saveCardButton setTitle:YMALocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
+    [self.saveCardButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
+    [self.saveCardButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
+    self.saveCardButton.titleLabel.font = [YMAUIConstants buttonFont];
+
+    [self addSubview:self.saveCardButton];
+
+    [self.saveCardButton addTarget:self.delegate action:@selector(repeatPayment) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addLogo {
+    UIImageView *ymLogoView = [[UIImageView alloc] initWithImage:YMALocalizedImage(@"ym", nil)];
+    CGRect logoRect = ymLogoView.frame;
+    logoRect.origin.y = self.frame.size.height - 50;
+    logoRect.origin.x = (self.frame.size.width - logoRect.size.width) / 2;
+    ymLogoView.frame = logoRect;
+
+    [self addSubview:ymLogoView];
+}
+
 
 - (void)layoutSubviews {
     self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBSuccess", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
@@ -243,7 +274,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 - (void)drawCheck {
     _transCheckLayer = [CAShapeLayer layer];
     _leftCheckLayer = [CAShapeLayer layer];
-    _rigthCheckLayer = [CAShapeLayer layer];
+    _rightCheckLayer = [CAShapeLayer layer];
     _checkLayer = [CAShapeLayer layer];
 
     CALayer *btnLayers = [CALayer layer];
@@ -294,13 +325,13 @@ static CGFloat const kAnimationSpeed = 0.7;
     [rightPath addLineToPoint:CGPointMake(self.frame.size.width, self.frame.size.height - kSaveButtonOffset)];
     [rightPath closePath];
 
-    _rigthCheckLayer.path = rightPath.CGPath;
-    _rigthCheckLayer.lineWidth = 0;
-    _rigthCheckLayer.fillColor = self.backgroundColor.CGColor;
-    _rigthCheckLayer.zPosition = 1;
-    _rigthCheckLayer.speed = kAnimationSpeed;
+    _rightCheckLayer.path = rightPath.CGPath;
+    _rightCheckLayer.lineWidth = 0;
+    _rightCheckLayer.fillColor = self.backgroundColor.CGColor;
+    _rightCheckLayer.zPosition = 1;
+    _rightCheckLayer.speed = kAnimationSpeed;
 
-    [btnLayers addSublayer:_rigthCheckLayer];
+    [btnLayers addSublayer:_rightCheckLayer];
 
     [self.layer addSublayer:btnLayers];
 }
@@ -365,7 +396,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     _leftCheckLayer.transform = leftTransform;
     CATransform3D rightTransform = CATransform3DIdentity;
     rightTransform = CATransform3DTranslate(rightTransform, -self.frame.size.width / 2, 0.0f, 0.0f);
-    _rigthCheckLayer.transform = rightTransform;
+    _rightCheckLayer.transform = rightTransform;
 
     [UIView commitAnimations];
 }
