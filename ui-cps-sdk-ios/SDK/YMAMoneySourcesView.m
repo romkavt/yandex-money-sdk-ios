@@ -37,7 +37,6 @@
 }
 
 - (void)setupControls {
-    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundColor = [YMAUIConstants defaultBackgroundColor];
     
     self.tableView.delegate = self;
@@ -49,7 +48,6 @@
     logoRect.origin.y = self.frame.size.height - 110;
     logoRect.origin.x = (self.frame.size.width - logoRect.size.width) / 2;
     ymLogoView.frame = logoRect;
-    ymLogoView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |  UIViewAutoresizingFlexibleWidth;
     
     [self addSubview:ymLogoView];    
     [self addSubview:self.tableView];
@@ -184,7 +182,6 @@
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.frame style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
-        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.scrollEnabled = NO;
     }
 

@@ -118,28 +118,17 @@
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
-    CGRect viewRect = self.view.frame;
-    viewRect.size.height = self.scrollView.contentSize.height;
-
-    return [[YMAMoneySourcesView alloc] initWithFrame:viewRect paymentInfo:self.paymentRequestInfo andMoneySources:sources];;
+    return [[YMAMoneySourcesView alloc] initWithFrame:self.view.frame paymentInfo:self.paymentRequestInfo andMoneySources:sources];;
 }
 
 - (YMABaseCscView *)cscView {
-    CGRect viewRect = self.view.frame;
-    viewRect.size.height = self.scrollView.contentSize.height;
-    
-    return [[YMACscView alloc] initWithFrame:viewRect];
+    return [[YMACscView alloc] initWithFrame:self.view.frame];
 }
 
 - (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description {
     CGRect viewRect = self.view.frame;
-    CGFloat y = 0.0;
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
-        y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    
-    viewRect.size.height -= y;
-    
-    self.scrollView.contentSize = viewRect.size;
+    //viewRect
+    viewRect.size.height = self.scrollView.contentSize.height;
 
     return [[YMAResultView alloc] initWithFrame:viewRect state:state description:description];
 }
@@ -164,7 +153,6 @@
         _errorText.backgroundColor = [UIColor whiteColor];
         _errorText.editable = NO;
         _errorText.font = [YMAUIConstants commentFont];
-        _errorText.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
 
     return _errorText;
@@ -175,8 +163,7 @@
         CGRect buttonRect = CGRectMake(0, kErrorHeight, self.view.frame.size.width, kControlHeightDefault);
         _errorButton = [[UIButton alloc] initWithFrame:buttonRect];
         _errorButton.backgroundColor = [UIColor whiteColor];
-        _errorButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+        
         CGFloat separatorHeight = [UIScreen mainScreen].scale == 2 ? 0.5 : 1;
         CGRect separatorRect = CGRectMake(0, kControlHeightDefault, self.view.frame.size.width, separatorHeight);
 

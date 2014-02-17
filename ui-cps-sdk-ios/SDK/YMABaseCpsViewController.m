@@ -259,9 +259,9 @@ static NSString *const kUnknownError = @"unknownError";
 }
 
 - (void)repeatPayment {
-    [self.resultView removeFromSuperview];
     [self startActivity];
     [self startPayment];
+    [self.resultView removeFromSuperview];
 }
 
 #pragma mark -
@@ -319,13 +319,6 @@ static NSString *const kUnknownError = @"unknownError";
 #pragma mark -
 #pragma mark *** UIWebViewDelegate ***
 #pragma mark -
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    CGRect webViewFrame = webView.frame;
-    webViewFrame.size = webView.scrollView.contentSize;
-    webView.frame = webViewFrame;
-    self.scrollView.contentSize = webViewFrame.size;
-}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (![request URL])
@@ -402,13 +395,13 @@ static NSString *const kUnknownError = @"unknownError";
 - (UIWebView *)webView {
     if (!_webView) {
         CGRect webViewFrame = self.view.frame;
-        webViewFrame.origin.y = 0;
-        webViewFrame.size.height = self.scrollView.contentSize.height;
+        CGFloat y = 0.0;
+        if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
+            y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+        webViewFrame.size.height -= y;
         _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
         _webView.scalesPageToFit = YES;
         _webView.delegate = self;
-        _webView.scrollView.scrollEnabled = NO;
-        _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
 
     return _webView;
@@ -421,8 +414,8 @@ static NSString *const kUnknownError = @"unknownError";
         if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
             y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
         CGSize contentSize = self.view.frame.size;
+        contentSize.height -= y;
         _scrollView.contentSize = contentSize;
-        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
 
     return _scrollView;

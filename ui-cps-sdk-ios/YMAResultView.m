@@ -9,7 +9,7 @@
 static CGFloat const kSaveButtonOffset = 102.0;
 static CGFloat const kLeftOffset = 30.0;
 static CGFloat const kTitleLabelTopOffset = 55.0;
-static CGFloat const kTitleLabelHeight = 50.0;
+static CGFloat const kTitleLabelHeight = 60.0;
 static CGFloat const kDefaultSeparatorHeight = 1.0;
 
 static CGFloat const kCardTopOffset = 110.0;
@@ -73,7 +73,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 
     amountLabel.font = [YMAUIConstants commentTitleFont];
     amountLabel.textColor = [YMAUIConstants commentColor];
-    amountLabel.numberOfLines = 2;
+    amountLabel.numberOfLines = 3;
     amountLabel.textAlignment = NSTextAlignmentCenter;
 
     if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
@@ -142,6 +142,17 @@ static CGFloat const kAnimationSpeed = 0.7;
 
 
 - (void)layoutSubviews {
+
+    if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
+        self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBClose", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
+
+        self.rightBarButton.tintColor = [YMAUIConstants accentTextColor];
+
+        [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[self.rightBarButton]];
+
+        return;
+    }
+
     self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBSuccess", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
     
     self.rightBarButton.tintColor = [YMAUIConstants accentTextColor];
@@ -180,7 +191,6 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.saveButtonComment.text = YMALocalizedString(@"TLSavingCardComment", nil);
     self.activityIndicatorView.center = CGPointMake(65, self.saveCardButton.frame.size.height / 2);
     [self.saveCardButton addSubview:self.activityIndicatorView];
-
     self.rightBarButton.enabled = NO;
     
 //    dispatch_time_t popTime3 = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);

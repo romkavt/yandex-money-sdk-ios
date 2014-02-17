@@ -10,7 +10,7 @@
 #import "YMABaseMoneySourcesView.h"
 #import "YMABaseCscView.h"
 #import "YMABaseResultView.h"
-#import "YMACpsViewController.h"
+#import "YMACpsController.h"
 #import "YMALocalization.h"
 #import "YMAMoneySourcesView.h"
 #import "YMAUIConstants.h"
