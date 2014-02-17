@@ -37,8 +37,9 @@
 }
 
 - (void)setupControls {
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundColor = [YMAUIConstants defaultBackgroundColor];
-    [self addSubview:self.tableView];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
@@ -48,8 +49,10 @@
     logoRect.origin.y = self.frame.size.height - 110;
     logoRect.origin.x = (self.frame.size.width - logoRect.size.width) / 2;
     ymLogoView.frame = logoRect;
-
-    [self addSubview:ymLogoView];
+    ymLogoView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |  UIViewAutoresizingFlexibleWidth;
+    
+    [self addSubview:ymLogoView];    
+    [self addSubview:self.tableView];
 }
 
 - (void)layoutSubviews {
@@ -163,10 +166,9 @@
     if (indexPath.row < self.moneySources.count) {
         YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
         [self.delegate didSelectedMoneySource:moneySource];
-    } else if (indexPath.row == self.moneySources.count) {
-
-        //TODO use image for back button
-        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
+    } else if (indexPath.row == self.moneySources.count) {       
+        
+        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithImage:YMALocalizedImage(@"back", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
         leftBarButton.tintColor = [YMAUIConstants accentTextColor];
 
         [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTMainTitle", nil) leftButtons:@[leftBarButton] rightButtons:@[]];
@@ -182,6 +184,8 @@
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.frame style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _tableView.scrollEnabled = NO;
     }
 
     return _tableView;

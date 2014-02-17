@@ -33,7 +33,9 @@
 }
 
 - (void)setupControls {
-    [self addSubview:self.tableView];
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.backgroundColor = [YMAUIConstants defaultBackgroundColor];    
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
@@ -43,20 +45,18 @@
     logoRect.origin.y = self.frame.size.height - 110;
     logoRect.origin.x = (self.frame.size.width - logoRect.size.width) / 2;
     ymLogoView.frame = logoRect;
+    ymLogoView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 
     [self addSubview:ymLogoView];
+    [self addSubview:self.tableView];
 }
 
 - (void)layoutSubviews {
     [self setupDefaultNavigationBar];
 }
 
-- (void)setupDefaultNavigationBar {
-    //TODO use image for back button
-    
+- (void)setupDefaultNavigationBar {    
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithImage:YMALocalizedImage(@"back", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
-    
-    //UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
     leftBarButton.tintColor = [YMAUIConstants accentTextColor];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
@@ -76,7 +76,8 @@
     [activity startAnimating];
     UIBarButtonItem *activityButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBWait", nil) style:UIBarButtonItemStylePlain target:nil action:NULL];
-    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[activityButton, rightBarButton]];
+    rightBarButton.tintColor = [YMAUIConstants commentColor];
+    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[rightBarButton, activityButton]];
 }
 
 - (void)stopPaymentWithError:(NSError *)error {
@@ -135,7 +136,9 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.frame style:UITableViewStyleGrouped];
-        _tableView.backgroundColor = [YMAUIConstants defaultBackgroundColor];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _tableView.scrollEnabled = NO;
     }
 
     return _tableView;

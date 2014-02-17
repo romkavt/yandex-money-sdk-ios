@@ -272,6 +272,7 @@ static NSString *const kUnknownError = @"unknownError";
     self.selectedMoneySource = moneySource;
     self.cardCscView = [self cscView];
     [self.scrollView addSubview:self.cardCscView];
+    [self.moneySourcesView removeFromSuperview];
 }
 
 - (void)removeMoneySource:(YMAMoneySource *)moneySource {
@@ -318,6 +319,13 @@ static NSString *const kUnknownError = @"unknownError";
 #pragma mark -
 #pragma mark *** UIWebViewDelegate ***
 #pragma mark -
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    CGRect webViewFrame = webView.frame;
+    webViewFrame.size = webView.scrollView.contentSize;
+    webView.frame = webViewFrame;
+    self.scrollView.contentSize = webViewFrame.size;
+}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (![request URL])
@@ -394,10 +402,12 @@ static NSString *const kUnknownError = @"unknownError";
 - (UIWebView *)webView {
     if (!_webView) {
         CGRect webViewFrame = self.view.frame;
-        webViewFrame.size.height = webViewFrame.size.height - self.navigationController.navigationBar.frame.size.height;
+        webViewFrame.origin.y = 0;
+        webViewFrame.size.height = self.scrollView.contentSize.height;
         _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
         _webView.scalesPageToFit = YES;
         _webView.delegate = self;
+        _webView.scrollView.scrollEnabled = NO;
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
 
@@ -411,8 +421,8 @@ static NSString *const kUnknownError = @"unknownError";
         if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
             y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
         CGSize contentSize = self.view.frame.size;
-        contentSize.height -= y;
         _scrollView.contentSize = contentSize;
+        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
 
     return _scrollView;
