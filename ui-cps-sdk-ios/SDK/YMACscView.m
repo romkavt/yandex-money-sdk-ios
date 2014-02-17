@@ -53,7 +53,10 @@
 
 - (void)setupDefaultNavigationBar {
     //TODO use image for back button
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
+    
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithImage:YMALocalizedImage(@"back", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
+    
+    //UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
     leftBarButton.tintColor = [YMAUIConstants accentTextColor];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
