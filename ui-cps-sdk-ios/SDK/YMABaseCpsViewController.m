@@ -260,8 +260,8 @@ static NSString *const kUnknownError = @"unknownError";
 
 - (void)repeatPayment {
     [self startActivity];
-    [self startPayment];
     [self.resultView removeFromSuperview];
+    [self startPayment];
 }
 
 #pragma mark -
