@@ -127,8 +127,13 @@
 
 - (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description {
     CGRect viewRect = self.view.frame;
-    viewRect.size.height = self.scrollView.contentSize.height;
+    CGFloat y = 0.0;
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
+        y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    viewRect.size.height -= y; //self.scrollView.contentSize.height;
 
+    self.scrollView.contentSize = viewRect.size;
+    
     return [[YMAResultView alloc] initWithFrame:viewRect state:state description:description];
 }
 
