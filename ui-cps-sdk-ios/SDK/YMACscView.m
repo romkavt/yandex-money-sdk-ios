@@ -145,6 +145,7 @@
     if (!_cscTextField) {
         _cscTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, 20, self.frame.size.width - 10, 44)];
         _cscTextField.placeholder = YMALocalizedString(@"TPRequired", nil);
+        _cscTextField.secureTextEntry = YES;
     }
 
     return _cscTextField;
