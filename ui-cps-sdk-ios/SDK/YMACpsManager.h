@@ -9,13 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "YMASecureStorage.h"
 
+/// Address of the page if successful payment authorization by credit card.
 extern NSString *const kSuccessUrl;
+/// Address of the page with the refusal to authorize payment by credit card.
 extern NSString *const kFailUrl;
 
+/// Completion of block is used to get the payment request info.
+/// @param requestInfo - payment request info.
+/// @param error - Error information or nil.
 typedef void (^YMAStartPaymentHandler)(YMAPaymentRequestInfo *requestInfo, NSError *error);
 
+/// Completion of block is used to get info about redirect to authorization page.
+/// @param asc - info about redirect to authorization page.
+/// @param error - Error information or nil.
 typedef void (^YMAFinishPaymentHandler)(YMAAsc *asc, NSError *error);
 
+/// Completion of block is used to get info about the money source.
+/// @param moneySource - info about the money source (Information about the credit card).
+/// @param error - Error information or nil.
 typedef void (^YMAMoneySourceHandler)(YMAMoneySource *moneySource, NSError *error);
 
 @interface YMACpsManager : NSObject

@@ -17,6 +17,3 @@
 #import "YMACscView.h"
 #import "YMAResultView.h"
 #import "YMACpsManager.h"
-
-
-

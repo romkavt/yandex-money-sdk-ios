@@ -6,12 +6,17 @@
 #import <Foundation/Foundation.h>
 #import <ymcpssdk-ios/ymcpssdk.h>
 
+/// Empry string
 extern NSString *const kKeychainItemValueEmpty;
 
+///
+/// KeyChain wrapper for storing money sources and instanceId.
+///
 @interface YMASecureStorage : NSObject
 
+/// ID of an installed copy of the application. Used when you perform requests as parameter.
 @property(nonatomic, copy) NSString *instanceId;
-
+/// Info about the money sources (Information about the credit cards)
 @property(nonatomic, copy, readonly) NSArray *moneySources;
 
 - (void)saveMoneySource:(YMAMoneySource *)moneySource;
