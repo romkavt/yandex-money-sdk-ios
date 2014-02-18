@@ -127,7 +127,6 @@
 
 - (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description {
     CGRect viewRect = self.view.frame;
-    //viewRect
     viewRect.size.height = self.scrollView.contentSize.height;
 
     return [[YMAResultView alloc] initWithFrame:viewRect state:state description:description];

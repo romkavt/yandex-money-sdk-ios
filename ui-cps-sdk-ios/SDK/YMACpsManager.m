@@ -140,7 +140,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 - (void)processPaymentRequest:(YMABaseRequest *)paymentRequest completion:(YMARequestHandler)block {
     [self.session performRequest:paymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
         if (response.status == YMAResponseStatusInProgress) {
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, response.nextRetry * NSEC_PER_SEC);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, response.nextRetry);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
                 [self processPaymentRequest:request completion:block];
             });

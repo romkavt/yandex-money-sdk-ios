@@ -336,8 +336,10 @@ static NSString *const kUnknownError = @"unknownError";
             [self finishPaymentFromExistCard];
         else
             [self finishPaymentFromNewCard];
-
+        
         [webView removeFromSuperview];
+        [self startActivity];
+        
         return NO;
     }
 
