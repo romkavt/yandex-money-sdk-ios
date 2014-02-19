@@ -24,7 +24,7 @@
 
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
-- (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
+- (id)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
 
 - (void)setupNavigationBar;
 

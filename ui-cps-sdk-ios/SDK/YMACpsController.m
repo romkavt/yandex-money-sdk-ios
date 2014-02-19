@@ -15,8 +15,8 @@
 
 @implementation YMACpsController
 
-- (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
-    YMACpsViewController *cpsViewController = [[YMACpsViewController alloc] initWithClintId:clientId patternId:patternId andPaymentParams:paymentParams];
+- (id)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
+    YMACpsViewController *cpsViewController = [[YMACpsViewController alloc] initWithClientId:clientId patternId:patternId andPaymentParams:paymentParams];
     
     return [super initWithRootViewController:cpsViewController];
 }

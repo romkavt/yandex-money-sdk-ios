@@ -30,7 +30,7 @@ static NSString *const kUnknownError = @"unknownError";
 
 @implementation YMABaseCpsViewController
 
-- (id)initWithClintId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
+- (id)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
     self = [super init];
 
     if (self) {
