@@ -192,13 +192,6 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.activityIndicatorView.center = CGPointMake(65, self.saveCardButton.frame.size.height / 2);
     [self.saveCardButton addSubview:self.activityIndicatorView];
     self.rightBarButton.enabled = NO;
-    
-//    dispatch_time_t popTime3 = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
-//    dispatch_after(popTime3, dispatch_get_main_queue(), ^(void) {
-//        YMAMoneySource *ms = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:YMAPaymentCardTypeMasterCard panFragment:@"4842  43**  ****  9834" moneySourceToken:@""];
-//
-//        [self successSaveMoneySource:ms];
-//    });
 }
 
 - (void)drawCard {

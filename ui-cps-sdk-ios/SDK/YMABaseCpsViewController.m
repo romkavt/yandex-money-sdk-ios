@@ -50,19 +50,6 @@ static NSString *const kUnknownError = @"unknownError";
     [self.view addSubview:self.scrollView];
     [self startActivity];
 
-//    YMAAsc *asc = [YMAAsc ascWithUrl:[NSURL URLWithString:@"http://m.money.yandex.ru"] andParams:nil];
-//
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-//        [self loadInWebViewFormAsc:asc];
-//
-//        dispatch_time_t popTime2 = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
-//        dispatch_after(popTime2, dispatch_get_main_queue(), ^(void) {
-//            [self showSuccessView];
-//        });
-//    });
-
-
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
         if (error)
             dispatch_async(dispatch_get_main_queue(), ^{
