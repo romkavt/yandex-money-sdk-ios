@@ -282,7 +282,9 @@ static NSString *const kUnknownError = @"unknownError";
 
 - (void)updatePaymentRequestInfoWithCompletion:(YMAHandler)block {
     [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *error) {
-        _paymentRequestInfo = requestInfo;
+        if (!error)
+            _paymentRequestInfo = requestInfo;
+        
         block(error);
     }];
 }
