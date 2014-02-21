@@ -75,6 +75,7 @@
     UIBarButtonItem *activityButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBWait", nil) style:UIBarButtonItemStylePlain target:nil action:NULL];
     rightBarButton.tintColor = [YMAUIConstants commentColor];
+    rightBarButton.enabled = NO;
     [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[rightBarButton, activityButton]];
 }
 

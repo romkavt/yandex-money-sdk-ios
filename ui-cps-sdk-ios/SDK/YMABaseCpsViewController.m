@@ -321,13 +321,17 @@ static NSString *const kUnknownError = @"unknownError";
 
     if ([strippedURL isEqual:kSuccessUrl]) {
 
-        if (self.selectedMoneySource)
-            [self finishPaymentFromExistCard];
-        else
-            [self finishPaymentFromNewCard];
+        [self startActivity];
+        
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+            if (self.selectedMoneySource)
+                [self finishPaymentFromExistCard];
+            else
+                [self finishPaymentFromNewCard];
+        });
         
         [webView removeFromSuperview];
-        [self startActivity];
         
         return NO;
     }

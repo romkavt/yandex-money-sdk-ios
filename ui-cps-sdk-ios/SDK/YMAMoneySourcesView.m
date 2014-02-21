@@ -116,7 +116,7 @@
         
         UILabel *paymentInfoTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, self.frame.size.width - 20, 20)];
         paymentInfoTitle.font = [YMAUIConstants commentFont];
-        paymentInfoTitle.textColor = [YMAUIConstants accentTextColor];
+        paymentInfoTitle.textColor = [YMAUIConstants commentColor];
         
         UILabel *paymentInfoValue = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, self.frame.size.width - 10, 44)];
         
@@ -132,6 +132,8 @@
             paymentInfoTitle.text = YMALocalizedString(@"CTAmount", nil);
             paymentInfoValue.text = self.paymentInfo.amount;
         }
+        
+        cell.separatorInset = UIEdgeInsetsMake(0, self.frame.size.width, 0, 0);
     }
 
     return cell;
@@ -215,8 +217,6 @@
 - (UILabel *)paymentInfoTitle {
     if (!_paymentInfoTitle) {
         _paymentInfoTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, self.frame.size.width - 20, 20)];
-        _paymentInfoTitle.font = [YMAUIConstants commentFont];
-        _paymentInfoTitle.textColor = [YMAUIConstants accentTextColor];
     }
     
     return _paymentInfoTitle;
