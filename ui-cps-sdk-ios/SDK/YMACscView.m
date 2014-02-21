@@ -111,7 +111,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     static NSString *cellID = @"cscCellID";
 
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
@@ -123,6 +122,11 @@
 
     [cell.contentView addSubview:self.cscLabel];
     [cell.contentView addSubview:self.cscTextField];
+    
+    if (self.isEnabled)
+        [self.cscTextField becomeFirstResponder];
+    else
+        [self.cscTextField resignFirstResponder];
 
     return cell;
 }
