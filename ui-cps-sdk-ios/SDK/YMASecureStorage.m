@@ -32,8 +32,8 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
     NSMutableDictionary *newSource = [NSMutableDictionary dictionary];
 
     [newSource setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
-    [newSource setObject:[NSString stringWithFormat:@"%i", moneySource.type] forKey:(__bridge id) kSecAttrLabel];
-    [newSource setObject:[NSString stringWithFormat:@"%i", moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
+    [newSource setObject:[NSString stringWithFormat:@"%li", moneySource.type] forKey:(__bridge id) kSecAttrLabel];
+    [newSource setObject:[NSString stringWithFormat:@"%li", moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
     [newSource setObject:moneySource.moneySourceToken forKey:(__bridge id) kSecValueData];
     [newSource setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrAccount];
 
@@ -45,8 +45,8 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
     NSMutableDictionary *sourceToRemove = [NSMutableDictionary dictionary];
 
     [sourceToRemove setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrAccount];
-    [sourceToRemove setObject:[NSString stringWithFormat:@"%i", moneySource.type] forKey:(__bridge id) kSecAttrLabel];
-    [sourceToRemove setObject:[NSString stringWithFormat:@"%i", moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
+    [sourceToRemove setObject:[NSString stringWithFormat:@"%li", moneySource.type] forKey:(__bridge id) kSecAttrLabel];
+    [sourceToRemove setObject:[NSString stringWithFormat:@"%li", moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
     [sourceToRemove setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
     [sourceToRemove setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
 
