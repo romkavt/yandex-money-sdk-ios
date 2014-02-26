@@ -10,12 +10,12 @@
 #import <ymcpssdk-ios/ymcpssdk.h>
 #import "YMABaseCpsViewDelegate.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, YMAPaymentResultState) {
     YMAPaymentResultStateSuccessWithNewCard,
     YMAPaymentResultStateSuccessWithExistCard,
     YMAPaymentResultStateFatalFail,
     YMAPaymentResultStateFail
-} YMAPaymentResultState;
+};
 
 @protocol YMABaseResultViewDelegate <YMABaseCpsViewDelegate>
 
