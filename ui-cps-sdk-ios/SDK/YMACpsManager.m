@@ -37,7 +37,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 #pragma mark *** Public methods ***
 #pragma mark -
 
-- (void)updateInstanceWithCompletion:(YMAHandler)block {
+- (void)updateInstanceWithCompletion:(YMAHandler)block {      
     NSString *instanceId = self.secureStorage.instanceId;
 
     if (!instanceId || [instanceId isEqual:kKeychainItemValueEmpty]) {

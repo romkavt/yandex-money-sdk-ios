@@ -49,7 +49,7 @@ static NSString *const kUnknownError = @"unknownError";
 - (void)viewDidLoad {
     [self.view addSubview:self.scrollView];
     [self startActivity];
-
+ 
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
         if (error)
             dispatch_async(dispatch_get_main_queue(), ^{
