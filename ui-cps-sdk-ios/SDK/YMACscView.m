@@ -16,6 +16,8 @@
 @property(nonatomic, strong) UILabel *cscLabel;
 @property(nonatomic, assign) BOOL isEnabled;
 @property(nonatomic, strong) UIView *footer;
+@property(nonatomic, strong) NSArray *waitBarButton;
+@property(nonatomic, strong) UIBarButtonItem *backBarButton;
 
 @end
 
@@ -53,14 +55,13 @@
     [self setupDefaultNavigationBar];
 }
 
-- (void)setupDefaultNavigationBar {    
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithImage:YMALocalizedImage(@"back", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
-    leftBarButton.tintColor = [YMAUIConstants accentTextColor];
+- (void)setupDefaultNavigationBar {
+    self.backBarButton.tintColor = [YMAUIConstants accentTextColor];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
     rightBarButton.tintColor = [YMAUIConstants accentTextColor];
     
-    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[leftBarButton] rightButtons:@[rightBarButton]];
+    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[self.backBarButton] rightButtons:@[rightBarButton]];
 }
 
 - (void)startPayment {
@@ -69,14 +70,11 @@
     self.isEnabled = NO;
     self.cscTextField.enabled = NO;
     [self.tableView reloadData];
+   
+    self.backBarButton.tintColor = [YMAUIConstants commentColor];
+    self.backBarButton.enabled = NO;
     
-    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [activity startAnimating];
-    UIBarButtonItem *activityButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBWait", nil) style:UIBarButtonItemStylePlain target:nil action:NULL];
-    rightBarButton.tintColor = [YMAUIConstants commentColor];
-    rightBarButton.enabled = NO;
-    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[rightBarButton, activityButton]];
+    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[self.backBarButton] rightButtons:self.waitBarButton];
 }
 
 - (void)stopPaymentWithError:(NSError *)error {
@@ -85,6 +83,15 @@
     [self.tableView reloadData];
     [self.delegate showError:error target:nil withAction:NULL];
     [self setupDefaultNavigationBar];
+}
+
+- (void)removeFromSuperview {
+    self.backBarButton.tintColor = [YMAUIConstants accentTextColor];
+    self.backBarButton.enabled = YES;
+    
+    [self.delegate updateNavigationBarTitle:@"" leftButtons:@[self.backBarButton] rightButtons:self.waitBarButton];
+    
+    [super removeFromSuperview];
 }
 
 #pragma mark -
@@ -135,6 +142,28 @@
 #pragma mark -
 #pragma mark *** Getters and setters ***
 #pragma mark -
+
+- (NSArray *)waitBarButton {
+    if (!_waitBarButton) {
+        UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [activity startAnimating];
+        UIBarButtonItem *activityButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
+        UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBWait", nil) style:UIBarButtonItemStylePlain target:nil action:NULL];
+        rightBarButton.tintColor = [YMAUIConstants commentColor];
+        rightBarButton.enabled = NO;
+        _waitBarButton = @[rightBarButton, activityButton];
+    }
+    
+    return _waitBarButton;
+}
+
+- (UIBarButtonItem *)backBarButton {
+    if (!_backBarButton) {
+        _backBarButton = [[UIBarButtonItem alloc] initWithImage:YMALocalizedImage(@"back", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
+    }
+    
+    return _backBarButton;
+}
 
 - (UITableView *)tableView {
     if (!_tableView) {

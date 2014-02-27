@@ -162,6 +162,9 @@ static NSString *const kUnknownError = @"unknownError";
 
 - (void)loadInWebViewFormAsc:(YMAAsc *)asc {
     [self hideError];
+    
+    if (self.cardCscView && self.cardCscView.superview)
+        [self.cardCscView removeFromSuperview];
 
     NSMutableString *post = [NSMutableString string];
 
