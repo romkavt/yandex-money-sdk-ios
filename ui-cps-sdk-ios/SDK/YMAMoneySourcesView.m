@@ -54,6 +54,8 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+    
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
     barButton.tintColor = [YMAUIConstants accentTextColor];
 

@@ -47,7 +47,10 @@ static NSString *const kUnknownError = @"unknownError";
 #pragma mark -
 
 - (void)viewDidLoad {
-    [self.view addSubview:self.scrollView];
+    [super viewDidLoad];
+    
+    [self.view addSubview:self.scrollView];    
+    [self setupNavigationBar];
     [self startActivity];
  
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
@@ -58,10 +61,6 @@ static NSString *const kUnknownError = @"unknownError";
         else
             [self startPayment];
     }];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self setupNavigationBar];
 }
 
 #pragma mark -

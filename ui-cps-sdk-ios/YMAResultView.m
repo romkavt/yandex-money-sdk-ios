@@ -142,6 +142,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
 
     if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
         self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBClose", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];

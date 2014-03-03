@@ -52,6 +52,7 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     [self setupDefaultNavigationBar];
 }
 

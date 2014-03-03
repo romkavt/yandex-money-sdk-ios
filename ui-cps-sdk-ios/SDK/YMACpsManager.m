@@ -39,7 +39,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block {      
     NSString *instanceId = self.secureStorage.instanceId;
-
+    
     if (!instanceId || [instanceId isEqual:kKeychainItemValueEmpty]) {
         [self.session authorizeWithClientId:self.clientId completion:^(NSString *newInstanceId, NSError *error) {
             if (error)
