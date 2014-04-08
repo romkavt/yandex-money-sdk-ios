@@ -347,6 +347,16 @@ static NSString *const kUnknownError = @"unknownError";
     return YES;
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
+}
+
 #pragma mark -
 #pragma mark *** Getters and setters ***
 #pragma mark -
