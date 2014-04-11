@@ -58,6 +58,7 @@
 
 - (void)setupDefaultNavigationBar {
     self.backBarButton.tintColor = [YMAUIConstants accentTextColor];
+    self.backBarButton.enabled = YES;
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
     rightBarButton.tintColor = [YMAUIConstants accentTextColor];
