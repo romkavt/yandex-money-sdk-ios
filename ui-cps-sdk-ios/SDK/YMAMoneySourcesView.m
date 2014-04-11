@@ -132,7 +132,7 @@
             
         } else {
             paymentInfoTitle.text = YMALocalizedString(@"CTAmount", nil);
-            paymentInfoValue.text = self.paymentInfo.amount;
+            paymentInfoValue.text = [NSString stringWithFormat:@"%@ %@", self.paymentInfo.amount, YMALocalizedString(@"CTRub", nil)];
         }
         
         cell.separatorInset = UIEdgeInsetsMake(0, self.frame.size.width, 0, 0);
