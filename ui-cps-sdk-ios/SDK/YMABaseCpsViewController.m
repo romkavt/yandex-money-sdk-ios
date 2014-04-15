@@ -185,6 +185,9 @@ static NSString *const kUnknownError = @"unknownError";
     [self stopActivity];
     if (!self.webView.superview)
         [self.scrollView addSubview:self.webView];
+    
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close()"];
+    
     [self.webView loadRequest:request];
 }
 
