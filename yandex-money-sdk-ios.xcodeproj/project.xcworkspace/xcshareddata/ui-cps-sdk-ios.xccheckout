@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9D2F1609-5153-485C-B960-F965DEB45D45</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ui-cps-sdk-ios</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>44727F89-2404-4E0A-9FF1-562A9010B0FA</key>
+		<string>https://bitbucket.org/axidms/yandex-money-sdk-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ui-cps-sdk-ios/ui-cps-sdk-ios.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>44727F89-2404-4E0A-9FF1-562A9010B0FA</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/axidms/yandex-money-sdk-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>44727F89-2404-4E0A-9FF1-562A9010B0FA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>44727F89-2404-4E0A-9FF1-562A9010B0FA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>yandexmoneysdk</string>
+		</dict>
+	</array>
+</dict>
+</plist>

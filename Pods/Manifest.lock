@@ -1,0 +1,10 @@
+PODS:
+  - YandexMoneySDKObjc (1.0.0)
+
+DEPENDENCIES:
+  - YandexMoneySDKObjc
+
+SPEC CHECKSUMS:
+  YandexMoneySDKObjc: 2231bd917495e924a4ad61673cdc40a4a3488c8c
+
+COCOAPODS: 0.32.1
