@@ -54,12 +54,13 @@ static NSString *const kUnknownError = @"unknownError";
     [self startActivity];
 
     [self.cpsManager updateInstanceWithCompletion:^(NSError *error) {
-        if (error)
-            dispatch_async(dispatch_get_main_queue(), ^{
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error)
                 [self showFailViewWithError:error];
-            });
-        else
-            [self startPayment];
+            else
+                [self startPayment];
+        });
     }];
 }
 
@@ -184,8 +185,10 @@ static NSString *const kUnknownError = @"unknownError";
     [request setHTTPBody:postData];
 
     [self stopActivity];
-    if (!self.webView.superview)
+    if (!self.webView.superview) {
+        self.navigationItem.rightBarButtonItems = @[];
         [self.scrollView addSubview:self.webView];
+    }
 
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close()"];
 
@@ -194,10 +197,10 @@ static NSString *const kUnknownError = @"unknownError";
 
 - (NSString *)addPercentEscapesToString:(NSString *)string {
     return (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                  (__bridge CFStringRef)string,
-                                                                                  NULL,
-                                                                                  (CFStringRef)@";/?:@&=+$,",
-                                                                                  kCFStringEncodingUTF8));
+            (__bridge CFStringRef) string,
+            NULL,
+            (CFStringRef) @";/?:@&=+$,",
+            kCFStringEncodingUTF8));
 }
 
 - (void)showSuccessView {
@@ -419,7 +422,6 @@ static NSString *const kUnknownError = @"unknownError";
             y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
         webViewFrame.size.height -= y;
         _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
-        _webView.scalesPageToFit = YES;
         _webView.delegate = self;
     }
 
