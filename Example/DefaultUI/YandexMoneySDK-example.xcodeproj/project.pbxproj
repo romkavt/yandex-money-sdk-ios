@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		437BBA7218AC23E100859CC6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437BBA7118AC23E100859CC6 /* QuartzCore.framework */; };
+		60D4224818A51CBA0018E439 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224718A51CBA0018E439 /* UIKit.framework */; };
+		60D4224A18A51CBA0018E439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224918A51CBA0018E439 /* Foundation.framework */; };
+		60D4224C18A51CBA0018E439 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224B18A51CBA0018E439 /* CoreGraphics.framework */; };
+		60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225018A51CBA0018E439 /* InfoPlist.strings */; };
+		60D4225418A51CBA0018E439 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4225318A51CBA0018E439 /* main.m */; };
+		60D4225818A51CBA0018E439 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4225718A51CBA0018E439 /* AppDelegate.m */; };
+		60D4225A18A51CBA0018E439 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225918A51CBA0018E439 /* Default.png */; };
+		60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225B18A51CBA0018E439 /* Default@2x.png */; };
+		60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225D18A51CBA0018E439 /* Default-568h@2x.png */; };
+		60D4226118A51CBA0018E439 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4226018A51CBA0018E439 /* ViewController.m */; };
+		60EEF90D18A5212600F72177 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EEF90C18A5212600F72177 /* Security.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		437BBA7118AC23E100859CC6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		60D4224418A51CBA0018E439 /* YandexMoneySDK-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YandexMoneySDK-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60D4224718A51CBA0018E439 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		60D4224918A51CBA0018E439 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		60D4224B18A51CBA0018E439 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		60D4224F18A51CBA0018E439 /* YandexMoneySDK-example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YandexMoneySDK-example-Info.plist"; sourceTree = "<group>"; };
+		60D4225118A51CBA0018E439 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		60D4225318A51CBA0018E439 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		60D4225518A51CBA0018E439 /* YandexMoneySDK-example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YandexMoneySDK-example-Prefix.pch"; sourceTree = "<group>"; };
+		60D4225618A51CBA0018E439 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		60D4225718A51CBA0018E439 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		60D4225918A51CBA0018E439 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		60D4225B18A51CBA0018E439 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		60D4225D18A51CBA0018E439 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		60D4225F18A51CBA0018E439 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		60D4226018A51CBA0018E439 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		60EEF90C18A5212600F72177 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60D4224118A51CBA0018E439 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437BBA7218AC23E100859CC6 /* QuartzCore.framework in Frameworks */,
+				60EEF90D18A5212600F72177 /* Security.framework in Frameworks */,
+				60D4224818A51CBA0018E439 /* UIKit.framework in Frameworks */,
+				60D4224A18A51CBA0018E439 /* Foundation.framework in Frameworks */,
+				60D4224C18A51CBA0018E439 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		60D4223B18A51CBA0018E439 = {
+			isa = PBXGroup;
+			children = (
+				60D4224D18A51CBA0018E439 /* YandexMoneySDK-example */,
+				60D4224618A51CBA0018E439 /* Frameworks */,
+				60D4224518A51CBA0018E439 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60D4224518A51CBA0018E439 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60D4224418A51CBA0018E439 /* YandexMoneySDK-example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60D4224618A51CBA0018E439 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				437BBA7118AC23E100859CC6 /* QuartzCore.framework */,
+				60EEF90C18A5212600F72177 /* Security.framework */,
+				60D4224718A51CBA0018E439 /* UIKit.framework */,
+				60D4224918A51CBA0018E439 /* Foundation.framework */,
+				60D4224B18A51CBA0018E439 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60D4224D18A51CBA0018E439 /* YandexMoneySDK-example */ = {
+			isa = PBXGroup;
+			children = (
+				60D4225618A51CBA0018E439 /* AppDelegate.h */,
+				60D4225718A51CBA0018E439 /* AppDelegate.m */,
+				60D4225F18A51CBA0018E439 /* ViewController.h */,
+				60D4226018A51CBA0018E439 /* ViewController.m */,
+				60D4224E18A51CBA0018E439 /* Supporting Files */,
+			);
+			path = "YandexMoneySDK-example";
+			sourceTree = "<group>";
+		};
+		60D4224E18A51CBA0018E439 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60D4224F18A51CBA0018E439 /* YandexMoneySDK-example-Info.plist */,
+				60D4225018A51CBA0018E439 /* InfoPlist.strings */,
+				60D4225318A51CBA0018E439 /* main.m */,
+				60D4225518A51CBA0018E439 /* YandexMoneySDK-example-Prefix.pch */,
+				60D4225918A51CBA0018E439 /* Default.png */,
+				60D4225B18A51CBA0018E439 /* Default@2x.png */,
+				60D4225D18A51CBA0018E439 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		60D4224318A51CBA0018E439 /* YandexMoneySDK-example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60D4226718A51CBA0018E439 /* Build configuration list for PBXNativeTarget "YandexMoneySDK-example" */;
+			buildPhases = (
+				60D4224018A51CBA0018E439 /* Sources */,
+				60D4224118A51CBA0018E439 /* Frameworks */,
+				60D4224218A51CBA0018E439 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "YandexMoneySDK-example";
+			productName = "ios-example";
+			productReference = 60D4224418A51CBA0018E439 /* YandexMoneySDK-example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60D4223C18A51CBA0018E439 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Yandex.Money;
+			};
+			buildConfigurationList = 60D4223F18A51CBA0018E439 /* Build configuration list for PBXProject "YandexMoneySDK-example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 60D4223B18A51CBA0018E439;
+			productRefGroup = 60D4224518A51CBA0018E439 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				60D4224318A51CBA0018E439 /* YandexMoneySDK-example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		60D4224218A51CBA0018E439 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */,
+				60D4225A18A51CBA0018E439 /* Default.png in Resources */,
+				60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */,
+				60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60D4224018A51CBA0018E439 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60D4225418A51CBA0018E439 /* main.m in Sources */,
+				60D4225818A51CBA0018E439 /* AppDelegate.m in Sources */,
+				60D4226118A51CBA0018E439 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		60D4225018A51CBA0018E439 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60D4225118A51CBA0018E439 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		60D4226518A51CBA0018E439 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		60D4226618A51CBA0018E439 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		60D4226818A51CBA0018E439 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
+				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/YandexMoneySDK-cfbbhmpxkhmtjraipjizskotjnuc/Build/Products/Debug-iphoneos",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "YandexMoneySDK-example";
+				VALID_ARCHS = "armv7 armv7s i386 arm64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		60D4226918A51CBA0018E439 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
+				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/YandexMoneySDK-cfbbhmpxkhmtjraipjizskotjnuc/Build/Products/Debug-iphoneos",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "YandexMoneySDK-example";
+				VALID_ARCHS = "armv7 armv7s i386 arm64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60D4223F18A51CBA0018E439 /* Build configuration list for PBXProject "YandexMoneySDK-example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60D4226518A51CBA0018E439 /* Debug */,
+				60D4226618A51CBA0018E439 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60D4226718A51CBA0018E439 /* Build configuration list for PBXNativeTarget "YandexMoneySDK-example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60D4226818A51CBA0018E439 /* Debug */,
+				60D4226918A51CBA0018E439 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 60D4223C18A51CBA0018E439 /* Project object */;
+}
