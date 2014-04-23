@@ -114,7 +114,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 
 - (NSDictionary *)instanceIdQuery {
     if (!_instanceIdQuery) {
-        _instanceIdQuery = [NSMutableDictionary dictionary];
+        _instanceIdQuery = [[NSMutableDictionary alloc] init];
         [_instanceIdQuery setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
         [_instanceIdQuery setObject:kKeychainIdInstance forKey:(__bridge id) kSecAttrGeneric];
         [_instanceIdQuery setObject:(__bridge id) kSecMatchLimitOne forKey:(__bridge id) kSecMatchLimit];
@@ -126,7 +126,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 
 - (NSDictionary *)moneySourceQuery {
     if (!_moneySourceQuery) {
-        _moneySourceQuery = [NSMutableDictionary dictionary];
+        _moneySourceQuery = [[NSMutableDictionary alloc] init];
         [_moneySourceQuery setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
         [_moneySourceQuery setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
         [_moneySourceQuery setObject:(__bridge id) kSecMatchLimitAll

@@ -168,8 +168,9 @@ static NSString *const kUnknownError = @"unknownError";
     NSMutableString *post = [NSMutableString string];
 
     for (NSString *key in asc.params.allKeys) {
-        NSString *paramValue = [[asc.params objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *paramKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *paramValue = [self addPercentEscapesToString:[asc.params objectForKey:key]];
+        NSString *paramKey = [self addPercentEscapesToString:key];
+
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
 
@@ -189,6 +190,14 @@ static NSString *const kUnknownError = @"unknownError";
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close()"];
 
     [self.webView loadRequest:request];
+}
+
+- (NSString *)addPercentEscapesToString:(NSString *)string {
+    return (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                  (__bridge CFStringRef)string,
+                                                                                  NULL,
+                                                                                  (CFStringRef)@";/?:@&=+$,",
+                                                                                  kCFStringEncodingUTF8));
 }
 
 - (void)showSuccessView {
