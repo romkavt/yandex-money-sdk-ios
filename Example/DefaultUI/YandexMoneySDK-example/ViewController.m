@@ -77,6 +77,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 - (void)doTestPayment {
     NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
     
+    //Starting payment process
     YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId patternId:@"phone-topup" andPaymentParams:paymentParams];
     
     [self presentViewController:cpsController animated:YES completion:NULL];

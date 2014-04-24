@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		437BBA7218AC23E100859CC6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437BBA7118AC23E100859CC6 /* QuartzCore.framework */; };
+		46B29C4395BA43FC89B22C9C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A1ED38C1FE4AE2A7B8C637 /* libPods.a */; };
+		608F758219091A4F00F45D7F /* MCUCpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F758119091A4F00F45D7F /* MCUCpsViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		608F758519091A8D00F45D7F /* MCUMoneySourcesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F758419091A8D00F45D7F /* MCUMoneySourcesView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		608F758819091AD100F45D7F /* MCUCscView.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F758719091AD100F45D7F /* MCUCscView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		608F758B19091B0300F45D7F /* MCUResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F758A19091B0300F45D7F /* MCUResultView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		608F758E19091B5800F45D7F /* MCUCpsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F758D19091B5800F45D7F /* MCUCpsController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		60D4224818A51CBA0018E439 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224718A51CBA0018E439 /* UIKit.framework */; };
 		60D4224A18A51CBA0018E439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224918A51CBA0018E439 /* Foundation.framework */; };
 		60D4224C18A51CBA0018E439 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224B18A51CBA0018E439 /* CoreGraphics.framework */; };
@@ -22,7 +28,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27A1ED38C1FE4AE2A7B8C637 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		437BBA7118AC23E100859CC6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		608F758019091A4F00F45D7F /* MCUCpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCUCpsViewController.h; path = myCustomUI/MCUCpsViewController.h; sourceTree = "<group>"; };
+		608F758119091A4F00F45D7F /* MCUCpsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCUCpsViewController.m; path = myCustomUI/MCUCpsViewController.m; sourceTree = "<group>"; };
+		608F758319091A8D00F45D7F /* MCUMoneySourcesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCUMoneySourcesView.h; path = myCustomUI/MCUMoneySourcesView.h; sourceTree = "<group>"; };
+		608F758419091A8D00F45D7F /* MCUMoneySourcesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCUMoneySourcesView.m; path = myCustomUI/MCUMoneySourcesView.m; sourceTree = "<group>"; };
+		608F758619091AD100F45D7F /* MCUCscView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCUCscView.h; path = myCustomUI/MCUCscView.h; sourceTree = "<group>"; };
+		608F758719091AD100F45D7F /* MCUCscView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCUCscView.m; path = myCustomUI/MCUCscView.m; sourceTree = "<group>"; };
+		608F758919091B0300F45D7F /* MCUResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCUResultView.h; path = myCustomUI/MCUResultView.h; sourceTree = "<group>"; };
+		608F758A19091B0300F45D7F /* MCUResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCUResultView.m; path = myCustomUI/MCUResultView.m; sourceTree = "<group>"; };
+		608F758C19091B5800F45D7F /* MCUCpsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCUCpsController.h; path = myCustomUI/MCUCpsController.h; sourceTree = "<group>"; };
+		608F758D19091B5800F45D7F /* MCUCpsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCUCpsController.m; path = myCustomUI/MCUCpsController.m; sourceTree = "<group>"; };
 		60D4224418A51CBA0018E439 /* YandexMoneySDK-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YandexMoneySDK-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60D4224718A51CBA0018E439 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		60D4224918A51CBA0018E439 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -39,6 +56,7 @@
 		60D4225F18A51CBA0018E439 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		60D4226018A51CBA0018E439 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		60EEF90C18A5212600F72177 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BD00420A37344C559E901079 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,18 +69,37 @@
 				60D4224818A51CBA0018E439 /* UIKit.framework in Frameworks */,
 				60D4224A18A51CBA0018E439 /* Foundation.framework in Frameworks */,
 				60D4224C18A51CBA0018E439 /* CoreGraphics.framework in Frameworks */,
+				46B29C4395BA43FC89B22C9C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		608F757F190919D000F45D7F /* myCustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				608F758019091A4F00F45D7F /* MCUCpsViewController.h */,
+				608F758119091A4F00F45D7F /* MCUCpsViewController.m */,
+				608F758319091A8D00F45D7F /* MCUMoneySourcesView.h */,
+				608F758419091A8D00F45D7F /* MCUMoneySourcesView.m */,
+				608F758619091AD100F45D7F /* MCUCscView.h */,
+				608F758719091AD100F45D7F /* MCUCscView.m */,
+				608F758919091B0300F45D7F /* MCUResultView.h */,
+				608F758A19091B0300F45D7F /* MCUResultView.m */,
+				608F758C19091B5800F45D7F /* MCUCpsController.h */,
+				608F758D19091B5800F45D7F /* MCUCpsController.m */,
+			);
+			name = myCustomUI;
+			sourceTree = "<group>";
+		};
 		60D4223B18A51CBA0018E439 = {
 			isa = PBXGroup;
 			children = (
 				60D4224D18A51CBA0018E439 /* YandexMoneySDK-example */,
 				60D4224618A51CBA0018E439 /* Frameworks */,
 				60D4224518A51CBA0018E439 /* Products */,
+				BD00420A37344C559E901079 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +119,7 @@
 				60D4224718A51CBA0018E439 /* UIKit.framework */,
 				60D4224918A51CBA0018E439 /* Foundation.framework */,
 				60D4224B18A51CBA0018E439 /* CoreGraphics.framework */,
+				27A1ED38C1FE4AE2A7B8C637 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -89,6 +127,7 @@
 		60D4224D18A51CBA0018E439 /* YandexMoneySDK-example */ = {
 			isa = PBXGroup;
 			children = (
+				608F757F190919D000F45D7F /* myCustomUI */,
 				60D4225618A51CBA0018E439 /* AppDelegate.h */,
 				60D4225718A51CBA0018E439 /* AppDelegate.m */,
 				60D4225F18A51CBA0018E439 /* ViewController.h */,
@@ -119,9 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60D4226718A51CBA0018E439 /* Build configuration list for PBXNativeTarget "YandexMoneySDK-example" */;
 			buildPhases = (
+				EB59AD66EA0040E58D99511C /* Check Pods Manifest.lock */,
 				60D4224018A51CBA0018E439 /* Sources */,
 				60D4224118A51CBA0018E439 /* Frameworks */,
 				60D4224218A51CBA0018E439 /* Resources */,
+				EB97F21F48A1488AB7B1AF49 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,14 +213,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EB59AD66EA0040E58D99511C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB97F21F48A1488AB7B1AF49 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60D4224018A51CBA0018E439 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				608F758B19091B0300F45D7F /* MCUResultView.m in Sources */,
 				60D4225418A51CBA0018E439 /* main.m in Sources */,
 				60D4225818A51CBA0018E439 /* AppDelegate.m in Sources */,
+				608F758819091AD100F45D7F /* MCUCscView.m in Sources */,
+				608F758E19091B5800F45D7F /* MCUCpsController.m in Sources */,
+				608F758519091A8D00F45D7F /* MCUMoneySourcesView.m in Sources */,
 				60D4226118A51CBA0018E439 /* ViewController.m in Sources */,
+				608F758219091A4F00F45D7F /* MCUCpsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +332,7 @@
 		};
 		60D4226818A51CBA0018E439 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD00420A37344C559E901079 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -271,6 +351,7 @@
 		};
 		60D4226918A51CBA0018E439 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD00420A37344C559E901079 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
