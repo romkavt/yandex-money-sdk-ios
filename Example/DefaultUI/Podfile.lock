@@ -1,0 +1,13 @@
+PODS:
+  - YandexMoneySDKiOS (1.0.0):
+    - YandexMoneySDKObjc
+  - YandexMoneySDKObjc (1.0.0)
+
+DEPENDENCIES:
+  - YandexMoneySDKiOS
+
+SPEC CHECKSUMS:
+  YandexMoneySDKiOS: c40d8cf844d1ffaf350e13f50a7c32dfdcda4493
+  YandexMoneySDKObjc: 2231bd917495e924a4ad61673cdc40a4a3488c8c
+
+COCOAPODS: 0.32.1

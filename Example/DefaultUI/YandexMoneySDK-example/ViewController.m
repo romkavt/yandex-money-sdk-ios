@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <uiymcpssdk.h>
 
 //Use you application identifier
 static NSString *const kClientId = @"YOU_CLIENT_ID";
@@ -74,7 +75,13 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 }
 
 - (void)doTestPayment {
+    NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
     
+    YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId patternId:@"phone-topup" andPaymentParams:paymentParams];
+    
+    [self presentViewController:cpsController animated:YES completion:NULL];
+    
+    [cpsController release];
 }
 
 #pragma mark -

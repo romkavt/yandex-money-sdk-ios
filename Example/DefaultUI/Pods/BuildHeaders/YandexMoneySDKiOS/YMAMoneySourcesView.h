@@ -1,0 +1,1 @@
+../../YandexMoneySDKiOS/Classes/YMAMoneySourcesView.h

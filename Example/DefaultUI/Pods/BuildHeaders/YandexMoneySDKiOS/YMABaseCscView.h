@@ -1,0 +1,1 @@
+../../YandexMoneySDKiOS/Classes/YMABaseCscView.h
