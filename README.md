@@ -18,7 +18,7 @@ it simply add the following line to your Podfile:
 
 ## Author
 
-Александр Мертвецов, amertvetsov@yandex.ru
+Alexander Mertvetsov, amertvetsov@yandex.ru
 
 ## License
 
