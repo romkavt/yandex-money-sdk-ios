@@ -21,8 +21,10 @@ it simply add the following line to your Podfile:
 
 ## Code samples
 
+Example of payment:
+
 ```Objective-C
-NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
+NSDictionary *paymentParams = @{@"amount" : @"2", @"phone-number" : @«79088888888»};
     
 //Starting payment process
 YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId patternId:@"phone-topup" andPaymentParams:paymentParams];
