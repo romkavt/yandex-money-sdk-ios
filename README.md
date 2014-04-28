@@ -32,10 +32,6 @@ YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kCl
 [self presentViewController:cpsController animated:YES completion:NULL];
 ```
 
-## Author
-
-Alexander Mertvetsov, amertvetsov@yandex.ru
-
 ## License
 
 YandexMoneySDKiOS is available under the MIT license. See the LICENSE file for more info.
