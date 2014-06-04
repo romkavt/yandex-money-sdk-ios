@@ -119,21 +119,23 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 - (void)finishPaymentWithRequest:(YMABaseRequest *)paymentRequest completion:(YMAFinishPaymentHandler)block {
     [self processPaymentRequest:paymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
         if (error) {
-            block(nil, error);
+            block(nil, nil, error);
             return;
         }
 
         NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
+        
+        YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
 
         if (response.status == YMAResponseStatusSuccess)
-            block(nil, nil);
+            block(nil, processExternalPaymentResponse.invoiceId, nil);
         else if (response.status == YMAResponseStatusExtAuthRequired) {
-            YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
+            
             YMAAsc *asc = processExternalPaymentResponse.asc;
 
-            block(asc, asc ? nil : unknownError);
+            block(asc, nil, asc ? nil : unknownError);
         } else
-            block(nil, unknownError);
+            block(nil, nil, unknownError);
     }];
 }
 

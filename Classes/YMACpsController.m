@@ -7,7 +7,6 @@
 //
 
 #import "YMACpsController.h"
-#import "YMACpsViewController.h"
 
 @interface YMACpsController ()
 
@@ -16,9 +15,9 @@
 @implementation YMACpsController
 
 - (id)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
-    YMACpsViewController *cpsViewController = [[YMACpsViewController alloc] initWithClientId:clientId patternId:patternId andPaymentParams:paymentParams];
+    _cpsViewController = [[YMACpsViewController alloc] initWithClientId:clientId patternId:patternId andPaymentParams:paymentParams];
 
-    return [super initWithRootViewController:cpsViewController];
+    return [super initWithRootViewController:_cpsViewController];
 }
 
 - (BOOL)shouldAutorotate {

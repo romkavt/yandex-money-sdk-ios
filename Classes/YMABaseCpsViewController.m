@@ -25,6 +25,7 @@ static NSString *const kUnknownError = @"unknownError";
 @property(nonatomic, strong) YMABaseResultView *resultView;
 @property(nonatomic, strong) YMABaseMoneySourcesView *moneySourcesView;
 @property(nonatomic, strong) YMABaseCscView *cardCscView;
+@property(nonatomic, copy) NSString *invoiceId;
 
 @end
 
@@ -145,16 +146,18 @@ static NSString *const kUnknownError = @"unknownError";
 }
 
 - (void)finishPaymentFromNewCard {
-    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAAsc *asc, NSError *error) {
+    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAAsc *asc, NSString *invoiceId, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.invoiceId = invoiceId;
             [self processPaymentRequestWithAsc:asc andError:error];
         });
     }];
 }
 
 - (void)finishPaymentFromExistCard {
-    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId moneySourceToken:self.selectedMoneySource.moneySourceToken andCsc:self.currentCsc completion:^(YMAAsc *asc, NSError *error) {
+    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId moneySourceToken:self.selectedMoneySource.moneySourceToken andCsc:self.currentCsc completion:^(YMAAsc *asc, NSString *invoiceId, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.invoiceId = invoiceId;
             [self processPaymentRequestWithAsc:asc andError:error];
         });
     }];
@@ -205,6 +208,11 @@ static NSString *const kUnknownError = @"unknownError";
 
 - (void)showSuccessView {
     [self stopActivity];
+    
+    if ([self.delegate respondsToSelector:@selector(paymentSuccessWithInvoiceId:)]) {
+        [self.delegate paymentSuccessWithInvoiceId:self.invoiceId];
+    }
+    
     YMAPaymentResultState state = (self.selectedMoneySource) ? YMAPaymentResultStateSuccessWithExistCard : YMAPaymentResultStateSuccessWithNewCard;
     self.resultView = [self resultViewWithState:state andDescription:self.paymentRequestInfo.amount];
     [self.scrollView addSubview:self.resultView];
