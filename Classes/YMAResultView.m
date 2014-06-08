@@ -6,6 +6,8 @@
 #import "YMAResultView.h"
 #import "YMAUIConstants.h"
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 static CGFloat const kSaveButtonOffset = 102.0;
 static CGFloat const kLeftOffset = 30.0;
 static CGFloat const kTitleLabelTopOffset = 55.0;
@@ -112,10 +114,12 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.saveButtonComment.textAlignment = NSTextAlignmentCenter;
 
     [self addSubview:self.saveButtonComment];
-
-    [self drawCard];
-    [self drawCheck];
-
+    
+    if (IS_IPHONE_5) {
+        [self drawCard];
+        [self drawCheck];
+    }
+    
     [self.saveCardButton addTarget:self action:@selector(saveMoneySource) forControlEvents:UIControlEventTouchUpInside];
 }
 
