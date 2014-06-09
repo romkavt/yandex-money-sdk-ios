@@ -273,6 +273,7 @@ static NSString *const kUnknownError = @"unknownError";
 - (void)repeatPayment {
     [self startActivity];
     [self.resultView removeFromSuperview];
+    [self setupNavigationBar];
     [self startPayment];
 }
 
