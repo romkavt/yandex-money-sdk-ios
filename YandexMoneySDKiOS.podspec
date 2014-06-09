@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.resources = 'Assets/uiymcpssdkios.bundle'
 
   s.frameworks = 'UIKit'
-  s.dependency 'YandexMoneySDKObjc'
+  s.dependency 'YandexMoneySDKObjc', '1.0.0'
 end
