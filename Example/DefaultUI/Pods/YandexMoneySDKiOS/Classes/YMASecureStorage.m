@@ -179,22 +179,9 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 }
 
 - (void)setInstanceId:(NSString *)instanceId {
-    CFTypeRef outDictionaryRef = [self performQuery:self.instanceIdQuery];
-    NSMutableDictionary *secItem;
-
-    if (outDictionaryRef != NULL) {
-        NSMutableDictionary *outDictionary = (__bridge_transfer NSMutableDictionary *) outDictionaryRef;
-        NSMutableDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
-
-        if (![[queryResult objectForKey:(__bridge id) kSecValueData] isEqual:instanceId]) {
-            secItem = [self dictionaryToSecItemFormat:@{(__bridge id) kSecValueData : instanceId}];
-            SecItemUpdate((__bridge CFDictionaryRef) self.instanceIdQuery, (__bridge CFDictionaryRef) secItem);
-        }
-
-        return;
-    }
-
-    secItem = [self dictionaryToSecItemFormat:@{(__bridge id) kSecValueData : instanceId}];
+    [self clearSecureStorage];
+    
+    NSMutableDictionary *secItem = [self dictionaryToSecItemFormat:@{(__bridge id) kSecValueData : instanceId}];
     [secItem setObject:kKeychainIdInstance forKey:(__bridge id) kSecAttrGeneric];
     SecItemAdd((__bridge CFDictionaryRef) secItem, NULL);
 }

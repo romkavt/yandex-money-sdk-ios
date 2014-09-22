@@ -22,7 +22,7 @@ typedef void (^YMAStartPaymentHandler)(YMAPaymentRequestInfo *requestInfo, NSErr
 /// Completion of block is used to get info about redirect to authorization page.
 /// @param asc - info about redirect to authorization page.
 /// @param error - Error information or nil.
-typedef void (^YMAFinishPaymentHandler)(YMAAsc *asc, NSError *error);
+typedef void (^YMAFinishPaymentHandler)(YMAAsc *asc, NSString *invoiceId, NSError *error);
 
 /// Completion of block is used to get info about the money source.
 /// @param moneySource - info about the money source (Information about the credit card).

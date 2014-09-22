@@ -6,6 +6,8 @@
 #import "YMAResultView.h"
 #import "YMAUIConstants.h"
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 static CGFloat const kSaveButtonOffset = 102.0;
 static CGFloat const kLeftOffset = 30.0;
 static CGFloat const kTitleLabelTopOffset = 55.0;
@@ -112,10 +114,12 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.saveButtonComment.textAlignment = NSTextAlignmentCenter;
 
     [self addSubview:self.saveButtonComment];
+    
+    if (IS_IPHONE_5)
+        [self drawCard];
 
-    [self drawCard];
     [self drawCheck];
-
+    
     [self.saveCardButton addTarget:self action:@selector(saveMoneySource) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -162,8 +166,11 @@ static CGFloat const kAnimationSpeed = 0.7;
 }
 
 - (void)successSaveMoneySource:(YMAMoneySource *)moneySource {
-    [self showSavedCardWithMoneySource:moneySource];
+    if (IS_IPHONE_5)
+        [self showSavedCardWithMoneySource:moneySource];
+    
     [self showCheck];
+    
     self.saveButtonComment.text = YMALocalizedString(@"TLSavedCardComment", nil);
     self.rightBarButton.enabled = YES;
 }
@@ -178,7 +185,8 @@ static CGFloat const kAnimationSpeed = 0.7;
 #pragma mark -
 
 - (void)stopSavingMoneySource {
-    [self enableCard];
+    if (IS_IPHONE_5)
+        [self enableCard];
     self.saveCardButton.enabled = YES;
     self.saveButtonComment.text = YMALocalizedString(@"TLSaveCardComment", nil);
     [self.activityIndicatorView removeFromSuperview];
@@ -187,7 +195,10 @@ static CGFloat const kAnimationSpeed = 0.7;
 
 - (void)saveMoneySource {
     [self.delegate saveMoneySource];
-    [self disableCard];
+    
+    if (IS_IPHONE_5)
+        [self disableCard];
+    
     self.saveCardButton.enabled = NO;
     self.saveButtonComment.text = YMALocalizedString(@"TLSavingCardComment", nil);
     self.activityIndicatorView.center = CGPointMake(65, self.saveCardButton.frame.size.height / 2);

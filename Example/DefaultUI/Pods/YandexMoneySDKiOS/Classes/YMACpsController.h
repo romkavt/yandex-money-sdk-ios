@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMACpsViewController.h"
 
 @interface YMACpsController : UINavigationController
 
 - (id)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
+
+@property(nonatomic, strong, readonly) YMACpsViewController *cpsViewController;
 
 @end

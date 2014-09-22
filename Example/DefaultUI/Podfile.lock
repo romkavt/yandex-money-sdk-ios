@@ -1,13 +1,13 @@
 PODS:
-  - YandexMoneySDKiOS (1.0.0):
-    - YandexMoneySDKObjc
+  - YandexMoneySDKiOS (1.0.2):
+    - YandexMoneySDKObjc (= 1.0.0)
   - YandexMoneySDKObjc (1.0.0)
 
 DEPENDENCIES:
-  - YandexMoneySDKiOS
+  - YandexMoneySDKiOS (= 1.0.2)
 
 SPEC CHECKSUMS:
-  YandexMoneySDKiOS: c40d8cf844d1ffaf350e13f50a7c32dfdcda4493
-  YandexMoneySDKObjc: 2231bd917495e924a4ad61673cdc40a4a3488c8c
+  YandexMoneySDKiOS: b4460d4babda0fedf915876da0bcf924ebf7f60e
+  YandexMoneySDKObjc: 421b68952f1279d5a39874ab80fecc49d165c44e
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1

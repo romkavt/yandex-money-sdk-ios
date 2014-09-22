@@ -38,7 +38,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 }
 
 @property(nonatomic, assign) YMAPaymentResultState state;
-@property(nonatomic, copy) NSString *description;
+@property(nonatomic, copy) NSString *resultDescription;
 @property(nonatomic, strong) UIButton *saveCardButton;
 @property(nonatomic, strong) UILabel *saveButtonComment;
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
@@ -53,7 +53,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 
     if (self) {
         _state = state;
-        _description = [description copy];
+        _resultDescription = [description copy];
         [self setupControls];
     }
 
