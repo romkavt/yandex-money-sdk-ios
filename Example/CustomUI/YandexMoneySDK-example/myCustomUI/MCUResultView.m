@@ -11,7 +11,7 @@
 @interface MCUResultView ()
 
 @property(nonatomic, assign) YMAPaymentResultState state;
-@property(nonatomic, copy) NSString *description;
+@property(nonatomic, copy) NSString *resultDescription;
 @property(nonatomic, strong) UIButton *saveCardButton;
 
 @end
@@ -23,7 +23,7 @@
 
     if (self) {
         _state = state;
-        _description = [description copy];
+        _resultDescription = [description copy];
         [self setupControls];
     }
 

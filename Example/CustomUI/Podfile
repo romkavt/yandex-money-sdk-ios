@@ -1,3 +1,3 @@
 platform :ios, '7.0'
 
-pod 'YandexMoneySDKiOS'
+pod 'YandexMoneySDKiOS', '1.0.3'
