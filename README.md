@@ -1,8 +1,8 @@
 <br>
 
-# THIS OPEN-SOURCE LIBRARY IS DEPRECATED.
+# This open-source library is deprecated and not supported.
 
-# PLEASE USE [Objective-C Yandex.Money SDK](https://github.com/yandex-money/yandex-money-sdk-objc)
+# Please, use [Objective-C Yandex.Money SDK](https://github.com/yandex-money/yandex-money-sdk-objc)
 
 <br>
 <br>
