@@ -1,11 +1,5 @@
-<br>
+# This open-source library is deprecated and not supported. <br><br> Please use [Objective-C Yandex.Money SDK](https://github.com/yandex-money/yandex-money-sdk-objc) for working with Yandex.Money API. 
 
-# This open-source library is deprecated and not supported.
-
-# Please, use [Objective-C Yandex.Money SDK](https://github.com/yandex-money/yandex-money-sdk-objc)
-
-<br>
-<br>
 <br>
 
 ## YandexMoneySDKiOS
