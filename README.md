@@ -1,4 +1,8 @@
-# YandexMoneySDKiOS
+# This open-source library is deprecated and not supported. <br><br> Please use [Objective-C Yandex.Money SDK](https://github.com/yandex-money/yandex-money-sdk-objc) for working with Yandex.Money API. 
+
+<br>
+
+## YandexMoneySDKiOS
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKiOS/badge.png)](http://api.yandex.ru/money/)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKiOS/badge.png)](http://api.yandex.ru/money/)
