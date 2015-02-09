@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <uiymcpssdk.h>
+#import "uiymcpssdk.h"
 
 //Use you application identifier
 static NSString *const kClientId = @"YOU_CLIENT_ID";
