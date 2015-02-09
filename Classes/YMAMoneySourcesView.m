@@ -16,7 +16,7 @@
 @property(nonatomic, strong) NSMutableArray *moneySources;
 @property(nonatomic, strong, readonly) UITableView *tableView;
 @property(nonatomic, strong) UIView *header;
-@property(nonatomic, strong) YMAPaymentRequestInfo *paymentInfo;
+@property(nonatomic, strong) YMAExternalPaymentInfoModel *paymentInfo;
 @property(nonatomic, strong) UILabel *paymentInfoValue;
 @property(nonatomic, strong) UILabel *paymentInfoTitle;
 
@@ -24,7 +24,7 @@
 
 @implementation YMAMoneySourcesView
 
-- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAPaymentRequestInfo *)paymentInfo andMoneySources:(NSArray *)moneySources {
+- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAExternalPaymentInfoModel *)paymentInfo andMoneySources:(NSArray *)moneySources {
     self = [super initWithFrame:frame];
 
     if (self) {
@@ -95,7 +95,7 @@
 
     if (indexPath.section) {
         if (indexPath.row < self.moneySources.count) {
-            YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+            YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
 
             if (moneySource.cardType == YMAPaymentCardTypeVISA)
                 cell.imageView.image = YMALocalizedImage(kImageKeyCardVISA, nil);
@@ -147,7 +147,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+        YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
         [self.delegate removeMoneySource:moneySource];
         [self.moneySources removeObject:moneySource];
         [self.tableView reloadData];
@@ -166,7 +166,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (indexPath.row < self.moneySources.count) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+        YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
         [self.delegate didSelectedMoneySource:moneySource];
     } else if (indexPath.row == self.moneySources.count) {
 

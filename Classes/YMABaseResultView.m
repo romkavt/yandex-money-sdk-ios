@@ -15,7 +15,7 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
-- (void)successSaveMoneySource:(YMAMoneySource *)moneySource {
+- (void)successSaveMoneySource:(YMAMoneySourceModel *)moneySource {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }

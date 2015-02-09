@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ymcpssdk.h>
+#import "YMAMoneySourceModel.h"
+#import "YMAExternalPaymentInfoModel.h"
 #import "YMABaseCpsViewDelegate.h"
 
 @protocol YMABaseMoneySourcesViewDelegate <YMABaseCpsViewDelegate>
 
-- (void)didSelectedMoneySource:(YMAMoneySource *)moneySource;
+- (void)didSelectedMoneySource:(YMAMoneySourceModel *)moneySource;
 
-- (void)removeMoneySource:(YMAMoneySource *)moneySource;
+- (void)removeMoneySource:(YMAMoneySourceModel *)moneySource;
 
 - (void)paymentFromNewCard;
 
@@ -24,6 +25,6 @@
 
 @property(nonatomic, weak) id <YMABaseMoneySourcesViewDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAPaymentRequestInfo *)paymentInfo andMoneySources:(NSArray *)moneySources;
+- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAExternalPaymentInfoModel *)paymentInfo andMoneySources:(NSArray *)moneySources;
 
 @end

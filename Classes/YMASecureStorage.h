@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ymcpssdk.h>
+@class YMAMoneySourceModel;
 
 /// Empry string
 extern NSString *const kKeychainItemValueEmpty;
@@ -19,9 +19,9 @@ extern NSString *const kKeychainItemValueEmpty;
 /// Info about the money sources (Information about the credit cards)
 @property(nonatomic, copy, readonly) NSArray *moneySources;
 
-- (void)saveMoneySource:(YMAMoneySource *)moneySource;
+- (void)saveMoneySource:(YMAMoneySourceModel *)moneySource;
 
-- (void)removeMoneySource:(YMAMoneySource *)moneySource;
+- (void)removeMoneySource:(YMAMoneySourceModel *)moneySource;
 
 - (void)clearSecureStorage;
 

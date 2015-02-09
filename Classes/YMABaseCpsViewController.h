@@ -28,7 +28,7 @@
 
 @property(nonatomic, strong, readonly) UIWebView *webView;
 
-@property(nonatomic, strong, readonly) YMAPaymentRequestInfo *paymentRequestInfo;
+@property(nonatomic, strong, readonly) YMAExternalPaymentInfoModel *paymentRequestInfo;
 
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
