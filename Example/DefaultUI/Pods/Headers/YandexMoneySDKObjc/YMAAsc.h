@@ -1,1 +1,0 @@
-../../YandexMoneySDKObjc/Classes/YMAAsc.h

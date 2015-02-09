@@ -1,1 +1,0 @@
-../../YandexMoneySDKiOS/Classes/uiymcpssdk.h

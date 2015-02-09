@@ -1,1 +1,0 @@
-../../YandexMoneySDKiOS/Classes/YMABaseCpsViewController.h

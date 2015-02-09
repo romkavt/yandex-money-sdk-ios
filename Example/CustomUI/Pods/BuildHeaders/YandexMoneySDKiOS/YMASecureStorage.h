@@ -1,1 +1,0 @@
-../../YandexMoneySDKiOS/Classes/YMASecureStorage.h
