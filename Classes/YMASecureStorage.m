@@ -4,6 +4,7 @@
 //
 
 #import "YMASecureStorage.h"
+#import "YMAMoneySourceModel.h"
 
 NSString *const kKeychainItemValueEmpty = @"";
 static NSString *const kKeychainIdInstance = @"instanceKeychainId";
@@ -25,7 +26,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 #pragma mark *** Public methods ***
 #pragma mark -
 
-- (void)saveMoneySource:(YMAMoneySource *)moneySource {
+- (void)saveMoneySource:(YMAMoneySourceModel *)moneySource {
     if (!moneySource || [self hasMoneySource:moneySource])
         return;
 
@@ -41,7 +42,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
     SecItemAdd((__bridge CFDictionaryRef) secItem, NULL);
 }
 
-- (void)removeMoneySource:(YMAMoneySource *)moneySource {
+- (void)removeMoneySource:(YMAMoneySourceModel *)moneySource {
     NSMutableDictionary *sourceToRemove = [NSMutableDictionary dictionary];
 
     [sourceToRemove setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrAccount];
@@ -99,8 +100,8 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
     return NULL;
 }
 
-- (BOOL)hasMoneySource:(YMAMoneySource *)moneySource {
-    for (YMAMoneySource *source in self.moneySources) {
+- (BOOL)hasMoneySource:(YMAMoneySourceModel *)moneySource {
+    for (YMAMoneySourceModel *source in self.moneySources) {
         if ([source.panFragment isEqual:moneySource.panFragment])
             return YES;
     }
@@ -157,7 +158,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
         YMAMoneySourceType sourceType = (YMAMoneySourceType) [sourceTypeString integerValue];
         YMAPaymentCardType cardType = (YMAPaymentCardType) [cardTypeString integerValue];
 
-        YMAMoneySource *moneySource = [YMAMoneySource moneySourceWithType:sourceType cardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken];
+        YMAMoneySourceModel *moneySource = [YMAMoneySourceModel moneySourceWithType:sourceType cardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken];
 
         [sources addObject:moneySource];
     };

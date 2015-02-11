@@ -68,7 +68,7 @@
     [self.delegate updateNavigationBarTitle:@"" leftButtons:@[] rightButtons:@[rightBarButton]];
 }
 
-- (void)successSaveMoneySource:(YMAMoneySource *)moneySource {
+- (void)successSaveMoneySource:(YMAMoneySourceModel *)moneySource {
     [self.saveCardButton setTitle:@"Saved" forState:UIControlStateDisabled];
 }
 

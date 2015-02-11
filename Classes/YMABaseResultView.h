@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ymcpssdk.h>
+#import "YMAMoneySourceModel.h"
 #import "YMABaseCpsViewDelegate.h"
 
 typedef NS_ENUM(NSInteger, YMAPaymentResultState) {
@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, YMAPaymentResultState) {
 
 - (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state description:(NSString *)description;
 
-- (void)successSaveMoneySource:(YMAMoneySource *)moneySource;
+- (void)successSaveMoneySource:(YMAMoneySourceModel *)moneySource;
 
 - (void)stopSavingMoneySourceWithError:(NSError *)error;
 

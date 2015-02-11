@@ -16,13 +16,13 @@ static CGFloat const kControlHeightDefault = 44.0;
 
 @property(nonatomic, strong) NSMutableArray *moneySources;
 @property(nonatomic, strong, readonly) UITableView *tableView;
-@property(nonatomic, strong) YMAPaymentRequestInfo *paymentInfo;
+@property(nonatomic, strong) YMAExternalPaymentInfoModel *paymentInfo;
 
 @end
 
 @implementation MCUMoneySourcesView
 
-- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAPaymentRequestInfo *)paymentInfo andMoneySources:(NSArray *)moneySources {
+- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAExternalPaymentInfoModel *)paymentInfo andMoneySources:(NSArray *)moneySources {
     self = [super initWithFrame:frame];
 
     if (self) {
@@ -77,7 +77,7 @@ static CGFloat const kControlHeightDefault = 44.0;
 
 
     if (indexPath.row < self.moneySources.count) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+        YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
 
         NSString *cardType;
 
@@ -118,7 +118,7 @@ static CGFloat const kControlHeightDefault = 44.0;
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+        YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
         [self.delegate removeMoneySource:moneySource];
         [self.moneySources removeObject:moneySource];
         [self.tableView reloadData];
@@ -134,7 +134,7 @@ static CGFloat const kControlHeightDefault = 44.0;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (indexPath.row < self.moneySources.count) {
-        YMAMoneySource *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+        YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
         [self.delegate didSelectedMoneySource:moneySource];
     } else if (indexPath.row == self.moneySources.count) {
 

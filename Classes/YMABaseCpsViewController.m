@@ -20,7 +20,7 @@ static NSString *const kUnknownError = @"unknownError";
 @property(nonatomic, copy) NSString *clientId;
 @property(nonatomic, strong) NSDictionary *paymentParams;
 @property(nonatomic, copy) NSString *patternId;
-@property(nonatomic, strong) YMAMoneySource *selectedMoneySource;
+@property(nonatomic, strong) YMAMoneySourceModel *selectedMoneySource;
 @property(nonatomic, copy) NSString *currentCsc;
 @property(nonatomic, strong) YMABaseResultView *resultView;
 @property(nonatomic, strong) YMABaseMoneySourcesView *moneySourcesView;
@@ -136,7 +136,7 @@ static NSString *const kUnknownError = @"unknownError";
     }];
 }
 
-- (void)processPaymentRequestWithAsc:(YMAAsc *)asc andError:(NSError *)error {
+- (void)processPaymentRequestWithAsc:(YMAAscModel *)asc andError:(NSError *)error {
     if (error)
         [self processError:error];
     else if (asc)
@@ -146,7 +146,7 @@ static NSString *const kUnknownError = @"unknownError";
 }
 
 - (void)finishPaymentFromNewCard {
-    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAAsc *asc, NSString *invoiceId, NSError *error) {
+    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAAscModel *asc, NSString *invoiceId, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.invoiceId = invoiceId;
             [self processPaymentRequestWithAsc:asc andError:error];
@@ -155,7 +155,7 @@ static NSString *const kUnknownError = @"unknownError";
 }
 
 - (void)finishPaymentFromExistCard {
-    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId moneySourceToken:self.selectedMoneySource.moneySourceToken andCsc:self.currentCsc completion:^(YMAAsc *asc, NSString *invoiceId, NSError *error) {
+    [self.cpsManager finishPaymentWithRequestId:self.paymentRequestInfo.requestId moneySourceToken:self.selectedMoneySource.moneySourceToken andCsc:self.currentCsc completion:^(YMAAscModel *asc, NSString *invoiceId, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.invoiceId = invoiceId;
             [self processPaymentRequestWithAsc:asc andError:error];
@@ -163,7 +163,7 @@ static NSString *const kUnknownError = @"unknownError";
     }];
 }
 
-- (void)loadInWebViewFormAsc:(YMAAsc *)asc {
+- (void)loadInWebViewFormAsc:(YMAAscModel *)asc {
     [self hideError];
 
     if (self.cardCscView && self.cardCscView.superview)
@@ -260,7 +260,7 @@ static NSString *const kUnknownError = @"unknownError";
 #pragma mark -
 
 - (void)saveMoneySource {
-    [self.cpsManager saveMoneySourceWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAMoneySource *moneySource, NSError *error) {
+    [self.cpsManager saveMoneySourceWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAMoneySourceModel *moneySource, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error)
                 [self.resultView stopSavingMoneySourceWithError:error];
@@ -281,14 +281,14 @@ static NSString *const kUnknownError = @"unknownError";
 #pragma mark *** YMABaseMoneySourcesViewDelegate ***
 #pragma mark -
 
-- (void)didSelectedMoneySource:(YMAMoneySource *)moneySource {
+- (void)didSelectedMoneySource:(YMAMoneySourceModel *)moneySource {
     self.selectedMoneySource = moneySource;
     self.cardCscView = [self cscView];
     [self.scrollView addSubview:self.cardCscView];
     [self.moneySourcesView removeFromSuperview];
 }
 
-- (void)removeMoneySource:(YMAMoneySource *)moneySource {
+- (void)removeMoneySource:(YMAMoneySourceModel *)moneySource {
     [self.cpsManager removeMoneySource:moneySource];
 }
 
@@ -307,7 +307,7 @@ static NSString *const kUnknownError = @"unknownError";
 }
 
 - (void)updatePaymentRequestInfoWithCompletion:(YMAHandler)block {
-    [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *error) {
+    [self.cpsManager startPaymentWithPatternId:self.patternId andPaymentParams:self.paymentParams completion:^(YMAExternalPaymentInfoModel *requestInfo, NSError *error) {
         if (!error)
             _paymentRequestInfo = requestInfo;
 

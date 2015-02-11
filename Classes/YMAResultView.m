@@ -68,6 +68,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     titleLabel.font = [YMAUIConstants titleFont];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.adjustsFontSizeToFitWidth = YES;
 
     [self addSubview:titleLabel];
 
@@ -79,13 +80,13 @@ static CGFloat const kAnimationSpeed = 0.7;
     amountLabel.textAlignment = NSTextAlignmentCenter;
 
     if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
-        NSString *errorText = YMALocalizedString(self.description, nil);
-        errorText = [errorText isEqualToString:self.description] ? YMALocalizedString(@"unknownError", nil) : errorText;
+        NSString *errorText = YMALocalizedString(self.resultDescription, nil);
+        errorText = [errorText isEqualToString:self.resultDescription] ? YMALocalizedString(@"unknownError", nil) : errorText;
         titleLabel.text = (self.state == YMAPaymentResultStateFatalFail) ? YMALocalizedString(@"TLFatalErrorTitle", nil) : YMALocalizedString(@"TLErrorTitle", nil);
         amountLabel.text = YMALocalizedString(errorText, nil);
     } else {
         titleLabel.text = YMALocalizedString(@"TLThanks", nil);
-        amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.description];
+        amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.resultDescription];
     }
 
     [self addSubview:amountLabel];
@@ -165,7 +166,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTResultSuccess", nil) leftButtons:@[] rightButtons:@[self.rightBarButton]];
 }
 
-- (void)successSaveMoneySource:(YMAMoneySource *)moneySource {
+- (void)successSaveMoneySource:(YMAMoneySourceModel *)moneySource {
     if (IS_IPHONE_5)
         [self showSavedCardWithMoneySource:moneySource];
     
@@ -351,7 +352,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     [self.layer addSublayer:btnLayers];
 }
 
-- (void)showSavedCardWithMoneySource:(YMAMoneySource *)moneySource {
+- (void)showSavedCardWithMoneySource:(YMAMoneySourceModel *)moneySource {
     CATextLayer *backTextLayer = [CATextLayer layer];
 
     backTextLayer.frame = CGRectMake(kCardLeftOffset + 21, kCardTopOffset + 91, kCardWidth - 44, 40);

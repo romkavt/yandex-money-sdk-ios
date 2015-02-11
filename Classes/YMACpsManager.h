@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "YMASecureStorage.h"
+#import "YMABaseSession.h"
+#import "YMAExternalPaymentInfoModel.h"
+#import "YMAAscModel.h"
+#import "YMAMoneySourceModel.h"
+
 
 /// Address of the page if successful payment authorization by credit card.
 extern NSString *const kSuccessUrl;
@@ -17,17 +22,17 @@ extern NSString *const kFailUrl;
 /// Completion of block is used to get the payment request info.
 /// @param requestInfo - payment request info.
 /// @param error - Error information or nil.
-typedef void (^YMAStartPaymentHandler)(YMAPaymentRequestInfo *requestInfo, NSError *error);
+typedef void (^YMAStartPaymentHandler)(YMAExternalPaymentInfoModel *requestInfo, NSError *error);
 
 /// Completion of block is used to get info about redirect to authorization page.
 /// @param asc - info about redirect to authorization page.
 /// @param error - Error information or nil.
-typedef void (^YMAFinishPaymentHandler)(YMAAsc *asc, NSString *invoiceId, NSError *error);
+typedef void (^YMAFinishPaymentHandler)(YMAAscModel *asc, NSString *invoiceId, NSError *error);
 
 /// Completion of block is used to get info about the money source.
 /// @param moneySource - info about the money source (Information about the credit card).
 /// @param error - Error information or nil.
-typedef void (^YMAMoneySourceHandler)(YMAMoneySource *moneySource, NSError *error);
+typedef void (^YMAMoneySourceHandler)(YMAMoneySourceModel *moneySource, NSError *error);
 
 @interface YMACpsManager : NSObject
 
@@ -39,7 +44,7 @@ typedef void (^YMAMoneySourceHandler)(YMAMoneySource *moneySource, NSError *erro
 
 - (void)saveMoneySourceWithRequestId:(NSString *)requestId completion:(YMAMoneySourceHandler)block;
 
-- (void)removeMoneySource:(YMAMoneySource *)moneySource;
+- (void)removeMoneySource:(YMAMoneySourceModel *)moneySource;
 
 - (void)startPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams completion:(YMAStartPaymentHandler)block;
 

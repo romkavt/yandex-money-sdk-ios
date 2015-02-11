@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "YandexMoneySDKiOS"
-  s.version          = "1.0.3"
+  s.version          = "1.0.4"
   s.summary          = "Default UI for iOS Yandex.Money SDK"
   s.homepage         = "https://github.com/yandex-money/yandex-money-sdk-ios"
   s.license          = 'MIT'
@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.resources = 'Assets/uiymcpssdkios.bundle'
 
   s.frameworks = 'UIKit'
-  s.dependency 'YandexMoneySDKObjc', '1.0.0'
+  s.dependency 'YandexMoneySDKObjc', '~> 1.0'
 end
