@@ -42,9 +42,9 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 #pragma mark -
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block {
-    NSString *instanceId = self.secureStorage.instanceId;
+    NSString *currentInstanceId = self.secureStorage.instanceId;
 
-    if (!instanceId || [instanceId isEqual:kKeychainItemValueEmpty]) {
+    if (!currentInstanceId || [currentInstanceId isEqual:kKeychainItemValueEmpty]) {
         [self.session instanceWithClientId:self.clientId token:nil completion:^(NSString *instanceId, NSError *error) {
             if (error)
                 block(error);
@@ -56,7 +56,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
         return;
     }
 
-    self.session.instanceId = instanceId;
+    self.session.instanceId = currentInstanceId;
     block(nil);
 }
 
