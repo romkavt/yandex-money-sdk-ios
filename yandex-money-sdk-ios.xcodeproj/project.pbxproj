@@ -272,8 +272,6 @@
 			mainGroup = 603499D718995F320033835D;
 			productRefGroup = 603499E118995F320033835D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				603499DF18995F320033835D /* uiymcpssdk-ios */,
@@ -432,7 +430,10 @@
 					/Applications/Xcode,
 					2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRIVATE_HEADERS_FOLDER_PATH = "/include/$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "/include/$(PRODUCT_NAME)";
@@ -454,7 +455,10 @@
 					/Applications/Xcode,
 					2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRIVATE_HEADERS_FOLDER_PATH = "/include/$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "/include/$(PRODUCT_NAME)";

@@ -7,6 +7,10 @@
 //
 
 #import "YMACpsManager.h"
+#import "YMAExternalPaymentSession.h"
+#import "YMAProcessExternalPaymentRequest.h"
+#import "YMAExternalPaymentRequest.h"
+#import "YMAExternalPaymentResponse.h"
 
 NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
 NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
@@ -15,7 +19,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 @property(nonatomic, copy) NSString *clientId;
 @property(nonatomic, strong) YMASecureStorage *secureStorage;
-@property(nonatomic, strong, readonly) YMASession *session;
+@property(nonatomic, strong, readonly) YMAExternalPaymentSession *session;
 
 @end
 
@@ -27,7 +31,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
     if (self) {
         _clientId = [clientId copy];
         _secureStorage = [[YMASecureStorage alloc] init];
-        _session = [[YMASession alloc] init];
+        _session = [[YMAExternalPaymentSession alloc] init];
     }
 
     return self;
@@ -38,22 +42,21 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 #pragma mark -
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block {
-    NSString *instanceId = self.secureStorage.instanceId;
+    NSString *currentInstanceId = self.secureStorage.instanceId;
 
-    if (!instanceId || [instanceId isEqual:kKeychainItemValueEmpty]) {
-        [self.session authorizeWithClientId:self.clientId completion:^(NSString *newInstanceId, NSError *error) {
+    if (!currentInstanceId || [currentInstanceId isEqual:kKeychainItemValueEmpty]) {
+        [self.session instanceWithClientId:self.clientId token:nil completion:^(NSString *instanceId, NSError *error) {
             if (error)
                 block(error);
             else {
-                self.secureStorage.instanceId = newInstanceId;
+                self.secureStorage.instanceId = instanceId;
                 block(nil);
             }
         }];
-
         return;
     }
 
-    self.session.instanceId = instanceId;
+    self.session.instanceId = currentInstanceId;
     block(nil);
 }
 
@@ -66,11 +69,13 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
             return;
         }
 
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
 
-        if (response.status == YMAResponseStatusSuccess) {
+        YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *) response;
+
+        if (processResponse.status == YMAResponseStatusSuccess) {
             YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
-            YMAMoneySource *moneySource = processExternalPaymentResponse.moneySource;
+            YMAMoneySourceModel *moneySource = processExternalPaymentResponse.moneySource;
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.secureStorage saveMoneySource:moneySource];
@@ -82,14 +87,14 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
     }];
 }
 
-- (void)removeMoneySource:(YMAMoneySource *)moneySource {
+- (void)removeMoneySource:(YMAMoneySourceModel *)moneySource {
     [self.secureStorage removeMoneySource:moneySource];
 }
 
 - (void)startPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams completion:(YMAStartPaymentHandler)block {
     YMABaseRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaymentWithPatternId:patternId andPaymentParams:paymentParams];
 
-    [self.session performRequest:externalPaymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
+    [self.session performRequest:externalPaymentRequest token:nil completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
         if (error) {
             block(nil, error);
             return;
@@ -119,28 +124,31 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 - (void)finishPaymentWithRequest:(YMABaseRequest *)paymentRequest completion:(YMAFinishPaymentHandler)block {
     [self processPaymentRequest:paymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
         if (error) {
-            block(nil, error);
+            block(nil, nil, error);
             return;
         }
 
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
+        
+        YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
 
-        if (response.status == YMAResponseStatusSuccess)
-            block(nil, nil);
-        else if (response.status == YMAResponseStatusExtAuthRequired) {
-            YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
-            YMAAsc *asc = processExternalPaymentResponse.asc;
+        if (processExternalPaymentResponse.status == YMAResponseStatusSuccess)
+            block(nil, processExternalPaymentResponse.invoiceId, nil);
+        else if (processExternalPaymentResponse.status == YMAResponseStatusExtAuthRequired) {
+            
+            YMAAscModel *asc = processExternalPaymentResponse.asc;
 
-            block(asc, asc ? nil : unknownError);
+            block(asc, nil, asc ? nil : unknownError);
         } else
-            block(nil, unknownError);
+            block(nil, nil, unknownError);
     }];
 }
 
 - (void)processPaymentRequest:(YMABaseRequest *)paymentRequest completion:(YMARequestHandler)block {
-    [self.session performRequest:paymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
-        if (response.status == YMAResponseStatusInProgress) {
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, response.nextRetry);
+    [self.session performRequest:paymentRequest token:nil completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
+        YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *) response;
+        if (processResponse.status == YMAResponseStatusInProgress) {
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, processResponse.nextRetry);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
                 [self processPaymentRequest:request completion:block];
             });

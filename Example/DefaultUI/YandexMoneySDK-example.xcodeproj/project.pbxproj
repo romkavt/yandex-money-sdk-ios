@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		437BBA7218AC23E100859CC6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437BBA7118AC23E100859CC6 /* QuartzCore.framework */; };
+		5559179F1A88F99000C92967 /* YMABaseCpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555917851A88F99000C92967 /* YMABaseCpsViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A01A88F99000C92967 /* YMABaseCscView.m in Sources */ = {isa = PBXBuildFile; fileRef = 555917881A88F99000C92967 /* YMABaseCscView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A11A88F99000C92967 /* YMABaseMoneySourcesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559178A1A88F99000C92967 /* YMABaseMoneySourcesView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A21A88F99000C92967 /* YMABaseResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559178C1A88F99000C92967 /* YMABaseResultView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A31A88F99000C92967 /* YMACpsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559178E1A88F99000C92967 /* YMACpsController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A41A88F99000C92967 /* YMACpsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 555917901A88F99000C92967 /* YMACpsManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A51A88F99000C92967 /* YMACpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555917921A88F99000C92967 /* YMACpsViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A61A88F99000C92967 /* YMACscView.m in Sources */ = {isa = PBXBuildFile; fileRef = 555917941A88F99000C92967 /* YMACscView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A71A88F99000C92967 /* YMALocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 555917961A88F99000C92967 /* YMALocalization.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A81A88F99000C92967 /* YMAMoneySourcesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 555917981A88F99000C92967 /* YMAMoneySourcesView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917A91A88F99000C92967 /* YMAResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559179A1A88F99000C92967 /* YMAResultView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917AA1A88F99000C92967 /* YMASecureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559179C1A88F99000C92967 /* YMASecureStorage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917AB1A88F99000C92967 /* YMAUIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559179E1A88F99000C92967 /* YMAUIConstants.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		555917DC1A88FB8A00C92967 /* uiymcpssdkios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 555917DB1A88FB8A00C92967 /* uiymcpssdkios.bundle */; };
 		60D4224818A51CBA0018E439 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224718A51CBA0018E439 /* UIKit.framework */; };
 		60D4224A18A51CBA0018E439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224918A51CBA0018E439 /* Foundation.framework */; };
 		60D4224C18A51CBA0018E439 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D4224B18A51CBA0018E439 /* CoreGraphics.framework */; };
@@ -19,10 +33,41 @@
 		60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225D18A51CBA0018E439 /* Default-568h@2x.png */; };
 		60D4226118A51CBA0018E439 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4226018A51CBA0018E439 /* ViewController.m */; };
 		60EEF90D18A5212600F72177 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EEF90C18A5212600F72177 /* Security.framework */; };
+		DCAEE908EA2B41A499055F3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2323312370364641AFC0994D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2323312370364641AFC0994D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		437BBA7118AC23E100859CC6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		555917831A88F99000C92967 /* uiymcpssdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiymcpssdk.h; sourceTree = "<group>"; };
+		555917841A88F99000C92967 /* YMABaseCpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseCpsViewController.h; sourceTree = "<group>"; };
+		555917851A88F99000C92967 /* YMABaseCpsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseCpsViewController.m; sourceTree = "<group>"; };
+		555917861A88F99000C92967 /* YMABaseCpsViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseCpsViewDelegate.h; sourceTree = "<group>"; };
+		555917871A88F99000C92967 /* YMABaseCscView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseCscView.h; sourceTree = "<group>"; };
+		555917881A88F99000C92967 /* YMABaseCscView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseCscView.m; sourceTree = "<group>"; };
+		555917891A88F99000C92967 /* YMABaseMoneySourcesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseMoneySourcesView.h; sourceTree = "<group>"; };
+		5559178A1A88F99000C92967 /* YMABaseMoneySourcesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseMoneySourcesView.m; sourceTree = "<group>"; };
+		5559178B1A88F99000C92967 /* YMABaseResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseResultView.h; sourceTree = "<group>"; };
+		5559178C1A88F99000C92967 /* YMABaseResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseResultView.m; sourceTree = "<group>"; };
+		5559178D1A88F99000C92967 /* YMACpsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMACpsController.h; sourceTree = "<group>"; };
+		5559178E1A88F99000C92967 /* YMACpsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMACpsController.m; sourceTree = "<group>"; };
+		5559178F1A88F99000C92967 /* YMACpsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMACpsManager.h; sourceTree = "<group>"; };
+		555917901A88F99000C92967 /* YMACpsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMACpsManager.m; sourceTree = "<group>"; };
+		555917911A88F99000C92967 /* YMACpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMACpsViewController.h; sourceTree = "<group>"; };
+		555917921A88F99000C92967 /* YMACpsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMACpsViewController.m; sourceTree = "<group>"; };
+		555917931A88F99000C92967 /* YMACscView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMACscView.h; sourceTree = "<group>"; };
+		555917941A88F99000C92967 /* YMACscView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMACscView.m; sourceTree = "<group>"; };
+		555917951A88F99000C92967 /* YMALocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMALocalization.h; sourceTree = "<group>"; };
+		555917961A88F99000C92967 /* YMALocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMALocalization.m; sourceTree = "<group>"; };
+		555917971A88F99000C92967 /* YMAMoneySourcesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAMoneySourcesView.h; sourceTree = "<group>"; };
+		555917981A88F99000C92967 /* YMAMoneySourcesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAMoneySourcesView.m; sourceTree = "<group>"; };
+		555917991A88F99000C92967 /* YMAResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAResultView.h; sourceTree = "<group>"; };
+		5559179A1A88F99000C92967 /* YMAResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAResultView.m; sourceTree = "<group>"; };
+		5559179B1A88F99000C92967 /* YMASecureStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMASecureStorage.h; sourceTree = "<group>"; };
+		5559179C1A88F99000C92967 /* YMASecureStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMASecureStorage.m; sourceTree = "<group>"; };
+		5559179D1A88F99000C92967 /* YMAUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAUIConstants.h; sourceTree = "<group>"; };
+		5559179E1A88F99000C92967 /* YMAUIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAUIConstants.m; sourceTree = "<group>"; };
+		555917DB1A88FB8A00C92967 /* uiymcpssdkios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = uiymcpssdkios.bundle; sourceTree = "<group>"; };
 		60D4224418A51CBA0018E439 /* YandexMoneySDK-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YandexMoneySDK-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60D4224718A51CBA0018E439 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		60D4224918A51CBA0018E439 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -39,6 +84,7 @@
 		60D4225F18A51CBA0018E439 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		60D4226018A51CBA0018E439 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		60EEF90C18A5212600F72177 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EE0602DE0F1E424192D481E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,18 +97,75 @@
 				60D4224818A51CBA0018E439 /* UIKit.framework in Frameworks */,
 				60D4224A18A51CBA0018E439 /* Foundation.framework in Frameworks */,
 				60D4224C18A51CBA0018E439 /* CoreGraphics.framework in Frameworks */,
+				DCAEE908EA2B41A499055F3F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		555917811A88F97C00C92967 /* YandexMoneySDKiOS */ = {
+			isa = PBXGroup;
+			children = (
+				555917DA1A88FB8A00C92967 /* Assets */,
+				555917821A88F99000C92967 /* Classes */,
+			);
+			name = YandexMoneySDKiOS;
+			sourceTree = "<group>";
+		};
+		555917821A88F99000C92967 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				555917831A88F99000C92967 /* uiymcpssdk.h */,
+				555917841A88F99000C92967 /* YMABaseCpsViewController.h */,
+				555917851A88F99000C92967 /* YMABaseCpsViewController.m */,
+				555917861A88F99000C92967 /* YMABaseCpsViewDelegate.h */,
+				555917871A88F99000C92967 /* YMABaseCscView.h */,
+				555917881A88F99000C92967 /* YMABaseCscView.m */,
+				555917891A88F99000C92967 /* YMABaseMoneySourcesView.h */,
+				5559178A1A88F99000C92967 /* YMABaseMoneySourcesView.m */,
+				5559178B1A88F99000C92967 /* YMABaseResultView.h */,
+				5559178C1A88F99000C92967 /* YMABaseResultView.m */,
+				5559178D1A88F99000C92967 /* YMACpsController.h */,
+				5559178E1A88F99000C92967 /* YMACpsController.m */,
+				5559178F1A88F99000C92967 /* YMACpsManager.h */,
+				555917901A88F99000C92967 /* YMACpsManager.m */,
+				555917911A88F99000C92967 /* YMACpsViewController.h */,
+				555917921A88F99000C92967 /* YMACpsViewController.m */,
+				555917931A88F99000C92967 /* YMACscView.h */,
+				555917941A88F99000C92967 /* YMACscView.m */,
+				555917951A88F99000C92967 /* YMALocalization.h */,
+				555917961A88F99000C92967 /* YMALocalization.m */,
+				555917971A88F99000C92967 /* YMAMoneySourcesView.h */,
+				555917981A88F99000C92967 /* YMAMoneySourcesView.m */,
+				555917991A88F99000C92967 /* YMAResultView.h */,
+				5559179A1A88F99000C92967 /* YMAResultView.m */,
+				5559179B1A88F99000C92967 /* YMASecureStorage.h */,
+				5559179C1A88F99000C92967 /* YMASecureStorage.m */,
+				5559179D1A88F99000C92967 /* YMAUIConstants.h */,
+				5559179E1A88F99000C92967 /* YMAUIConstants.m */,
+			);
+			name = Classes;
+			path = ../../Classes;
+			sourceTree = "<group>";
+		};
+		555917DA1A88FB8A00C92967 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				555917DB1A88FB8A00C92967 /* uiymcpssdkios.bundle */,
+			);
+			name = Assets;
+			path = ../../Assets;
+			sourceTree = "<group>";
+		};
 		60D4223B18A51CBA0018E439 = {
 			isa = PBXGroup;
 			children = (
 				60D4224D18A51CBA0018E439 /* YandexMoneySDK-example */,
+				555917811A88F97C00C92967 /* YandexMoneySDKiOS */,
 				60D4224618A51CBA0018E439 /* Frameworks */,
 				60D4224518A51CBA0018E439 /* Products */,
+				EE0602DE0F1E424192D481E7 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +185,7 @@
 				60D4224718A51CBA0018E439 /* UIKit.framework */,
 				60D4224918A51CBA0018E439 /* Foundation.framework */,
 				60D4224B18A51CBA0018E439 /* CoreGraphics.framework */,
+				2323312370364641AFC0994D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60D4226718A51CBA0018E439 /* Build configuration list for PBXNativeTarget "YandexMoneySDK-example" */;
 			buildPhases = (
+				5E02452FA0304C1B88B976A3 /* Check Pods Manifest.lock */,
 				60D4224018A51CBA0018E439 /* Sources */,
 				60D4224118A51CBA0018E439 /* Frameworks */,
 				60D4224218A51CBA0018E439 /* Resources */,
+				022FB11B17F04D8BB32F6FBD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */,
+				555917DC1A88FB8A00C92967 /* uiymcpssdkios.bundle in Resources */,
 				60D4225A18A51CBA0018E439 /* Default.png in Resources */,
 				60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */,
 				60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */,
@@ -172,14 +279,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		022FB11B17F04D8BB32F6FBD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E02452FA0304C1B88B976A3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60D4224018A51CBA0018E439 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5559179F1A88F99000C92967 /* YMABaseCpsViewController.m in Sources */,
+				555917A81A88F99000C92967 /* YMAMoneySourcesView.m in Sources */,
+				555917A51A88F99000C92967 /* YMACpsViewController.m in Sources */,
+				555917A41A88F99000C92967 /* YMACpsManager.m in Sources */,
+				555917A21A88F99000C92967 /* YMABaseResultView.m in Sources */,
+				555917A71A88F99000C92967 /* YMALocalization.m in Sources */,
+				555917A11A88F99000C92967 /* YMABaseMoneySourcesView.m in Sources */,
+				555917AA1A88F99000C92967 /* YMASecureStorage.m in Sources */,
 				60D4225418A51CBA0018E439 /* main.m in Sources */,
 				60D4225818A51CBA0018E439 /* AppDelegate.m in Sources */,
+				555917A61A88F99000C92967 /* YMACscView.m in Sources */,
 				60D4226118A51CBA0018E439 /* ViewController.m in Sources */,
+				555917A91A88F99000C92967 /* YMAResultView.m in Sources */,
+				555917AB1A88F99000C92967 /* YMAUIConstants.m in Sources */,
+				555917A31A88F99000C92967 /* YMACpsController.m in Sources */,
+				555917A01A88F99000C92967 /* YMABaseCscView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +406,7 @@
 		};
 		60D4226818A51CBA0018E439 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE0602DE0F1E424192D481E7 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -271,6 +425,7 @@
 		};
 		60D4226918A51CBA0018E439 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE0602DE0F1E424192D481E7 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

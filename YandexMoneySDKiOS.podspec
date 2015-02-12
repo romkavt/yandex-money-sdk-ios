@@ -1,12 +1,6 @@
-#
-# Be sure to run `pod lib lint NAME.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
 Pod::Spec.new do |s|
   s.name             = "YandexMoneySDKiOS"
-  s.version          = "1.0.0"
+  s.version          = "1.0.4"
   s.summary          = "Default UI for iOS Yandex.Money SDK"
   s.homepage         = "https://github.com/yandex-money/yandex-money-sdk-ios"
   s.license          = 'MIT'
@@ -22,5 +16,5 @@ Pod::Spec.new do |s|
   s.resources = 'Assets/uiymcpssdkios.bundle'
 
   s.frameworks = 'UIKit'
-  s.dependency 'YandexMoneySDKObjc'
+  s.dependency 'YandexMoneySDKObjc', '~> 1.0'
 end

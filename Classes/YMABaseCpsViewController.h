@@ -12,7 +12,15 @@
 #import "YMABaseCscView.h"
 #import "YMABaseResultView.h"
 
+@protocol YMABaseCpsViewControllerDelegate <NSObject>
+
+- (void)paymentSuccessWithInvoiceId:(NSString *)invoiceId;
+
+@end
+
 @interface YMABaseCpsViewController : UIViewController <UIWebViewDelegate>
+
+@property(nonatomic, assign) id<YMABaseCpsViewControllerDelegate> delegate;
 
 @property(nonatomic, strong, readonly) UIScrollView *scrollView;
 
@@ -20,7 +28,7 @@
 
 @property(nonatomic, strong, readonly) UIWebView *webView;
 
-@property(nonatomic, strong, readonly) YMAPaymentRequestInfo *paymentRequestInfo;
+@property(nonatomic, strong, readonly) YMAExternalPaymentInfoModel *paymentRequestInfo;
 
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 

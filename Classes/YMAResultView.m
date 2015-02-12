@@ -6,6 +6,8 @@
 #import "YMAResultView.h"
 #import "YMAUIConstants.h"
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 static CGFloat const kSaveButtonOffset = 102.0;
 static CGFloat const kLeftOffset = 30.0;
 static CGFloat const kTitleLabelTopOffset = 55.0;
@@ -36,7 +38,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 }
 
 @property(nonatomic, assign) YMAPaymentResultState state;
-@property(nonatomic, copy) NSString *description;
+@property(nonatomic, copy) NSString *resultDescription;
 @property(nonatomic, strong) UIButton *saveCardButton;
 @property(nonatomic, strong) UILabel *saveButtonComment;
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
@@ -51,7 +53,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 
     if (self) {
         _state = state;
-        _description = [description copy];
+        _resultDescription = [description copy];
         [self setupControls];
     }
 
@@ -66,6 +68,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     titleLabel.font = [YMAUIConstants titleFont];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.adjustsFontSizeToFitWidth = YES;
 
     [self addSubview:titleLabel];
 
@@ -77,13 +80,13 @@ static CGFloat const kAnimationSpeed = 0.7;
     amountLabel.textAlignment = NSTextAlignmentCenter;
 
     if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
-        NSString *errorText = YMALocalizedString(self.description, nil);
-        errorText = [errorText isEqualToString:self.description] ? YMALocalizedString(@"unknownError", nil) : errorText;
+        NSString *errorText = YMALocalizedString(self.resultDescription, nil);
+        errorText = [errorText isEqualToString:self.resultDescription] ? YMALocalizedString(@"unknownError", nil) : errorText;
         titleLabel.text = (self.state == YMAPaymentResultStateFatalFail) ? YMALocalizedString(@"TLFatalErrorTitle", nil) : YMALocalizedString(@"TLErrorTitle", nil);
         amountLabel.text = YMALocalizedString(errorText, nil);
     } else {
         titleLabel.text = YMALocalizedString(@"TLThanks", nil);
-        amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.description];
+        amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.resultDescription];
     }
 
     [self addSubview:amountLabel];
@@ -112,10 +115,12 @@ static CGFloat const kAnimationSpeed = 0.7;
     self.saveButtonComment.textAlignment = NSTextAlignmentCenter;
 
     [self addSubview:self.saveButtonComment];
+    
+    if (IS_IPHONE_5)
+        [self drawCard];
 
-    [self drawCard];
     [self drawCheck];
-
+    
     [self.saveCardButton addTarget:self action:@selector(saveMoneySource) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -161,9 +166,12 @@ static CGFloat const kAnimationSpeed = 0.7;
     [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTResultSuccess", nil) leftButtons:@[] rightButtons:@[self.rightBarButton]];
 }
 
-- (void)successSaveMoneySource:(YMAMoneySource *)moneySource {
-    [self showSavedCardWithMoneySource:moneySource];
+- (void)successSaveMoneySource:(YMAMoneySourceModel *)moneySource {
+    if (IS_IPHONE_5)
+        [self showSavedCardWithMoneySource:moneySource];
+    
     [self showCheck];
+    
     self.saveButtonComment.text = YMALocalizedString(@"TLSavedCardComment", nil);
     self.rightBarButton.enabled = YES;
 }
@@ -178,7 +186,8 @@ static CGFloat const kAnimationSpeed = 0.7;
 #pragma mark -
 
 - (void)stopSavingMoneySource {
-    [self enableCard];
+    if (IS_IPHONE_5)
+        [self enableCard];
     self.saveCardButton.enabled = YES;
     self.saveButtonComment.text = YMALocalizedString(@"TLSaveCardComment", nil);
     [self.activityIndicatorView removeFromSuperview];
@@ -187,7 +196,10 @@ static CGFloat const kAnimationSpeed = 0.7;
 
 - (void)saveMoneySource {
     [self.delegate saveMoneySource];
-    [self disableCard];
+    
+    if (IS_IPHONE_5)
+        [self disableCard];
+    
     self.saveCardButton.enabled = NO;
     self.saveButtonComment.text = YMALocalizedString(@"TLSavingCardComment", nil);
     self.activityIndicatorView.center = CGPointMake(65, self.saveCardButton.frame.size.height / 2);
@@ -340,7 +352,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     [self.layer addSublayer:btnLayers];
 }
 
-- (void)showSavedCardWithMoneySource:(YMAMoneySource *)moneySource {
+- (void)showSavedCardWithMoneySource:(YMAMoneySourceModel *)moneySource {
     CATextLayer *backTextLayer = [CATextLayer layer];
 
     backTextLayer.frame = CGRectMake(kCardLeftOffset + 21, kCardTopOffset + 91, kCardWidth - 44, 40);
